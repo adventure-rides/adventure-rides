@@ -1,0 +1,90 @@
+{
+  "project_info": {
+    "project_number": "603019458986",
+    "project_id": "adventurerides-ac4b7",
+    "storage_bucket": "adventurerides-ac4b7.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:603019458986:android:ac179ef539ce18dbe2d3d3",
+        "android_client_info": {
+          "package_name": "com.adventure.app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "603019458986-tspi04p2ufrrv7j8hthmt3vn3dhebuqh.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAowfWwu7aexlHkIo-XHZPVSYFtSaN0pZ8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "603019458986-tspi04p2ufrrv7j8hthmt3vn3dhebuqh.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "603019458986-ubb51hr603o5c55jubkpiub0244p86hh.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.adminPanel"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:603019458986:android:d4ddfb1200f7df59e2d3d3",
+        "android_client_info": {
+          "package_name": "com.adventure.rides"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "603019458986-2bma9s1je5a2c53vbqn498ck8o6jt57j.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.adventure.rides",
+            "certificate_hash": "50081ee803c7f8aff6cfe740a27bb2d8c1bf82cb"
+          }
+        },
+        {
+          "client_id": "603019458986-tspi04p2ufrrv7j8hthmt3vn3dhebuqh.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAowfWwu7aexlHkIo-XHZPVSYFtSaN0pZ8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "603019458986-tspi04p2ufrrv7j8hthmt3vn3dhebuqh.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "603019458986-ubb51hr603o5c55jubkpiub0244p86hh.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.adminPanel"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

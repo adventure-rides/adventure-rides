@@ -1,0 +1,39 @@
+{
+  "flutter": {
+    "platforms": {
+      "android": {
+        "default": {
+          "projectId": "adventurerides-ac4b7",
+          "appId": "1:603019458986:android:d4ddfb1200f7df59e2d3d3",
+          "fileOutput": "android/app/google-services.json"
+        }
+      },
+      "dart": {
+        "lib/firebase_options.dart": {
+          "projectId": "adventurerides-ac4b7",
+          "configurations": {
+            "android": "1:603019458986:android:d4ddfb1200f7df59e2d3d3",
+            "ios": "1:603019458986:ios:6ebe6ff1b8f4b00fe2d3d3",
+            "macos": "1:603019458986:ios:6ebe6ff1b8f4b00fe2d3d3",
+            "web": "1:603019458986:web:0d523e429bec0a8ae2d3d3",
+            "windows": "1:603019458986:web:3570bdb0d36e9cede2d3d3"
+          }
+        }
+      }
+    }
+  },
+  "hosting": {
+    "public": "build/web",
+    "ignore": [
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**"
+    ],
+    "rewrites": [
+      {
+        "source": "**",
+        "destination": "/index.html"
+      }
+    ]
+  }
+}

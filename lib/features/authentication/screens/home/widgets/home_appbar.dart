@@ -69,7 +69,7 @@ class SHomeAppBar extends StatelessWidget {
           ),
           TextButton.icon(
             onPressed: () => Get.to(() => BookingScreen()),
-            icon: const Icon(Icons.home, color: SColors.white),
+            icon: const Icon(Icons.book, color: SColors.white),
             label:
                 const Text("Booking", style: TextStyle(color: SColors.white)),
           ),

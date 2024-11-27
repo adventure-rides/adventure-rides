@@ -7,6 +7,7 @@ class BookingModel {
   final String pickupLocation; // Pickup location for the booking
   final String destination; // Destination for the booking
   final int numberOfGuests; // Number of guests for the booking
+  final String userId; //Foreign key for Authentication functionalities
 
   BookingModel({
     required this.id,
@@ -15,6 +16,7 @@ class BookingModel {
     required this.pickupLocation,
     required this.destination,
     required this.numberOfGuests,
+    required this.userId,
   });
 
   // Convert BookingModel to JSON for saving to Firestore
@@ -26,6 +28,7 @@ class BookingModel {
       'pickupLocation': pickupLocation,
       'destination': destination,
       'numberOfGuests': numberOfGuests,
+      'userId': userId,
     };
   }
 
@@ -40,6 +43,7 @@ class BookingModel {
       pickupLocation: data['pickupLocation'] as String,
       destination: data['destination'] as String,
       numberOfGuests: data['numberOfGuests'] as int,
+      userId: data['userId'] as String,
     );
   }
 }

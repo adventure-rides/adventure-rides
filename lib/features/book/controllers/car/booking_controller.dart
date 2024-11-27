@@ -12,6 +12,7 @@ class BookingController {
     required String pickupLocation,
     required String destination,
     required int numberOfGuests,
+    required String userId,
   }) async {
     try {
       final booking = BookingModel(
@@ -21,6 +22,7 @@ class BookingController {
         pickupLocation: pickupLocation,
         destination: destination,
         numberOfGuests: numberOfGuests,
+        userId: userId,
       );
 
       await _firestore.collection('bookings').doc(id).set(booking.toJson());
@@ -56,6 +58,7 @@ class BookingController {
     required String pickupLocation,
     required String destination,
     required int numberOfGuests,
+    required String userId,
   }) async {
     try {
       final booking = BookingModel(
@@ -65,6 +68,7 @@ class BookingController {
         pickupLocation: pickupLocation,
         destination: destination,
         numberOfGuests: numberOfGuests,
+        userId: userId,
       );
 
       await _firestore.collection('bookings').doc(id).update(booking.toJson());

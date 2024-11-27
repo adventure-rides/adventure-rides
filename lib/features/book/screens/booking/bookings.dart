@@ -1,14 +1,41 @@
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:intl/intl.dart';
+import 'package:adventure_rides/features/book/screens/cart/widgets/cart_items.dart';
+import '../../../../data/repositories/authentication/general_auth_repository.dart';
+import '../../../authentication/screens/Login/login.dart';
+import '../checkout/checkout.dart';
+import 'package:get/get.dart';
 
 class BookingScreen extends StatefulWidget {
+  const BookingScreen({super.key});
+
   @override
   _BookingFormScreenState createState() => _BookingFormScreenState();
 }
 
 class _BookingFormScreenState extends State<BookingScreen> {
   final _formKey = GlobalKey<FormState>();
+
+  Future<void> checkAuthenticationAndRedirect() async {
+    if (!Get.isRegistered<GeneralAuthRepository>()) {
+      Get.put(GeneralAuthRepository());
+    }
+
+    final authRepo = GeneralAuthRepository.instance;
+    //final user = authRepo._auth.currentUser;
+
+    final user = authRepo.currentUser;
+
+    // Check if the user is authenticated
+    if (user == null || !user.emailVerified) {
+      // If not authenticated, prompt login or registration
+      await Get.to(() => const LoginScreen());
+    } else {
+      // Proceed to the checkout if authenticated
+      Get.to(() => const CheckoutScreen());
+    }
+  }
 
   // Booking fields
   String pickupLocation = '';
@@ -132,12 +159,31 @@ class _BookingFormScreenState extends State<BookingScreen> {
                 ),
                 SizedBox(height: 16),
 
+                //Gari lililochaguliwa
+                const SingleChildScrollView(
+                  child: Column(
+                    children: const [
+                      /// Items in bookings
+
+                      SCartItems(),
+
+                      /// Additional Widgets if needed
+                      SizedBox(height: 30), // Example spacing or additional UI
+                    ],
+                  ),
+                ),
+
                 // Submit Button
                 ElevatedButton(
                   style: ElevatedButton.styleFrom(
                     padding: EdgeInsets.symmetric(horizontal: 24, vertical: 12),
                   ),
-                  onPressed: _submitForm,
+                  onPressed: () {
+                    //First action
+                    _submitForm();
+                    //Second action
+                    checkAuthenticationAndRedirect();
+                  },
                   child: Text('Submit Booking'),
                 ),
               ],
@@ -159,11 +205,13 @@ class _BookingFormScreenState extends State<BookingScreen> {
         'startDate': startDate?.toIso8601String(),
         'endDate': endDate?.toIso8601String(),
         'numberOfGuests': numberOfGuests,
+        'userId': '',
       };
 
       // Save to Firestore
       FirebaseFirestore.instance.collection('bookings').add(booking);
-
+      //user authentication
+      checkAuthenticationAndRedirect;
       // Notify user
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(content: Text('Booking Submitted!')),

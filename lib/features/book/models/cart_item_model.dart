@@ -64,7 +64,9 @@ class CartItemModel {
       quantity: json['quantity'] ?? 1,
       variationId: json['variationId'] ?? '',
       brandName: json['brandName'],
-      selectedVariation: json['selectedVariation'] != null ? Map<String, String>.from(json['selectedVariation']) : null,
+      selectedVariation: json['selectedVariation'] != null
+          ? Map<String, String>.from(json['selectedVariation'])
+          : null,
       guideFee: json['guideFee']?.toDouble(),
       guideName: json['guideName'],
       rating: json['rating']?.toDouble(),

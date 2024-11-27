@@ -27,6 +27,7 @@ class CheckoutScreen extends StatelessWidget {
 
     final dark = SHelperFunctions().isDarkMode(context);
     return Scaffold(
+<<<<<<< HEAD
       appBar: FixedScreenAppbar(),
               body: Column(
                 children: [
@@ -83,7 +84,53 @@ class CheckoutScreen extends StatelessWidget {
                     ),
                   ),
                 ],
+=======
+      appBar: SAppBar(
+          showBackArrow: true,
+          title: Text(' Booking Review ',
+              style: Theme.of(context).textTheme.headlineSmall)),
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: const EdgeInsets.all(SSizes.defaultSpace),
+          child: Column(
+            children: [
+              ///Items in cart
+              const SCartItems(showAddRemoveButtons: false),
+              const SizedBox(height: SSizes.spaceBtwSections),
+
+              ///Coupon textField
+              const SCouponCode(),
+              const SizedBox(height: SSizes.spaceBtwSections),
+
+              ///Billing Section
+              SRoundedContainer(
+                padding: const EdgeInsets.all(SSizes.md),
+                showBorder: true,
+                backgroundColor: dark ? SColors.black : SColors.white,
+                child: const Column(
+                  children: [
+                    ///Pricing
+                    SBillingAmountSection(),
+                    SizedBox(height: SSizes.spaceBtwItems),
+
+                    ///Divider
+                    Divider(),
+                    SizedBox(height: SSizes.spaceBtwItems),
+
+                    ///Payment Methods
+                    SBillingPaymentSection(),
+                    SizedBox(height: SSizes.spaceBtwItems),
+
+                    ///Address
+                    SBillingAddressSection(),
+                  ],
+                ),
+>>>>>>> c975d635346cadcd746b06d1ef638729b64c6167
               ),
+            ],
+          ),
+        ),
+      ),
 
       ///Checkout button
       bottomNavigationBar: Padding(
@@ -91,9 +138,15 @@ class CheckoutScreen extends StatelessWidget {
         child: ElevatedButton(
             onPressed: subTotal > 0
                 ? () => bookingController.processOrder(subTotal)
-                : () => SLoaders.warningSnackBar(title: 'Empty Cart', message: 'Add items in the cart in order to proceed.'),
-          child: Text('Checkout \$$totalAmount')),
+                : () => SLoaders.warningSnackBar(
+                    title: 'Empty Cart',
+                    message: 'Add items in the cart in order to proceed.'),
+            child: Text('Checkout \$$totalAmount')),
       ),
     );
   }
+}
+
+extension on BookingController {
+  processOrder(double subTotal) {}
 }

@@ -1,7 +1,5 @@
-import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-import 'package:iconsax/iconsax.dart';
 
+<<<<<<< HEAD
 import '../../../../../common/container/rounded_container.dart';
 import '../../../../../common/loaders/animation_loader.dart';
 import '../../../../../navigation_menu.dart';
@@ -167,3 +165,5 @@ class SBookingListItems extends StatelessWidget {
     );
   }
 }
+=======
+>>>>>>> c975d635346cadcd746b06d1ef638729b64c6167

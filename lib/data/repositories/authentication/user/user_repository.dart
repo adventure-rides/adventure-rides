@@ -29,13 +29,17 @@ class UserRepository extends GetxController {
       throw 'Something went wrong. Please try again';
     }
   }
+
   ///Functions to fetch user details based on user id
-  Future<UserModel> fetchUserDetails() async {
+  Future<UserModel> fetchUserDetail() async {
     try {
-      final documentSnapshot = await _db.collection("Users").doc(AuthenticationRepository.instance.authUser.uid).get();
-      if (documentSnapshot.exists){
+      final documentSnapshot = await _db
+          .collection("Users")
+          .doc(AuthenticationRepository.instance.authUser.uid)
+          .get();
+      if (documentSnapshot.exists) {
         return UserModel.fromSnapShot(documentSnapshot);
-      }else {
+      } else {
         return UserModel.empty();
       }
     } on FirebaseException catch (e) {
@@ -48,10 +52,14 @@ class UserRepository extends GetxController {
       throw 'Something went wrong. Please try again';
     }
   }
+
   ///Functions to update user data in Firestore
   Future<void> updateUserDetails(UserModel updateUser) async {
     try {
-      return await _db.collection("Users").doc(updateUser.id).update(updateUser.toJson());
+      return await _db
+          .collection("Users")
+          .doc(updateUser.id)
+          .update(updateUser.toJson());
     } on FirebaseException catch (e) {
       throw SFirebaseException(e.code).message;
     } on FormatException catch (_) {
@@ -66,7 +74,10 @@ class UserRepository extends GetxController {
   ///Update any field in specific users collection
   Future<void> updateSingleField(Map<String, dynamic> json) async {
     try {
-      return await _db.collection("Users").doc(AuthenticationRepository.instance.authUser.uid).update(json);
+      return await _db
+          .collection("Users")
+          .doc(AuthenticationRepository.instance.authUser.uid)
+          .update(json);
     } on FirebaseException catch (e) {
       throw SFirebaseException(e.code).message;
     } on FormatException catch (_) {
@@ -92,8 +103,9 @@ class UserRepository extends GetxController {
       throw 'Something went wrong. Please try again';
     }
   }
+
   ///Upload any image
-  Future<String> uploadImage(String path, XFile image) async{
+  Future<String> uploadImage(String path, XFile image) async {
     try {
       final ref = FirebaseStorage.instance.ref(path).child(image.name);
       await ref.putFile(File(image.path));
@@ -110,5 +122,4 @@ class UserRepository extends GetxController {
       throw 'Something went wrong. Please try again';
     }
   }
-
 }

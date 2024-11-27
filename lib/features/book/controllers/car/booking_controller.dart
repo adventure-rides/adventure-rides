@@ -1,77 +1,105 @@
-import 'package:adventure_rides/utils/constraints/enums.dart';
-import 'package:flutter/cupertino.dart';
-import 'package:get/get.dart';
-import '../../../../common/widgets/success_screen/success_screen.dart';
-import '../../../../data/repositories/authentication/authentication_repository.dart';
-import '../../../../data/repositories/booking/booking_repository.dart';
-import '../../../../navigation_menu.dart';
-import '../../../../utils/constraints/image_strings.dart';
-import '../../../../utils/popups/full_screen_loader.dart';
-import '../../../../utils/popups/loaders.dart';
-import '../../../personalization/controllers/address_controller.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import '../../models/booking_model.dart';
-import 'cart_controller.dart';
-import 'checkout_controller.dart';
 
-class BookingController extends GetxController {
-  static BookingController get instance => Get.find();
+class BookingController {
+  final FirebaseFirestore _firestore = FirebaseFirestore.instance;
 
-  ///Variables
-  final cartController = CartController.instance;
-  final addressController = AddressController.instance;
-  final checkoutController = CheckOutController.instance;
-  final bookingRepository = Get.put(BookingRepository());
-
-  ///Fetch user's booking history
-  void processOrder(double totalAmount) async {
+  // Add a new booking
+  Future<void> addBooking({
+    required String id,
+    required DateTime startDate,
+    required DateTime endDate,
+    required String pickupLocation,
+    required String destination,
+    required int numberOfGuests,
+    required String userId,
+  }) async {
     try {
-      //Start loader
-      SFullScreenLoader.openLoadingDialog('Processing your booking...', SImages.pencilAnimation);
-
-      //Get user authentication id
-      final userId = AuthenticationRepository.instance.authUser.uid;
-      if (userId.isEmpty) return;
-
-      //Add details
       final booking = BookingModel(
-        //generate a unique id for the booking
-          id: UniqueKey().toString(),
-          userId: userId,
-          status: BookingStatus.pending,
-          totalAmount: totalAmount,
-          bookingDate: DateTime.now(),
-          paymentMethod: checkoutController.selectedPaymentMethod.value.name,
-          pickupLocation: addressController.selectedAddress.value,
-          //Get date as needed
-          confirmDate: DateTime.now(),
-          items: cartController.cartItems.toList(),
+        id: id,
+        startDate: startDate,
+        endDate: endDate,
+        pickupLocation: pickupLocation,
+        destination: destination,
+        numberOfGuests: numberOfGuests,
+        userId: userId,
       );
-      //Save the booking to firestore
-      await bookingRepository.bookingOrder(booking, userId);
 
-      //Execute the cart status
-      cartController.clearCart();
+      await _firestore.collection('bookings').doc(id).set(booking.toJson());
 
-      //Show success screen
-      Get.off(() => SuccessScreen(
-        image: SImages.orderCompletedAnimation,
-        title: 'Payment Success!',
-        subTitle: 'Your booking is complete!',
-        onPressed: () => Get.offAll(() => const NavigationMenu()),
-      ));
-    } catch (e){
-      SLoaders.warningSnackBar(title: 'Oh Snap!', message: e.toString());
+      print("Booking added successfully!");
+    } catch (e) {
+      print("Error adding booking: $e");
     }
   }
-  ///Add methods for booking processing
-  Future<List<BookingModel>> fetchUserOrders() async {
+
+  // Get booking by ID
+  Future<BookingModel?> getBookingById(String id) async {
     try {
-      final userBookings = await bookingRepository.fetchUserBookings();
-      return userBookings;
-    } catch (e){
-      SLoaders.warningSnackBar(title: 'Oh Snap!', message: e.toString());
+      final docSnapshot = await _firestore.collection('bookings').doc(id).get();
+
+      if (docSnapshot.exists) {
+        return BookingModel.fromSnapshot(docSnapshot);
+      } else {
+        print("Booking not found.");
+        return null;
+      }
+    } catch (e) {
+      print("Error getting booking: $e");
+      return null;
+    }
+  }
+
+  // Update an existing booking
+  Future<void> updateBooking({
+    required String id,
+    required DateTime startDate,
+    required DateTime endDate,
+    required String pickupLocation,
+    required String destination,
+    required int numberOfGuests,
+    required String userId,
+  }) async {
+    try {
+      final booking = BookingModel(
+        id: id,
+        startDate: startDate,
+        endDate: endDate,
+        pickupLocation: pickupLocation,
+        destination: destination,
+        numberOfGuests: numberOfGuests,
+        userId: userId,
+      );
+
+      await _firestore.collection('bookings').doc(id).update(booking.toJson());
+
+      print("Booking updated successfully!");
+    } catch (e) {
+      print("Error updating booking: $e");
+    }
+  }
+
+  // Delete a booking
+  Future<void> deleteBooking(String id) async {
+    try {
+      await _firestore.collection('bookings').doc(id).delete();
+      print("Booking deleted successfully!");
+    } catch (e) {
+      print("Error deleting booking: $e");
+    }
+  }
+
+  // Get all bookings
+  Future<List<BookingModel>> getAllBookings() async {
+    try {
+      final querySnapshot = await _firestore.collection('bookings').get();
+
+      return querySnapshot.docs
+          .map((doc) => BookingModel.fromSnapshot(doc))
+          .toList();
+    } catch (e) {
+      print("Error getting all bookings: $e");
       return [];
     }
   }
-
 }

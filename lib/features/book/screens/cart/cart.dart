@@ -41,8 +41,8 @@ class CartScreen extends StatelessWidget {
     return Scaffold(
       appBar: SAppBar(
           showBackArrow: true,
-          title:
-              Text(' Bookings ', style: Theme.of(context).textTheme.headlineSmall)),
+          title: Text(' Bookings ',
+              style: Theme.of(context).textTheme.headlineSmall)),
       body: Obx(() {
         ///Nothing found widget
         final emptyWidget = SAnimationLoaderWidget(
@@ -57,23 +57,30 @@ class CartScreen extends StatelessWidget {
           return emptyWidget;
         } else {
           return const SingleChildScrollView(
-            child: Padding(
-              padding: EdgeInsets.all(SSizes.defaultSpace),
+            child: Column(
+              children: const [
+                /// Items in bookings
 
-              ///Items in bookings
-              child: SCartItems(),
+                SCartItems(),
+
+                /// Additional Widgets if needed
+                SizedBox(height: 20), // Example spacing or additional UI
+              ],
             ),
           );
         }
       }),
 
       ///Checkout button
-      bottomNavigationBar: controller.cartItems.isEmpty ? const SizedBox() : Padding(
-        padding: const EdgeInsets.all(SSizes.defaultSpace),
-        child: ElevatedButton(
-            onPressed: checkAuthenticationAndRedirect,
-            child: Obx(() => Text('Checkout \$${controller.totalCartPrice.value}'))),
-      ),
+      bottomNavigationBar: controller.cartItems.isEmpty
+          ? const SizedBox()
+          : Padding(
+              padding: const EdgeInsets.all(SSizes.defaultSpace),
+              child: ElevatedButton(
+                  onPressed: checkAuthenticationAndRedirect,
+                  child: Obx(() =>
+                      Text('Checkout \$${controller.totalCartPrice.value}'))),
+            ),
     );
   }
 }

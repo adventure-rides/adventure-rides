@@ -8,7 +8,8 @@ import 'firebase_options.dart';
 /// Entry point of flutter app
 Future<void> main() async {
   /// Widgets binding
-  final WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
+  final WidgetsBinding widgetsBinding =
+      WidgetsFlutterBinding.ensureInitialized();
 
   /// Getx local storage
   //await GetStorage.init();
@@ -24,9 +25,6 @@ Future<void> main() async {
 
   //Load all the material design / themes / localization
   runApp(const App());
+
   FlutterNativeSplash.remove();
-
 }
-
-
-

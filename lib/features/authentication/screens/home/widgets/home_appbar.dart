@@ -12,6 +12,7 @@ import '../../../../../data/repositories/tour_guide/guide_repository.dart';
 import '../../../../../utils/constraints/colors.dart';
 import '../../../../../utils/constraints/text_strings.dart';
 import '../../../../personalization/controllers/user_controller.dart';
+import '../../../../book/screens/booking/bookings.dart';
 
 class SHomeAppBar extends StatelessWidget {
   const SHomeAppBar({super.key});
@@ -67,6 +68,12 @@ class SHomeAppBar extends StatelessWidget {
             label: const Text("Home", style: TextStyle(color: SColors.white)),
           ),
           TextButton.icon(
+            onPressed: () => Get.to(() => BookingScreen()),
+            icon: const Icon(Icons.home, color: SColors.white),
+            label:
+                const Text("Booking", style: TextStyle(color: SColors.white)),
+          ),
+          TextButton.icon(
             onPressed: () => Get.to(() => AllCars(
                   title: 'Popular Tourist Cars',
                   futureMethod: carRepository.getAllFeaturedCarS(),
@@ -98,6 +105,9 @@ class SHomeAppBar extends StatelessWidget {
               switch (value) {
                 case 'home':
                   Get.to(() => const NavigationMenu());
+                  break;
+                case 'Booking':
+                  Get.to(() => BookingScreen());
                   break;
                 case 'cars':
                   Get.to(() => AllCars(

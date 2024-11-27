@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
 import '../../../../../common/cars/cars_cards/car_card_vertical.dart';
 import '../../../../../common/widgets/Text/section_heading.dart';
 import '../../../../../common/widgets/layouts/grid_layout.dart';

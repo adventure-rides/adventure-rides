@@ -1,15 +1,14 @@
-import 'package:adventure_rides/common/cars/favourite_icon/guide_favourite_icon.dart';
 import 'package:adventure_rides/features/book/models/tour_guide_model.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:adventure_rides/features/book/controllers/tour_guide/guide_images_controller.dart';
-import '../../../../../common/appbar/appbar.dart';
 import '../../../../../common/custom_shapes/curved_edges/curved_edges_widgets.dart';
 import '../../../../../common/widgets/images/s_rounded_image.dart';
 import '../../../../../utils/constraints/colors.dart';
 import '../../../../../utils/constraints/sizes.dart';
 import '../../../../../utils/helpers/helper_functions.dart';
+import '../../../../authentication/screens/home/other_screens_appbar/fixed_screen_appbar.dart';
 
 
 class SGuideImageSlider extends StatelessWidget {
@@ -82,10 +81,8 @@ class SGuideImageSlider extends StatelessWidget {
               ),
             ),
             ///Appbar
-            SAppBar(
-              showBackArrow: true,
-              actions: [GuideFavouriteIcon(guideId: guide.id)],
-            ),
+            FixedScreenAppbar(),
+            //SAppBar(showBackArrow: true, actions: [GuideFavouriteIcon(guideId: guide.id)],),
           ],
         ),
       ),

@@ -21,7 +21,7 @@ class CarController extends GetxController {
       //Show loader while fetching cars
       isLoading.value = true;
       //Fetch Cars
-      final cars = await carRepository.getFeaturedCars();
+      final cars = await carRepository.getFeaturedCarsDesktop();
 
       //Assign Cars
       featuredCars.assignAll(cars);

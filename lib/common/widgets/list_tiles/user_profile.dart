@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:iconsax/iconsax.dart';
-
 import '../../../features/personalization/controllers/user_controller.dart';
 import '../../../utils/constraints/colors.dart';
 import '../../../utils/constraints/image_strings.dart';

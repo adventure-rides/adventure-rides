@@ -1,4 +1,5 @@
 import 'package:adventure_rides/common/appbar/fixed_appbar.dart';
+import 'package:adventure_rides/features/book/screens/booking/bookings.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:adventure_rides/features/book/screens/all_cars/all_cars.dart';
@@ -11,6 +12,7 @@ import '../../../../../data/repositories/tour_guide/guide_repository.dart';
 import '../../../../../utils/constraints/colors.dart';
 import '../../../../book/screens/cart/cart.dart';
 import '../../../../personalization/controllers/user_controller.dart';
+import '../../../../authentication/screens/Login/login.dart';
 
 class FixedScreenAppbar extends StatelessWidget implements PreferredSizeWidget {
   const FixedScreenAppbar({super.key});
@@ -34,6 +36,12 @@ class FixedScreenAppbar extends StatelessWidget implements PreferredSizeWidget {
             onPressed: () => Get.off(() => const NavigationMenu()),
             icon: const Icon(Icons.home, color: SColors.white),
             label: const Text("Home", style: TextStyle(color: SColors.white)),
+          ),
+          TextButton.icon(
+            onPressed: () => Get.off(() => BookingScreen()),
+            icon: const Icon(Icons.book, color: SColors.white),
+            label:
+                const Text("Bookings", style: TextStyle(color: SColors.white)),
           ),
           TextButton.icon(
             onPressed: () => Get.to(() => AllCars(
@@ -60,6 +68,13 @@ class FixedScreenAppbar extends StatelessWidget implements PreferredSizeWidget {
             label: const Text("Contact Us",
                 style: TextStyle(color: SColors.white)),
           ),
+          TextButton.icon(
+            onPressed: () {
+              // Define what happens on 'Contact Us' click
+            },
+            icon: const Icon(Icons.login, color: SColors.white),
+            label: const Text("Login", style: TextStyle(color: SColors.white)),
+          ),
           // Add the booking icon
           SCartCounterIcon(iconColor: SColors.white),
         ] else
@@ -69,6 +84,9 @@ class FixedScreenAppbar extends StatelessWidget implements PreferredSizeWidget {
               switch (value) {
                 case 'home':
                   Get.to(() => const NavigationMenu());
+                  break;
+                case 'bookings':
+                  Get.to(() => BookingScreen());
                   break;
                 case 'cars':
                   Get.to(() => AllCars(
@@ -85,8 +103,12 @@ class FixedScreenAppbar extends StatelessWidget implements PreferredSizeWidget {
                 case 'contact':
                   // Define what happens on 'Contact Us' click
                   break;
+                case 'login':
+                  // Define what happens on 'Contact Us' click
+                  Get.to(() => const LoginScreen());
+                  break;
                 case 'bookings':
-                // Navigate to the bookings/cart screen
+                  // Navigate to the bookings/cart screen
                   Get.to(() => const CartScreen());
                   break;
               }
@@ -97,6 +119,13 @@ class FixedScreenAppbar extends StatelessWidget implements PreferredSizeWidget {
                 child: ListTile(
                   leading: Icon(Icons.home, color: SColors.grey),
                   title: const Text("Home"),
+                ),
+              ),
+              PopupMenuItem<String>(
+                value: 'bookings',
+                child: ListTile(
+                  leading: Icon(Icons.book, color: SColors.grey),
+                  title: const Text("Bookings"),
                 ),
               ),
               PopupMenuItem<String>(
@@ -121,6 +150,13 @@ class FixedScreenAppbar extends StatelessWidget implements PreferredSizeWidget {
                 ),
               ),
               PopupMenuItem<String>(
+                value: 'login',
+                child: ListTile(
+                  leading: Icon(Icons.login, color: SColors.grey),
+                  title: const Text("Login"),
+                ),
+              ),
+              PopupMenuItem<String>(
                 value: 'bookings',
                 child: ListTile(
                   leading: Icon(Icons.book_online, color: SColors.grey),
@@ -129,7 +165,6 @@ class FixedScreenAppbar extends StatelessWidget implements PreferredSizeWidget {
               ),
             ],
           ),
-
       ],
     );
   }

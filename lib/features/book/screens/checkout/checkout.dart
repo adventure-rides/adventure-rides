@@ -27,121 +27,68 @@ class CheckoutScreen extends StatelessWidget {
 
     final dark = SHelperFunctions().isDarkMode(context);
     return Scaffold(
-<<<<<<< HEAD
       appBar: FixedScreenAppbar(),
-              body: Column(
-                children: [
-                  // Title text below the navbar
-                  Padding(
-                    padding: const EdgeInsets.symmetric(vertical: 16.0), // Add space around the title
-                    child: Text(
-                      ' Booking Review ', // Title passed from the constructor
-                      style: Theme.of(context).textTheme.headlineMedium?.copyWith(
-                        fontWeight: FontWeight.bold,
-                        color: dark ? Colors.white : Colors.black, // Adjust the color as needed
-                      ),
-                      textAlign: TextAlign.center,
-                    ),
+      body: Column(
+        children: [
+          // Title text below the navbar
+          Padding(
+            padding: const EdgeInsets.symmetric(
+                vertical: 16.0), // Add space around the title
+            child: Text(
+              ' Booking Review ', // Title passed from the constructor
+              style: Theme.of(context).textTheme.headlineMedium?.copyWith(
+                    fontWeight: FontWeight.bold,
+                    color: dark
+                        ? Colors.white
+                        : Colors.black, // Adjust the color as needed
                   ),
-                  Expanded(
-                    child: SingleChildScrollView(
-                      child: Padding(
-                          padding: const EdgeInsets.all(SSizes.defaultSpace),
-                        child: Column(
-                          children: [
-                            ///Items in cart
-                            const SCartItems(showAddRemoveButtons: false),
-                            const SizedBox(height: SSizes.spaceBtwSections),
-
-                            ///Coupon textField
-                            const SCouponCode(),
-                            const SizedBox(height: SSizes.spaceBtwSections),
-
-                            ///Billing Section
-                            SRoundedContainer(
-                              padding: const EdgeInsets.all(SSizes.md),
-                              showBorder: true,
-                              backgroundColor: dark ? SColors.black : SColors.white,
-                              child: const Column(
-                                children: [
-                                  ///Pricing
-                                  SBillingAmountSection(),
-                                  SizedBox(height: SSizes.spaceBtwItems),
-                                  ///Divider
-                                  Divider(),
-                                  SizedBox(height: SSizes.spaceBtwItems),
-                                  ///Payment Methods
-                                  SBillingPaymentSection(),
-                                  SizedBox(height: SSizes.spaceBtwItems),
-                                  ///Address
-                                  SBillingAddressSection(),
-                                ],
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-                  ),
-                ],
-=======
-      appBar: SAppBar(
-          showBackArrow: true,
-          title: Text(' Booking Review ',
-              style: Theme.of(context).textTheme.headlineSmall)),
-      body: SingleChildScrollView(
-        child: Padding(
-          padding: const EdgeInsets.all(SSizes.defaultSpace),
-          child: Column(
-            children: [
-              ///Items in cart
-              const SCartItems(showAddRemoveButtons: false),
-              const SizedBox(height: SSizes.spaceBtwSections),
-
-              ///Coupon textField
-              const SCouponCode(),
-              const SizedBox(height: SSizes.spaceBtwSections),
-
-              ///Billing Section
-              SRoundedContainer(
-                padding: const EdgeInsets.all(SSizes.md),
-                showBorder: true,
-                backgroundColor: dark ? SColors.black : SColors.white,
-                child: const Column(
+              textAlign: TextAlign.center,
+            ),
+          ),
+          Expanded(
+            child: SingleChildScrollView(
+              child: Padding(
+                padding: const EdgeInsets.all(SSizes.defaultSpace),
+                child: Column(
                   children: [
-                    ///Pricing
-                    SBillingAmountSection(),
-                    SizedBox(height: SSizes.spaceBtwItems),
+                    ///Items in cart
+                    const SCartItems(showAddRemoveButtons: false),
+                    const SizedBox(height: SSizes.spaceBtwSections),
 
-                    ///Divider
-                    Divider(),
-                    SizedBox(height: SSizes.spaceBtwItems),
+                    ///Coupon textField
+                    const SCouponCode(),
+                    const SizedBox(height: SSizes.spaceBtwSections),
 
-                    ///Payment Methods
-                    SBillingPaymentSection(),
-                    SizedBox(height: SSizes.spaceBtwItems),
+                    ///Billing Section
+                    SRoundedContainer(
+                      padding: const EdgeInsets.all(SSizes.md),
+                      showBorder: true,
+                      backgroundColor: dark ? SColors.black : SColors.white,
+                      child: const Column(
+                        children: [
+                          ///Pricing
+                          SBillingAmountSection(),
+                          SizedBox(height: SSizes.spaceBtwItems),
 
-                    ///Address
-                    SBillingAddressSection(),
+                          ///Divider
+                          Divider(),
+                          SizedBox(height: SSizes.spaceBtwItems),
+
+                          ///Payment Methods
+                          SBillingPaymentSection(),
+                          SizedBox(height: SSizes.spaceBtwItems),
+
+                          ///Address
+                          SBillingAddressSection(),
+                        ],
+                      ),
+                    ),
                   ],
                 ),
->>>>>>> c975d635346cadcd746b06d1ef638729b64c6167
               ),
-            ],
+            ),
           ),
-        ),
-      ),
-
-      ///Checkout button
-      bottomNavigationBar: Padding(
-        padding: const EdgeInsets.all(SSizes.defaultSpace),
-        child: ElevatedButton(
-            onPressed: subTotal > 0
-                ? () => bookingController.processOrder(subTotal)
-                : () => SLoaders.warningSnackBar(
-                    title: 'Empty Cart',
-                    message: 'Add items in the cart in order to proceed.'),
-            child: Text('Checkout \$$totalAmount')),
+        ],
       ),
     );
   }

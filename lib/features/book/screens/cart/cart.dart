@@ -42,49 +42,22 @@ class CartScreen extends StatelessWidget {
     final controller = CartController.instance;
     final dark = SHelperFunctions().isDarkMode(context);
     return Scaffold(
-<<<<<<< HEAD
       appBar: FixedScreenAppbar(),
       body: Column(
         children: [
           // Title text below the navbar
           Padding(
-            padding: const EdgeInsets.symmetric(vertical: 16.0), // Add space around the title
+            padding: const EdgeInsets.symmetric(
+                vertical: 16.0), // Add space around the title
             child: Text(
               'Your Bookings', // Title passed from the constructor
               style: Theme.of(context).textTheme.headlineMedium?.copyWith(
-                fontWeight: FontWeight.bold,
-                color: dark ? Colors.white : Colors.black, // Adjust the color as needed
-              ),
+                    fontWeight: FontWeight.bold,
+                    color: dark
+                        ? Colors.white
+                        : Colors.black, // Adjust the color as needed
+                  ),
               textAlign: TextAlign.center,
-=======
-      appBar: SAppBar(
-          showBackArrow: true,
-          title: Text(' Bookings ',
-              style: Theme.of(context).textTheme.headlineSmall)),
-      body: Obx(() {
-        ///Nothing found widget
-        final emptyWidget = SAnimationLoaderWidget(
-          text: 'Whoops! Bookings is Empty.',
-          animation: SImages.shopAnimation,
-          showAction: true,
-          actionText: 'Let\'s fill it',
-          onActionPressed: () => Get.off(() => const NavigationMenu()),
-        );
-
-        if (controller.cartItems.isEmpty) {
-          return emptyWidget;
-        } else {
-          return const SingleChildScrollView(
-            child: Column(
-              children: const [
-                /// Items in bookings
-
-                SCartItems(),
-
-                /// Additional Widgets if needed
-                SizedBox(height: 20), // Example spacing or additional UI
-              ],
->>>>>>> c975d635346cadcd746b06d1ef638729b64c6167
             ),
           ),
           Expanded(
@@ -114,7 +87,8 @@ class CartScreen extends StatelessWidget {
                         children: [
                           Expanded(
                             flex: 3,
-                            child: CartItemsDesktop(), // Bookings items displayed on the left
+                            child:
+                                CartItemsDesktop(), // Bookings items displayed on the left
                           ),
                           const SizedBox(width: SSizes.defaultSpace),
                           Expanded(
@@ -123,12 +97,12 @@ class CartScreen extends StatelessWidget {
                               children: [
                                 // Add additional content for desktop layout, such as a summary or recommendations
                                 Container(
-                                  padding: const EdgeInsets.all(SSizes.defaultSpace),
+                                  padding:
+                                      const EdgeInsets.all(SSizes.defaultSpace),
                                   decoration: BoxDecoration(
                                     color: Theme.of(context).cardColor,
                                     borderRadius: BorderRadius.circular(8),
                                   ),
-
                                 ),
                               ],
                             ),

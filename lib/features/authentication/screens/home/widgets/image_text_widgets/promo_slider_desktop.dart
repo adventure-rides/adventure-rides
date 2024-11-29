@@ -30,7 +30,11 @@ class PromoSliderDesktop extends StatelessWidget {
               children: [
                 SizedBox(
                   height: 420, // Fixed height for the slider
+<<<<<<< HEAD
                   //width: double.infinity, // Ensures full width
+=======
+                  width: double.infinity, // Ensures full width
+>>>>>>> 2c731c7f3ead869ad22f2a9414fa861a00704a39
                   child: CarouselSlider(
                     options: CarouselOptions(
                       viewportFraction: 1,
@@ -41,11 +45,21 @@ class PromoSliderDesktop extends StatelessWidget {
                       onPageChanged: (index, _) => controller.updatePageIndicator(index),
                     ),
                     items: controller.banners.map((banner) {
+<<<<<<< HEAD
                       return DesktopRoundedImage(
                         imageUrl: banner.imageUrl,
                         isNetworkImage: true,
                         //fit: BoxFit.contain, // Ensure it covers the entire area
                         onPressed: () => Get.toNamed(banner.targetScreen),
+=======
+                      return Positioned.fill(
+                        child: DesktopRoundedImage(
+                          imageUrl: banner.imageUrl,
+                          isNetworkImage: true,
+                          fit: BoxFit.fitWidth, // Ensure it covers the entire area
+                          onPressed: () => Get.toNamed(banner.targetScreen),
+                        ),
+>>>>>>> 2c731c7f3ead869ad22f2a9414fa861a00704a39
                       );
                     }).toList(),
                   ),

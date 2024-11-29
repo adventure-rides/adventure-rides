@@ -50,16 +50,23 @@ class HomeScreenDesktop extends StatelessWidget {
               SPrimaryHeaderContainer(
                 child: Column(
                   children: [
+<<<<<<< HEAD
                     SizedBox(height: SSizes.spaceBtwSections),
                     /// Searchbar
                     SSearchContainer(text: 'Search in TripHub'),
                     const SizedBox(height: SSizes.spaceBtwItems),
+=======
+                    /// Searchbar
+                    SSearchContainer(text: 'Search in TripHub'),
+                    const SizedBox(height: SSizes.spaceBtwSections),
+>>>>>>> 2c731c7f3ead869ad22f2a9414fa861a00704a39
 
                     /// Categories
                     const Padding(
                       padding: EdgeInsets.only(left: SSizes.defaultSpace),
                       child: Column(
                         children: [
+<<<<<<< HEAD
                           Row(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children:[
@@ -71,6 +78,15 @@ class HomeScreenDesktop extends StatelessWidget {
                             ]
                           ),
                           SizedBox(height: SSizes.spaceBtwItems),
+=======
+                          SSectionHeading(
+                            title: 'Popular Car Categories',
+                            showActionButton: false,
+                            textColor: Colors.white,
+                          ),
+                          SizedBox(height: SSizes.spaceBtwItems),
+
+>>>>>>> 2c731c7f3ead869ad22f2a9414fa861a00704a39
                           /// Categories
                           SHomeCategories(),
                         ],

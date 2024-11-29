@@ -34,7 +34,8 @@ class SettingsScreen extends StatelessWidget {
                               .apply(color: SColors.white))),
 
                   //User profile card
-                  SUserProfileTile(onPressed: () => Get.to(() => const ProfileScreen())),
+                  SUserProfileTile(
+                      onPressed: () => Get.to(() => const ProfileScreen())),
                   const SizedBox(height: SSizes.spaceBtwSections),
                 ],
               ),
@@ -64,7 +65,7 @@ class SettingsScreen extends StatelessWidget {
                       icon: Iconsax.bag_tick,
                       title: 'My Bookings',
                       subTitle: 'In-progress and completed bookings',
-                      onTap: () => Get.to(() => const BookingScreen())),
+                      onTap: () => Get.to(() => BookingScreen())),
                   SSettingsMenuTile(
                       icon: Iconsax.bank,
                       title: 'Bank Account',
@@ -127,7 +128,8 @@ class SettingsScreen extends StatelessWidget {
                   const SizedBox(height: SSizes.spaceBtwSections),
                   SizedBox(
                     width: double.infinity,
-                    child: OutlinedButton(onPressed: (){}, child: const Text('Logout')),
+                    child: OutlinedButton(
+                        onPressed: () {}, child: const Text('Logout')),
                   ),
                   const SizedBox(height: SSizes.spaceBtwSections * 2.5),
                 ],

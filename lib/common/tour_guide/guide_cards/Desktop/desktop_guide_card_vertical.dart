@@ -22,7 +22,11 @@ class DesktopGuideCardVertical extends StatelessWidget {
     final dark = SHelperFunctions().isDarkMode(context);
 
     return GestureDetector(
+<<<<<<< HEAD
       onTap: () => Get.to(() => GuideDetailScreen(guide: guide), preventDuplicates: false),
+=======
+      onTap: () => Get.to(() => GuideDetailScreen(guide: guide)),
+>>>>>>> 2c731c7f3ead869ad22f2a9414fa861a00704a39
       child: Container(
         width: 300,
         constraints: const BoxConstraints(

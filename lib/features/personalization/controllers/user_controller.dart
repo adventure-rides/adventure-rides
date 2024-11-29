@@ -36,11 +36,11 @@ class UserController extends GetxController {
   Future<void> fetchUserRecord() async {
     try {
       profileLoading.value = true;
-      final user = await userRepository.fetchUserDetails();
+      final user = await userRepository.fetchUserDetail();
       this.user(user);
     } catch (e) {
       user(UserModel.empty());
-    }finally{
+    } finally {
       profileLoading.value = false;
     }
   }
@@ -51,7 +51,7 @@ class UserController extends GetxController {
       //First update Rx and then check if user data is already stored. If not store new data
       await fetchUserRecord();
       //If no record already stored
-      if (user.value.id.isEmpty){
+      if (user.value.id.isEmpty) {
         if (userCredentials != null) {
           //Convert Name to First and Last Name
           final nameParts = UserModel.nameParts(userCredentials.user! ?? '');
@@ -62,7 +62,8 @@ class UserController extends GetxController {
           final user = UserModel(
             id: userCredentials.user!.uid,
             firstName: nameParts[0],
-            lastName: nameParts.length > 1 ? nameParts.sublist(1).join(' ') : '',
+            lastName:
+                nameParts.length > 1 ? nameParts.sublist(1).join(' ') : '',
             username: username,
             email: userCredentials.user!.email ?? '',
             phoneNumber: userCredentials.user!.phoneNumber ?? '',
@@ -72,25 +73,30 @@ class UserController extends GetxController {
           await userRepository.saveUserRecord(user);
         }
       }
-
     } catch (e) {
       SLoaders.warningSnackBar(
         title: 'Data not saved',
-        message: 'Something went wrong while saving your information. You can re-save your data in your profile',
+        message:
+            'Something went wrong while saving your information. You can re-save your data in your profile',
       );
     }
   }
+
   ///Delete account warning
-  void deleteAccountWarningPopup(){
+  void deleteAccountWarningPopup() {
     Get.defaultDialog(
       contentPadding: const EdgeInsets.all(SSizes.md),
       title: 'Delete Account',
       middleText:
-        'Are you sure you want to delete your account permanently? This action is not reversible and all of your data will be removed permanently.',
+          'Are you sure you want to delete your account permanently? This action is not reversible and all of your data will be removed permanently.',
       confirm: ElevatedButton(
-          onPressed: () async => deleteUserAccount(),
-        style: ElevatedButton.styleFrom(backgroundColor: Colors.red, side: const BorderSide(color: Colors.red)),
-        child: const Padding(padding: EdgeInsets.symmetric(horizontal: SSizes.lg), child: Text('Delete')),
+        onPressed: () async => deleteUserAccount(),
+        style: ElevatedButton.styleFrom(
+            backgroundColor: Colors.red,
+            side: const BorderSide(color: Colors.red)),
+        child: const Padding(
+            padding: EdgeInsets.symmetric(horizontal: SSizes.lg),
+            child: Text('Delete')),
       ),
       cancel: OutlinedButton(
         child: const Text('Cancel'),
@@ -98,6 +104,7 @@ class UserController extends GetxController {
       ),
     );
   }
+
   ///Delete user account
   void deleteUserAccount() async {
     try {
@@ -107,10 +114,8 @@ class UserController extends GetxController {
       ///First re-authenticate user
       //final auth = AuthenticationRepository.instance;
       final auth = GeneralAuthRepository.instance;
-      final provider = auth.authUser
-          .providerData
-          .map((e) => e.providerId)
-          .first;
+      final provider =
+          auth.authUser.providerData.map((e) => e.providerId).first;
       if (provider.isEmpty) {
         //Re verify auth email
         if (provider == 'google.com') {
@@ -128,44 +133,52 @@ class UserController extends GetxController {
       SLoaders.warningSnackBar(title: 'Oh Snap!', message: e.toString());
     }
   }
-    ///Re-authenticate before deleting
-    Future<void> reAuthenticateEmailAndPasswordUser() async {
-      try {
-        SFullScreenLoader.openLoadingDialog('Processing', SImages.processAnimation);
 
-        //Check internet connectivity
-        final isConnected = await NetworkManager.instance.isConnected();
-        if (!isConnected){
-          //Remove Loader
-          SFullScreenLoader.stopLoading();
-          return;
-        }
-        //form validation
-        if (!reAuthFormKey.currentState!.validate()) {
-          //Remove Loader
-          SFullScreenLoader.stopLoading();
-          return;
-        }
-        //await AuthenticationRepository.instance.reAuthenticateWithEmailAndPassword(verifyEmail.text.trim(), verifyPassword.text.trim());
-        //await AuthenticationRepository.instance.deleteAccount();
-        await GeneralAuthRepository.instance.reAuthenticateWithEmailAndPassword(verifyEmail.text.trim(), verifyPassword.text.trim());
-        await GeneralAuthRepository.instance.deleteAccount();
-        Get.offAll(() => const LoginScreen());
-      } catch (e) {
+  ///Re-authenticate before deleting
+  Future<void> reAuthenticateEmailAndPasswordUser() async {
+    try {
+      SFullScreenLoader.openLoadingDialog(
+          'Processing', SImages.processAnimation);
+
+      //Check internet connectivity
+      final isConnected = await NetworkManager.instance.isConnected();
+      if (!isConnected) {
+        //Remove Loader
         SFullScreenLoader.stopLoading();
-        SLoaders.warningSnackBar(title: 'Oh Snap!', message: e.toString());
+        return;
       }
+      //form validation
+      if (!reAuthFormKey.currentState!.validate()) {
+        //Remove Loader
+        SFullScreenLoader.stopLoading();
+        return;
+      }
+      //await AuthenticationRepository.instance.reAuthenticateWithEmailAndPassword(verifyEmail.text.trim(), verifyPassword.text.trim());
+      //await AuthenticationRepository.instance.deleteAccount();
+      await GeneralAuthRepository.instance.reAuthenticateWithEmailAndPassword(
+          verifyEmail.text.trim(), verifyPassword.text.trim());
+      await GeneralAuthRepository.instance.deleteAccount();
+      Get.offAll(() => const LoginScreen());
+    } catch (e) {
+      SFullScreenLoader.stopLoading();
+      SLoaders.warningSnackBar(title: 'Oh Snap!', message: e.toString());
+    }
   }
 
   ///Upload profile image
   uploadUserProfilePicture() async {
     try {
       //Open the gallery, use await since the uploading the image may take sometime
-      final image = await ImagePicker().pickImage(source: ImageSource.gallery, imageQuality: 70, maxHeight: 512, maxWidth: 512);
-      if(image != null){
+      final image = await ImagePicker().pickImage(
+          source: ImageSource.gallery,
+          imageQuality: 70,
+          maxHeight: 512,
+          maxWidth: 512);
+      if (image != null) {
         imageUploading.value = true;
         //Upload image
-        final imageUrl = await userRepository.uploadImage('Users/Images/Profile', image);
+        final imageUrl =
+            await userRepository.uploadImage('Users/Images/Profile', image);
 
         //Update user image record
         Map<String, dynamic> json = {'ProfilePicture': imageUrl};
@@ -175,10 +188,13 @@ class UserController extends GetxController {
         //To refresh the image to show the updated image
         user.refresh();
 
-        SLoaders.successSnackBar(title: 'Congratulations', message: 'Your Profile Image has been updated!');
+        SLoaders.successSnackBar(
+            title: 'Congratulations',
+            message: 'Your Profile Image has been updated!');
       }
-    } catch (e){
-      SLoaders.errorSnackBar(title: 'Oh Snap', message: 'Something went wrong: $e');
+    } catch (e) {
+      SLoaders.errorSnackBar(
+          title: 'Oh Snap', message: 'Something went wrong: $e');
     } finally {
       imageUploading.value = false;
     }

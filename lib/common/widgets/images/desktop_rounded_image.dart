@@ -10,7 +10,11 @@ class DesktopRoundedImage extends StatelessWidget {
     this.applyImageRadius = true,
     this.border,
     this.backgroundColor,
+<<<<<<< HEAD
     this.fit = BoxFit.fitWidth, // Ensure it covers the whole area fitwidth
+=======
+    this.fit = BoxFit.fitHeight, // Ensure it covers the whole area
+>>>>>>> 2c731c7f3ead869ad22f2a9414fa861a00704a39
     this.padding,
     this.isNetworkImage = false,
     this.onPressed,

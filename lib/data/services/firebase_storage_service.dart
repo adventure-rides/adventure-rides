@@ -1,62 +1,94 @@
 import 'dart:io';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
+import '../../features/book/models/booking_model.dart';
 
 class SFirebaseStorageService extends GetxController {
   static SFirebaseStorageService get instance => Get.find();
 
   final _firebaseStorage = FirebaseStorage.instance;
+
   ///Upload local assets from IDE
-  Future<Uint8List> getImageDataFromAssets(String path) async{
+  Future<Uint8List> getImageDataFromAssets(String path) async {
     try {
       final byteData = await rootBundle.load(path);
-      final imageData = byteData.buffer.asUint8List(byteData.offsetInBytes, byteData.lengthInBytes);
+      final imageData = byteData.buffer
+          .asUint8List(byteData.offsetInBytes, byteData.lengthInBytes);
       return imageData;
-    }catch (e){
+    } catch (e) {
       //Handle exceptions gracefully
       throw 'Error loading image data: $e';
     }
   }
+
   ///Upload image using image data on cloud firebase storage
-///Returns the download URL of the uploaded image
-  Future<String> uploadImageData(String path, Uint8List image, String name) async{
+  ///Returns the download URL of the uploaded image
+  Future<String> uploadImageData(
+      String path, Uint8List image, String name) async {
     try {
       final ref = _firebaseStorage.ref(path).child(name);
       await ref.putData(image);
       final url = await ref.getDownloadURL();
       return url;
-    }catch (e){
+    } catch (e) {
       //Handle exceptions grace fully
-      if (e is FirebaseException){
+      if (e is FirebaseException) {
         throw 'Firebase Exception: ${e.message}';
-      }else if (e is SocketException){
+      } else if (e is SocketException) {
         throw 'Network Error: ${e.message}';
-      }else if (e is PlatformException){
+      } else if (e is PlatformException) {
         throw 'Platform Exception: ${e.message}';
-      } else{
+      } else {
         throw 'Something Went wrong! Please try again';
       }
     }
   }
-  Future<String> uploadImageFile(String path, XFile image, String name) async{
+
+  Future<String> uploadImageFile(String path, XFile image, String name) async {
     try {
       final ref = _firebaseStorage.ref(path).child(name);
       await ref.putFile(File(image.path));
       final url = await ref.getDownloadURL();
       return url;
-    }catch (e){
+    } catch (e) {
       //Handle exceptions grace fully
-      if (e is FirebaseException){
+      if (e is FirebaseException) {
         throw 'Firebase Exception: ${e.message}';
-      }else if (e is SocketException){
+      } else if (e is SocketException) {
         throw 'Network Error: ${e.message}';
-      }else if (e is PlatformException){
+      } else if (e is PlatformException) {
         throw 'Platform Exception: ${e.message}';
-      } else{
+      } else {
         throw 'Something Went wrong! Please try again';
       }
     }
+  }
+}
+
+class BookingService {
+  final CollectionReference _bookingCollection =
+      FirebaseFirestore.instance.collection('bookings');
+
+  Future<void> addBooking(BookingModel booking) async {
+    await _bookingCollection.doc(booking.id).set(booking.toJson());
+  }
+
+  Future<BookingModel?> getBooking(String bookingId) async {
+    final snapshot = await _bookingCollection.doc(bookingId).get();
+    if (snapshot.exists) {
+      return BookingModel.fromSnapshot(snapshot);
+    }
+    return null;
+  }
+
+  Stream<List<BookingModel>> getBookings(String userId) {
+    return _bookingCollection
+        .where('userId', isEqualTo: userId)
+        .snapshots()
+        .map((query) =>
+            query.docs.map((doc) => BookingModel.fromSnapshot(doc)).toList());
   }
 }

@@ -8,6 +8,7 @@ import '../../../../../common/widgets/images/s_rounded_image.dart';
 import '../../../../../utils/constraints/colors.dart';
 import '../../../../../utils/constraints/sizes.dart';
 import '../../../../../utils/helpers/helper_functions.dart';
+import '../../../../authentication/screens/home/other_screens_appbar/fixed_screen_appbar.dart';
 
 
 class SGuideImageSlider extends StatelessWidget {
@@ -79,6 +80,12 @@ class SGuideImageSlider extends StatelessWidget {
                 ),
               ),
             ),
+<<<<<<< HEAD
+=======
+            ///Appbar
+            FixedScreenAppbar(),
+            //SAppBar(showBackArrow: true, actions: [GuideFavouriteIcon(guideId: guide.id)],),
+>>>>>>> 2c731c7f3ead869ad22f2a9414fa861a00704a39
           ],
         ),
       ),

@@ -1,3 +1,4 @@
+import 'package:adventure_rides/features/authentication/screens/Login/login.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:adventure_rides/features/book/screens/all_cars/all_cars.dart';
@@ -13,6 +14,8 @@ import '../../../../../utils/constraints/colors.dart';
 import '../../../../../utils/constraints/text_strings.dart';
 import '../../../../book/screens/cart/cart.dart';
 import '../../../../personalization/controllers/user_controller.dart';
+import '../../../../book/screens/booking/bookings.dart';
+import '../../../../../data/repositories/authentication/general_auth_repository.dart';
 
 class SHomeAppBar extends StatelessWidget {
   const SHomeAppBar({super.key});
@@ -68,6 +71,12 @@ class SHomeAppBar extends StatelessWidget {
             label: const Text("Home", style: TextStyle(color: SColors.white)),
           ),
           TextButton.icon(
+            onPressed: () => Get.to(() => BookingScreen()),
+            icon: const Icon(Icons.book, color: SColors.white),
+            label:
+                const Text("Bookings", style: TextStyle(color: SColors.white)),
+          ),
+          TextButton.icon(
             onPressed: () => Get.to(() => AllCars(
                   title: 'Popular Tourist Cars',
                   futureMethod: carRepository.getAllFeaturedCarS(),
@@ -92,6 +101,16 @@ class SHomeAppBar extends StatelessWidget {
             label: const Text("Contact Us",
                 style: TextStyle(color: SColors.white)),
           ),
+<<<<<<< HEAD
+=======
+          TextButton.icon(
+            onPressed: () {
+              // Define what happens on 'Contact Us' click
+            },
+            icon: const Icon(Icons.login, color: SColors.white),
+            label: const Text("Login", style: TextStyle(color: SColors.white)),
+          ),
+>>>>>>> 2c731c7f3ead869ad22f2a9414fa861a00704a39
           SCartCounterIcon(iconColor: SColors.white),
         ] else
           PopupMenuButton<String>(
@@ -100,6 +119,9 @@ class SHomeAppBar extends StatelessWidget {
               switch (value) {
                 case 'home':
                   Get.to(() => const NavigationMenu());
+                  break;
+                case 'Bookings':
+                  Get.to(() => BookingScreen());
                   break;
                 case 'cars':
                   Get.to(() => AllCars(
@@ -116,8 +138,16 @@ class SHomeAppBar extends StatelessWidget {
                 case 'contact':
                   // Define what happens on 'Contact Us' click
                   break;
+<<<<<<< HEAD
                 case 'bookings':
                 // Navigate to the bookings/cart screen
+=======
+                case 'login':
+                  Get.to(() => LoginScreen());
+                  break;
+                case 'bookings':
+                  // Navigate to the bookings/cart screen
+>>>>>>> 2c731c7f3ead869ad22f2a9414fa861a00704a39
                   Get.to(() => const CartScreen());
                   break;
               }
@@ -128,6 +158,13 @@ class SHomeAppBar extends StatelessWidget {
                 child: ListTile(
                   leading: Icon(Icons.home, color: SColors.grey),
                   title: const Text("Home"),
+                ),
+              ),
+              PopupMenuItem<String>(
+                value: 'bookings',
+                child: ListTile(
+                  leading: Icon(Icons.book, color: SColors.grey),
+                  title: const Text("Bookings"),
                 ),
               ),
               PopupMenuItem<String>(
@@ -152,6 +189,16 @@ class SHomeAppBar extends StatelessWidget {
                 ),
               ),
               PopupMenuItem<String>(
+<<<<<<< HEAD
+=======
+                value: 'login',
+                child: ListTile(
+                  leading: Icon(Icons.login, color: SColors.grey),
+                  title: const Text("Login"),
+                ),
+              ),
+              PopupMenuItem<String>(
+>>>>>>> 2c731c7f3ead869ad22f2a9414fa861a00704a39
                 value: 'bookings',
                 child: ListTile(
                   leading: Icon(Icons.book_online, color: SColors.grey),

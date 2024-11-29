@@ -28,7 +28,11 @@ class DesktopCarCardVertical extends StatelessWidget {
     final dark = SHelperFunctions().isDarkMode(context);
 
     return GestureDetector(
+<<<<<<< HEAD
       onTap: () => Get.to(() => CarDetailScreen(car: car), preventDuplicates: false),
+=======
+      onTap: () => Get.to(() => CarDetailScreen(car: car)),
+>>>>>>> 2c731c7f3ead869ad22f2a9414fa861a00704a39
       child: Container(
         width: double.infinity, // Fixed width
         decoration: BoxDecoration(

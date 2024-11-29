@@ -47,6 +47,7 @@ class CartScreen extends StatelessWidget {
         children: [
           // Title text below the navbar
           Padding(
+<<<<<<< HEAD
             padding: const EdgeInsets.symmetric(vertical: 16.0), // Add space around the title
             child: Text(
               'Your Bookings', // Title passed from the constructor
@@ -54,6 +55,18 @@ class CartScreen extends StatelessWidget {
                 fontWeight: FontWeight.bold,
                 color: dark ? Colors.white : Colors.black, // Adjust the color as needed
               ),
+=======
+            padding: const EdgeInsets.symmetric(
+                vertical: 16.0), // Add space around the title
+            child: Text(
+              'Your Bookings', // Title passed from the constructor
+              style: Theme.of(context).textTheme.headlineMedium?.copyWith(
+                    fontWeight: FontWeight.bold,
+                    color: dark
+                        ? Colors.white
+                        : Colors.black, // Adjust the color as needed
+                  ),
+>>>>>>> 2c731c7f3ead869ad22f2a9414fa861a00704a39
               textAlign: TextAlign.center,
             ),
           ),
@@ -84,7 +97,12 @@ class CartScreen extends StatelessWidget {
                         children: [
                           Expanded(
                             flex: 3,
+<<<<<<< HEAD
                             child: CartItemsDesktop(), // Bookings items displayed on the left
+=======
+                            child:
+                                CartItemsDesktop(), // Bookings items displayed on the left
+>>>>>>> 2c731c7f3ead869ad22f2a9414fa861a00704a39
                           ),
                           const SizedBox(width: SSizes.defaultSpace),
                           Expanded(
@@ -93,12 +111,20 @@ class CartScreen extends StatelessWidget {
                               children: [
                                 // Add additional content for desktop layout, such as a summary or recommendations
                                 Container(
+<<<<<<< HEAD
                                   padding: const EdgeInsets.all(SSizes.defaultSpace),
+=======
+                                  padding:
+                                      const EdgeInsets.all(SSizes.defaultSpace),
+>>>>>>> 2c731c7f3ead869ad22f2a9414fa861a00704a39
                                   decoration: BoxDecoration(
                                     color: Theme.of(context).cardColor,
                                     borderRadius: BorderRadius.circular(8),
                                   ),
+<<<<<<< HEAD
 
+=======
+>>>>>>> 2c731c7f3ead869ad22f2a9414fa861a00704a39
                                 ),
                               ],
                             ),
@@ -125,12 +151,15 @@ class CartScreen extends StatelessWidget {
       ),
 
       ///Checkout button
-      bottomNavigationBar: controller.cartItems.isEmpty ? const SizedBox() : Padding(
-        padding: const EdgeInsets.all(SSizes.defaultSpace),
-        child: ElevatedButton(
-            onPressed: checkAuthenticationAndRedirect,
-            child: Obx(() => Text('Checkout \$${controller.totalCartPrice.value}'))),
-      ),
+      bottomNavigationBar: controller.cartItems.isEmpty
+          ? const SizedBox()
+          : Padding(
+              padding: const EdgeInsets.all(SSizes.defaultSpace),
+              child: ElevatedButton(
+                  onPressed: checkAuthenticationAndRedirect,
+                  child: Obx(() =>
+                      Text('Checkout \$${controller.totalCartPrice.value}'))),
+            ),
     );
   }
 }

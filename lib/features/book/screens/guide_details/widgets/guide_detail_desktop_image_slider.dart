@@ -8,6 +8,10 @@ import '../../../../../common/styles/shadows.dart';
 import '../../../../../utils/constraints/colors.dart';
 import '../../../../../utils/constraints/sizes.dart';
 import '../../../../../utils/helpers/helper_functions.dart';
+<<<<<<< HEAD
+=======
+import '../../../../authentication/screens/home/other_screens_appbar/fixed_screen_appbar.dart';
+>>>>>>> 2c731c7f3ead869ad22f2a9414fa861a00704a39
 
 class GuideDetailDesktopImageSlider extends StatelessWidget {
   const GuideDetailDesktopImageSlider({
@@ -106,7 +110,11 @@ class GuideDetailDesktopImageSlider extends StatelessWidget {
             ),
 
             /// Appbar
+<<<<<<< HEAD
             //FixedScreenAppbar(),
+=======
+            FixedScreenAppbar(),
+>>>>>>> 2c731c7f3ead869ad22f2a9414fa861a00704a39
           ],
         ),
       ),

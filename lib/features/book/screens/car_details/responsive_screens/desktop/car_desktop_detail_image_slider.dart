@@ -1,3 +1,7 @@
+<<<<<<< HEAD
+=======
+import 'package:adventure_rides/features/authentication/screens/home/other_screens_appbar/fixed_screen_appbar.dart';
+>>>>>>> 2c731c7f3ead869ad22f2a9414fa861a00704a39
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -83,7 +87,11 @@ class DesktopCarImageSlider extends StatelessWidget {
               ),
             ),
             ///Appbar
+<<<<<<< HEAD
             //FixedScreenAppbar(),
+=======
+            FixedScreenAppbar(),
+>>>>>>> 2c731c7f3ead869ad22f2a9414fa861a00704a39
             //SAppBar(showBackArrow: true, actions: [SFavouriteIcon(carId: car.id)],),
           ],
         ),

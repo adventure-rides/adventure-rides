@@ -24,7 +24,7 @@ class SBookingListItems extends StatelessWidget {
       builder: (_, snapshot) {
         ///Nothing found widget
         final emptyWidget = SAnimationLoaderWidget(
-            text: 'Whoops! No Orders Yet!',
+            text: 'Whoops! No Bookings Yet!',
             animation: SImages.pencilAnimation,
           showAction: true,
           actionText: 'Lets fill it',

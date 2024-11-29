@@ -135,4 +135,22 @@ class GuideRepository extends GetxController {
       throw 'Something went wrong. Please try again';
     }
   }
+  //Used in guide detail section
+  /// Get available tour guides excluding the current guide
+  Future<List<TourGuideModel>> getAvailableGuidesExcludingCurrent(String currentGuideId) async {
+    try {
+      final snapshot = await _firestore
+          .collection('Guides')
+          .where(FieldPath.documentId, isNotEqualTo: currentGuideId)
+          .get();
+
+      return snapshot.docs.map((doc) => TourGuideModel.fromSnapshot(doc)).toList();
+    } on FirebaseException catch (e) {
+      throw SFirebaseException(e.code).message;
+    } on PlatformException catch (e) {
+      throw SPlatformException(e.code).message;
+    } catch (e) {
+      throw 'Something went wrong. Please try again';
+    }
+  }
 }

@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../../../Effects/category_shimmer.dart';
 import '../../../../book/controllers/category_controller.dart';
-import '../../../../book/screens/sub_category/sub_categories.dart';
 import 'image_text_widgets/vertical_image_text.dart';
 
 class SHomeCategories extends StatelessWidget {
@@ -29,7 +28,8 @@ class SHomeCategories extends StatelessWidget {
                   return SVerticalImageText(
                     image: category.image,
                     title: category.name,
-                    onTap: () => Get.to(() => SubCategoriesScreen(category: category)),
+                    //uncomment to enable click
+                    //onTap: () => Get.to(() => SubCategoriesScreen(category: category)),
                   );
                 }),
           );

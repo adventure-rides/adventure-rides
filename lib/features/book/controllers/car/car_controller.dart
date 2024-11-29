@@ -16,12 +16,13 @@ class CarController extends GetxController {
     fetchFeaturedCars();
     super.onInit();
   }
+  ///Fetch all featured cars
   void fetchFeaturedCars() async {
     try {
       //Show loader while fetching cars
       isLoading.value = true;
       //Fetch Cars
-      final cars = await carRepository.getFeaturedCars();
+      final cars = await carRepository.getFeaturedCarsDesktop();
 
       //Assign Cars
       featuredCars.assignAll(cars);
@@ -40,6 +41,20 @@ class CarController extends GetxController {
     }catch (e) {
       SLoaders.errorSnackBar(title: 'Oh Snap!', message: e.toString());
       return [];
+    }
+  }
+  /// Fetch available cars excluding the current car
+  Future<void> fetchAvailableCarsExcludingCurrent(String currentCarId) async {
+    try {
+      isLoading.value = true;
+
+      final cars = await carRepository.getAvailableCarsExcludingCurrent(currentCarId);
+
+      featuredCars.assignAll(cars); // Update the observable list with the fetched guides
+    } catch (e) {
+      SLoaders.errorSnackBar(title: 'Oh Snap!', message: e.toString());
+    } finally {
+      isLoading.value = false;
     }
   }
   ///Get the car price  or price range for variations

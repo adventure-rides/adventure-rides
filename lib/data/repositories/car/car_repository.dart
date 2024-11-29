@@ -27,6 +27,21 @@ class CarRepository extends GetxController {
       throw 'Something went wrong. Please try again';
     }
   }
+  ///Get limited featured cars
+  Future<List<CarModel>> getFeaturedCarsDesktop() async {
+    try {
+      //final snapshot = await _db.collection('Cars').where('IsFeatured', isEqualTo: true).limit(4).get();
+      final snapshot = await _db.collection('Cars').limit(6).get();
+      return snapshot.docs.map((e) => CarModel.fromSnapshot(e)).toList();
+
+    } on FirebaseException catch (e) {
+      throw SFirebaseException(e.code).message;
+    } on PlatformException catch (e) {
+      throw SPlatformException(e.code).message;
+    } catch (e) {
+      throw 'Something went wrong. Please try again';
+    }
+  }
   ///Get all featured cars
   /// Get all featured cars using Stream.
   Future<List<CarModel>> getAllFeaturedCarS() async {
@@ -148,6 +163,24 @@ class CarRepository extends GetxController {
       final cars = querySnapshot.docs.map((doc) => CarModel.fromQuerySnapshot(doc)).toList();
 
       return cars;
+    } on FirebaseException catch (e) {
+      throw SFirebaseException(e.code).message;
+    } on PlatformException catch (e) {
+      throw SPlatformException(e.code).message;
+    } catch (e) {
+      throw 'Something went wrong. Please try again';
+    }
+  }
+  //Used in car detail section
+  /// Get available cars excluding the current car
+  Future<List<CarModel>> getAvailableCarsExcludingCurrent(String currentCarId) async {
+    try {
+      final snapshot = await _db
+          .collection('Cars')
+          .where(FieldPath.documentId, isNotEqualTo: currentCarId)
+          .get();
+
+      return snapshot.docs.map((doc) => CarModel.fromSnapshot(doc)).toList();
     } on FirebaseException catch (e) {
       throw SFirebaseException(e.code).message;
     } on PlatformException catch (e) {

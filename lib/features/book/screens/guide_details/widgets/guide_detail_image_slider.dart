@@ -1,10 +1,8 @@
-import 'package:adventure_rides/common/cars/favourite_icon/guide_favourite_icon.dart';
 import 'package:adventure_rides/features/book/models/tour_guide_model.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:adventure_rides/features/book/controllers/tour_guide/guide_images_controller.dart';
-import '../../../../../common/appbar/appbar.dart';
 import '../../../../../common/custom_shapes/curved_edges/curved_edges_widgets.dart';
 import '../../../../../common/widgets/images/s_rounded_image.dart';
 import '../../../../../utils/constraints/colors.dart';
@@ -80,11 +78,6 @@ class SGuideImageSlider extends StatelessWidget {
                   ),
                 ),
               ),
-            ),
-            ///Appbar
-            SAppBar(
-              showBackArrow: true,
-              actions: [GuideFavouriteIcon(guideId: guide.id)],
             ),
           ],
         ),

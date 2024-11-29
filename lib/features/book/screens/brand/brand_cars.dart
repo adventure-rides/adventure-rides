@@ -1,7 +1,9 @@
+import 'package:adventure_rides/utils/device/device_utility.dart';
 import 'package:flutter/material.dart';
 import '../../../../brands/brand_card.dart';
 import '../../../../common/appbar/appbar.dart';
-import '../../../../common/cars/sortable/sortable_cars.dart';
+import '../../../../common/cars/sortable/responsive_screens/Desktop/sortable_cars_desktop.dart';
+import '../../../../common/cars/sortable/responsive_screens/mobile/sortable_cars_mobile.dart';
 import '../../../../utils/constraints/sizes.dart';
 import '../../../../utils/helpers/cloud_helper_functions.dart';
 import '../../../Effects/vertical_car_shimmer.dart';
@@ -39,7 +41,11 @@ class BrandCars extends StatelessWidget {
                   ///Record found
                   final brandCars = snapshot.data!;
 
-                  return SSortableCars(cars: brandCars);
+                  if (SDevicesUtils.isDesktopScreen(context)) {
+                    return SortableCarsDesktop(cars: brandCars);
+                  } else {
+                    return SortableCarsMobile(cars: brandCars);
+                  }
                 }
               ),
             ],

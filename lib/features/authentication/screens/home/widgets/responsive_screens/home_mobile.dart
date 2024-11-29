@@ -1,8 +1,9 @@
+import 'package:adventure_rides/common/cars/cars_cards/mobile/mobile_car_card_vertical.dart';
+import 'package:adventure_rides/features/book/controllers/car/mobile_car_controller.dart';
 import 'package:adventure_rides/features/book/screens/all_guides/all_tour_guides.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
-import '../../../../../../common/cars/cars_cards/car_card_vertical.dart';
 import '../../../../../../common/custom_shapes/containers/primary_header_container.dart';
 import '../../../../../../common/custom_shapes/containers/search_container.dart';
 import '../../../../../../common/tour_guide/guide_cards/guide_card_vertical.dart';
@@ -14,7 +15,6 @@ import '../../../../../../utils/constraints/colors.dart';
 import '../../../../../../utils/constraints/sizes.dart';
 import '../../../../../Effects/vertical_car_shimmer.dart';
 import '../../../../../Effects/vertical_guide_shimmer.dart';
-import '../../../../../book/controllers/car/car_controller.dart';
 import '../../../../../book/controllers/tour_guide/guide_controller.dart';
 import '../../../../../book/screens/all_cars/all_cars.dart';
 import '../home_appbar.dart';
@@ -27,7 +27,7 @@ class HomeScreenMobile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final controller = Get.put(CarController());
+    final controller = Get.put(MobileTCarController());
     final carRepository = Get.put(CarRepository());
     final guideController = Get.put(GuideController());
     final guideRepository = Get.put(GuideRepository());
@@ -99,7 +99,7 @@ class HomeScreenMobile extends StatelessWidget {
                     }
                     return SGridLayout(
                       itemCount: controller.featuredCars.length,
-                      itemBuilder: (_, index) => SCarCardVertical(car: controller.featuredCars[index]),
+                      itemBuilder: (_, index) => MobileCarCardVertical(car: controller.featuredCars[index]),
                     );
                   }),
 

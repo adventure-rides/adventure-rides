@@ -24,15 +24,11 @@ class DesktopCarCardVertical extends StatelessWidget {
   Widget build(BuildContext context) {
     final controller = CarController.instance;
     final salePercentage =
-    controller.calculateSalePercentage(car.price, car.bookingPrice);
+        controller.calculateSalePercentage(car.price, car.bookingPrice);
     final dark = SHelperFunctions().isDarkMode(context);
 
     return GestureDetector(
-<<<<<<< HEAD
-      onTap: () => Get.to(() => CarDetailScreen(car: car), preventDuplicates: false),
-=======
       onTap: () => Get.to(() => CarDetailScreen(car: car)),
->>>>>>> 2c731c7f3ead869ad22f2a9414fa861a00704a39
       child: Container(
         width: double.infinity, // Fixed width
         decoration: BoxDecoration(
@@ -41,7 +37,8 @@ class DesktopCarCardVertical extends StatelessWidget {
           color: dark ? SColors.darkerGrey : SColors.white,
         ),
         child: Column(
-          mainAxisSize: MainAxisSize.min, // Ensure Column takes only required space
+          mainAxisSize:
+              MainAxisSize.min, // Ensure Column takes only required space
           children: [
             /// Thumbnail and Wishlist Button
             Flexible(

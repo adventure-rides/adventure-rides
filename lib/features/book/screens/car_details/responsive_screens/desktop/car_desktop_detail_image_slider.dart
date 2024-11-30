@@ -1,7 +1,4 @@
-<<<<<<< HEAD
-=======
 import 'package:adventure_rides/features/authentication/screens/home/other_screens_appbar/fixed_screen_appbar.dart';
->>>>>>> 2c731c7f3ead869ad22f2a9414fa861a00704a39
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -13,12 +10,10 @@ import '../../../../../../utils/helpers/helper_functions.dart';
 import '../../../../controllers/car/images_controller.dart';
 import '../../../../models/car_model.dart';
 
-
 class DesktopCarImageSlider extends StatelessWidget {
   const DesktopCarImageSlider({
     super.key,
     required this.car,
-
   });
   final CarModel car;
 
@@ -36,19 +31,20 @@ class DesktopCarImageSlider extends StatelessWidget {
             SizedBox(
               height: 500,
               child: Padding(
-                padding:
-                EdgeInsets.all(SSizes.carImageRadius * 2),
-                child: Center(
-                    child: Obx( () {
-                      final image = controller.selectedCarImage.value;
-                      return GestureDetector(
-                        onTap: () => controller.showEnlargedImage(image),
-                        child: CachedNetworkImage(imageUrl: image, progressIndicatorBuilder: (_, __, downloadProgress) =>
-                            CircularProgressIndicator(value: downloadProgress.progress, color: SColors.primary),
-                        ),
-                      );
-                    }
-                    )),
+                padding: EdgeInsets.all(SSizes.carImageRadius * 2),
+                child: Center(child: Obx(() {
+                  final image = controller.selectedCarImage.value;
+                  return GestureDetector(
+                    onTap: () => controller.showEnlargedImage(image),
+                    child: CachedNetworkImage(
+                      imageUrl: image,
+                      progressIndicatorBuilder: (_, __, downloadProgress) =>
+                          CircularProgressIndicator(
+                              value: downloadProgress.progress,
+                              color: SColors.primary),
+                    ),
+                  );
+                })),
               ),
             ),
 
@@ -63,20 +59,25 @@ class DesktopCarImageSlider extends StatelessWidget {
                   height: 100,
                   child: ListView.separated(
                     separatorBuilder: (_, __) =>
-                    const SizedBox(width: SSizes.spaceBtwItems),
+                        const SizedBox(width: SSizes.spaceBtwItems),
                     itemCount: images.length,
                     shrinkWrap: true, // to utilize the available screen
                     scrollDirection: Axis.horizontal,
                     physics: const AlwaysScrollableScrollPhysics(),
                     itemBuilder: (_, index) => Obx(
                       () {
-                        final imageSelected = controller.selectedCarImage.value == images[index];
+                        final imageSelected =
+                            controller.selectedCarImage.value == images[index];
                         return SRoundedImage(
                           width: 100,
                           isNetworkImage: true,
                           backgroundColor: dark ? SColors.dark : SColors.white,
-                          onPressed: () => controller.selectedCarImage.value = images[index],
-                          border: Border.all(color: imageSelected ? SColors.primary : Colors.transparent),
+                          onPressed: () =>
+                              controller.selectedCarImage.value = images[index],
+                          border: Border.all(
+                              color: imageSelected
+                                  ? SColors.primary
+                                  : Colors.transparent),
                           padding: const EdgeInsets.all(SSizes.sm),
                           imageUrl: images[index],
                         );
@@ -86,12 +87,9 @@ class DesktopCarImageSlider extends StatelessWidget {
                 ),
               ),
             ),
+
             ///Appbar
-<<<<<<< HEAD
-            //FixedScreenAppbar(),
-=======
             FixedScreenAppbar(),
->>>>>>> 2c731c7f3ead869ad22f2a9414fa861a00704a39
             //SAppBar(showBackArrow: true, actions: [SFavouriteIcon(carId: car.id)],),
           ],
         ),

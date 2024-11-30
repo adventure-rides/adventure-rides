@@ -71,7 +71,7 @@ class SHomeAppBar extends StatelessWidget {
             label: const Text("Home", style: TextStyle(color: SColors.white)),
           ),
           TextButton.icon(
-            onPressed: () => Get.to(() => BookingScreen()),
+            onPressed: () => Get.to(() => const BookingScreen()),
             icon: const Icon(Icons.book, color: SColors.white),
             label:
                 const Text("Bookings", style: TextStyle(color: SColors.white)),
@@ -101,8 +101,6 @@ class SHomeAppBar extends StatelessWidget {
             label: const Text("Contact Us",
                 style: TextStyle(color: SColors.white)),
           ),
-<<<<<<< HEAD
-=======
           TextButton.icon(
             onPressed: () {
               // Define what happens on 'Contact Us' click
@@ -110,7 +108,6 @@ class SHomeAppBar extends StatelessWidget {
             icon: const Icon(Icons.login, color: SColors.white),
             label: const Text("Login", style: TextStyle(color: SColors.white)),
           ),
->>>>>>> 2c731c7f3ead869ad22f2a9414fa861a00704a39
           SCartCounterIcon(iconColor: SColors.white),
         ] else
           PopupMenuButton<String>(
@@ -138,16 +135,11 @@ class SHomeAppBar extends StatelessWidget {
                 case 'contact':
                   // Define what happens on 'Contact Us' click
                   break;
-<<<<<<< HEAD
-                case 'bookings':
-                // Navigate to the bookings/cart screen
-=======
                 case 'login':
                   Get.to(() => LoginScreen());
                   break;
-                case 'bookings':
+                case 'cart':
                   // Navigate to the bookings/cart screen
->>>>>>> 2c731c7f3ead869ad22f2a9414fa861a00704a39
                   Get.to(() => const CartScreen());
                   break;
               }
@@ -189,8 +181,6 @@ class SHomeAppBar extends StatelessWidget {
                 ),
               ),
               PopupMenuItem<String>(
-<<<<<<< HEAD
-=======
                 value: 'login',
                 child: ListTile(
                   leading: Icon(Icons.login, color: SColors.grey),
@@ -198,11 +188,10 @@ class SHomeAppBar extends StatelessWidget {
                 ),
               ),
               PopupMenuItem<String>(
->>>>>>> 2c731c7f3ead869ad22f2a9414fa861a00704a39
-                value: 'bookings',
+                value: 'cart',
                 child: ListTile(
                   leading: Icon(Icons.book_online, color: SColors.grey),
-                  title: const Text("Bookings"),
+                  title: const Text("Cart"),
                 ),
               ),
             ],

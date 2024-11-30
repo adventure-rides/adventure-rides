@@ -28,63 +28,6 @@ class CheckoutScreen extends StatelessWidget {
     final dark = SHelperFunctions().isDarkMode(context);
     return Scaffold(
       appBar: FixedScreenAppbar(),
-<<<<<<< HEAD
-              body: Column(
-                children: [
-                  // Title text below the navbar
-                  Padding(
-                    padding: const EdgeInsets.symmetric(vertical: 16.0), // Add space around the title
-                    child: Text(
-                      ' Booking Review ', // Title passed from the constructor
-                      style: Theme.of(context).textTheme.headlineMedium?.copyWith(
-                        fontWeight: FontWeight.bold,
-                        color: dark ? Colors.white : Colors.black, // Adjust the color as needed
-                      ),
-                      textAlign: TextAlign.center,
-                    ),
-                  ),
-                  Expanded(
-                    child: SingleChildScrollView(
-                      child: Padding(
-                          padding: const EdgeInsets.all(SSizes.defaultSpace),
-                        child: Column(
-                          children: [
-                            ///Items in cart
-                            const SCartItems(showAddRemoveButtons: false),
-                            const SizedBox(height: SSizes.spaceBtwSections),
-
-                            ///Coupon textField
-                            const SCouponCode(),
-                            const SizedBox(height: SSizes.spaceBtwSections),
-
-                            ///Billing Section
-                            SRoundedContainer(
-                              padding: const EdgeInsets.all(SSizes.md),
-                              showBorder: true,
-                              backgroundColor: dark ? SColors.black : SColors.white,
-                              child: const Column(
-                                children: [
-                                  ///Pricing
-                                  SBillingAmountSection(),
-                                  SizedBox(height: SSizes.spaceBtwItems),
-                                  ///Divider
-                                  Divider(),
-                                  SizedBox(height: SSizes.spaceBtwItems),
-                                  ///Payment Methods
-                                  SBillingPaymentSection(),
-                                  SizedBox(height: SSizes.spaceBtwItems),
-                                  ///Address
-                                  SBillingAddressSection(),
-                                ],
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-                  ),
-                ],
-=======
       body: Column(
         children: [
           // Title text below the navbar
@@ -142,7 +85,6 @@ class CheckoutScreen extends StatelessWidget {
                     ),
                   ],
                 ),
->>>>>>> 2c731c7f3ead869ad22f2a9414fa861a00704a39
               ),
             ),
           ),

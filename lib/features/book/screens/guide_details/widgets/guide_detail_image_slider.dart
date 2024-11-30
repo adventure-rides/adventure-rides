@@ -10,12 +10,10 @@ import '../../../../../utils/constraints/sizes.dart';
 import '../../../../../utils/helpers/helper_functions.dart';
 import '../../../../authentication/screens/home/other_screens_appbar/fixed_screen_appbar.dart';
 
-
 class SGuideImageSlider extends StatelessWidget {
   const SGuideImageSlider({
     super.key,
     required this.guide,
-
   });
   final TourGuideModel guide;
 
@@ -33,19 +31,20 @@ class SGuideImageSlider extends StatelessWidget {
             SizedBox(
               height: 400,
               child: Padding(
-                padding:
-                const EdgeInsets.all(SSizes.carImageRadius * 2),
-                child: Center(
-                    child: Obx( () {
-                      final image = controller.selectedGuideImage.value;
-                      return GestureDetector(
-                        onTap: () => controller.showEnlargedImage(image),
-                        child: CachedNetworkImage(imageUrl: image, progressIndicatorBuilder: (_, __, downloadProgress) =>
-                            CircularProgressIndicator(value: downloadProgress.progress, color: SColors.primary),
-                        ),
-                      );
-                    }
-                    )),
+                padding: const EdgeInsets.all(SSizes.carImageRadius * 2),
+                child: Center(child: Obx(() {
+                  final image = controller.selectedGuideImage.value;
+                  return GestureDetector(
+                    onTap: () => controller.showEnlargedImage(image),
+                    child: CachedNetworkImage(
+                      imageUrl: image,
+                      progressIndicatorBuilder: (_, __, downloadProgress) =>
+                          CircularProgressIndicator(
+                              value: downloadProgress.progress,
+                              color: SColors.primary),
+                    ),
+                  );
+                })),
               ),
             ),
 
@@ -58,20 +57,25 @@ class SGuideImageSlider extends StatelessWidget {
                 height: 80,
                 child: ListView.separated(
                   separatorBuilder: (_, __) =>
-                  const SizedBox(width: SSizes.spaceBtwItems),
+                      const SizedBox(width: SSizes.spaceBtwItems),
                   itemCount: images.length,
                   shrinkWrap: true, // to utilize the available screen
                   scrollDirection: Axis.horizontal,
                   physics: const AlwaysScrollableScrollPhysics(),
                   itemBuilder: (_, index) => Obx(
                     () {
-                      final imageSelected = controller.selectedGuideImage.value == images[index];
+                      final imageSelected =
+                          controller.selectedGuideImage.value == images[index];
                       return SRoundedImage(
                         width: 80,
                         isNetworkImage: true,
                         backgroundColor: dark ? SColors.dark : SColors.white,
-                        onPressed: () => controller.selectedGuideImage.value = images[index],
-                        border: Border.all(color: imageSelected ? SColors.primary : Colors.transparent),
+                        onPressed: () =>
+                            controller.selectedGuideImage.value = images[index],
+                        border: Border.all(
+                            color: imageSelected
+                                ? SColors.primary
+                                : Colors.transparent),
                         padding: const EdgeInsets.all(SSizes.sm),
                         imageUrl: images[index],
                       );
@@ -80,12 +84,10 @@ class SGuideImageSlider extends StatelessWidget {
                 ),
               ),
             ),
-<<<<<<< HEAD
-=======
+
             ///Appbar
             FixedScreenAppbar(),
             //SAppBar(showBackArrow: true, actions: [GuideFavouriteIcon(guideId: guide.id)],),
->>>>>>> 2c731c7f3ead869ad22f2a9414fa861a00704a39
           ],
         ),
       ),

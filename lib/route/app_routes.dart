@@ -22,7 +22,7 @@ class AppRoutes {
     GetPage(name: SRoutes.favourites, page: () => const FavouriteScreen()),
     GetPage(name: SRoutes.settings, page: () => const TripHubScreen()),
     GetPage(name: SRoutes.carReviews, page: () => const CarReviewsScreen()),
-    GetPage(name: SRoutes.booking, page: () => BookingScreen()),
+    GetPage(name: SRoutes.booking, page: () => const BookingScreen()),
     GetPage(name: SRoutes.checkout, page: () => const CheckoutScreen()),
     GetPage(name: SRoutes.cart, page: () => const CartScreen()),
     GetPage(name: SRoutes.userProfile, page: () => const ProfileScreen()),

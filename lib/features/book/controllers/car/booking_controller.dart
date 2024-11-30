@@ -102,4 +102,6 @@ class BookingController {
       return [];
     }
   }
+
+  fetchUserOrders() {}
 }

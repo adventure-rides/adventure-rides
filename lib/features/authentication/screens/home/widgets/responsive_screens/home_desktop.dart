@@ -36,7 +36,8 @@ class HomeScreenDesktop extends StatelessWidget {
     return Scaffold(
       /// Use the appBar property to fix the AppBar at the top
       appBar: PreferredSize(
-        preferredSize: Size.fromHeight(SDevicesUtils.getAppBarBarHeight()), // Set height for the AppBar
+        preferredSize: Size.fromHeight(
+            SDevicesUtils.getAppBarBarHeight()), // Set height for the AppBar
         child: SHomeAppBar(),
       ),
 
@@ -50,35 +51,15 @@ class HomeScreenDesktop extends StatelessWidget {
               SPrimaryHeaderContainer(
                 child: Column(
                   children: [
-<<<<<<< HEAD
-                    SizedBox(height: SSizes.spaceBtwSections),
-                    /// Searchbar
-                    SSearchContainer(text: 'Search in TripHub'),
-                    const SizedBox(height: SSizes.spaceBtwItems),
-=======
                     /// Searchbar
                     SSearchContainer(text: 'Search in TripHub'),
                     const SizedBox(height: SSizes.spaceBtwSections),
->>>>>>> 2c731c7f3ead869ad22f2a9414fa861a00704a39
 
                     /// Categories
                     const Padding(
                       padding: EdgeInsets.only(left: SSizes.defaultSpace),
                       child: Column(
                         children: [
-<<<<<<< HEAD
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children:[
-                              SSectionHeading(
-                                title: 'Popular Car Categories',
-                                showActionButton: false,
-                                textColor: Colors.white,
-                              ),
-                            ]
-                          ),
-                          SizedBox(height: SSizes.spaceBtwItems),
-=======
                           SSectionHeading(
                             title: 'Popular Car Categories',
                             showActionButton: false,
@@ -86,7 +67,6 @@ class HomeScreenDesktop extends StatelessWidget {
                           ),
                           SizedBox(height: SSizes.spaceBtwItems),
 
->>>>>>> 2c731c7f3ead869ad22f2a9414fa861a00704a39
                           /// Categories
                           SHomeCategories(),
                         ],
@@ -109,20 +89,24 @@ class HomeScreenDesktop extends StatelessWidget {
                     SSectionHeading(
                       title: 'Popular Tourist Cars',
                       onPressed: () => Get.to(() => AllCars(
-                        title: 'Popular Tourist Cars',
-                        futureMethod: carRepository.getAllFeaturedCarS(),
-                      )),
+                            title: 'Popular Tourist Cars',
+                            futureMethod: carRepository.getAllFeaturedCarS(),
+                          )),
                     ),
                     const SizedBox(height: SSizes.spaceBtwItems),
                     Obx(() {
-                      if (controller.isLoading.value) return const SVerticalCarShimmer();
+                      if (controller.isLoading.value)
+                        return const SVerticalCarShimmer();
 
                       if (controller.featuredCars.isEmpty) {
-                        return Center(child: Text('No Data Found!', style: Theme.of(context).textTheme.bodyMedium));
+                        return Center(
+                            child: Text('No Data Found!',
+                                style: Theme.of(context).textTheme.bodyMedium));
                       }
                       return DesktopGridLayout(
                         itemCount: controller.featuredCars.length,
-                        itemBuilder: (_, index) => DesktopCarCardVertical(car: controller.featuredCars[index]),
+                        itemBuilder: (_, index) => DesktopCarCardVertical(
+                            car: controller.featuredCars[index]),
                       );
                     }),
 
@@ -132,16 +116,20 @@ class HomeScreenDesktop extends StatelessWidget {
                     SSectionHeading(
                       title: 'Popular Tour Guides',
                       onPressed: () => Get.to(() => AllTourGuides(
-                        title: 'Popular Tour Guides',
-                        futureMethod: guideRepository.getAllAvailableGuides(),
-                      )),
+                            title: 'Popular Tour Guides',
+                            futureMethod:
+                                guideRepository.getAllAvailableGuides(),
+                          )),
                     ),
                     const SizedBox(height: SSizes.spaceBtwItems),
                     Obx(() {
-                      if (guideController.isLoading.value) return const SVerticalGuideShimmer();
+                      if (guideController.isLoading.value)
+                        return const SVerticalGuideShimmer();
 
                       if (guideController.availableGuides.isEmpty) {
-                        return Center(child: Text('No Data Found!', style: Theme.of(context).textTheme.bodyMedium));
+                        return Center(
+                            child: Text('No Data Found!',
+                                style: Theme.of(context).textTheme.bodyMedium));
                       }
                       // Limit guides to 4
                       //final limitedGuides = guideController.availableGuides.take(4).toList();
@@ -161,9 +149,12 @@ class HomeScreenDesktop extends StatelessWidget {
                           },
                           child: Column(
                             children: [
-                              Icon(FontAwesomeIcons.file, color: SColors.primary),
+                              Icon(FontAwesomeIcons.file,
+                                  color: SColors.primary),
                               SizedBox(height: 4),
-                              Text('Terms & Conditions', style: Theme.of(context).textTheme.labelMedium),
+                              Text('Terms & Conditions',
+                                  style:
+                                      Theme.of(context).textTheme.labelMedium),
                             ],
                           ),
                         ),
@@ -176,7 +167,9 @@ class HomeScreenDesktop extends StatelessWidget {
                             children: [
                               Icon(Iconsax.lock, color: SColors.primary),
                               SizedBox(height: 4),
-                              Text('Privacy Policy', style: Theme.of(context).textTheme.labelMedium),
+                              Text('Privacy Policy',
+                                  style:
+                                      Theme.of(context).textTheme.labelMedium),
                             ],
                           ),
                         ),
@@ -187,9 +180,12 @@ class HomeScreenDesktop extends StatelessWidget {
                           },
                           child: Column(
                             children: [
-                              Icon(FontAwesomeIcons.cookie, color: SColors.primary),
+                              Icon(FontAwesomeIcons.cookie,
+                                  color: SColors.primary),
                               SizedBox(height: 4),
-                              Text('Cookie Preferences', style: Theme.of(context).textTheme.labelMedium),
+                              Text('Cookie Preferences',
+                                  style:
+                                      Theme.of(context).textTheme.labelMedium),
                             ],
                           ),
                         ),

@@ -72,9 +72,9 @@ class SHomeAppBar extends StatelessWidget {
           ),
           TextButton.icon(
             onPressed: () => Get.to(() => const BookingScreen()),
-            icon: const Icon(Icons.book, color: SColors.white),
-            label:
-                const Text("Bookings", style: TextStyle(color: SColors.white)),
+            icon: const Icon(Icons.rsvp, color: SColors.white),
+            label: const Text("Reservation",
+                style: TextStyle(color: SColors.white)),
           ),
           TextButton.icon(
             onPressed: () => Get.to(() => AllCars(
@@ -117,7 +117,7 @@ class SHomeAppBar extends StatelessWidget {
                 case 'home':
                   Get.to(() => const NavigationMenu());
                   break;
-                case 'Bookings':
+                case 'Reservation':
                   Get.to(() => BookingScreen());
                   break;
                 case 'cars':
@@ -153,10 +153,10 @@ class SHomeAppBar extends StatelessWidget {
                 ),
               ),
               PopupMenuItem<String>(
-                value: 'bookings',
+                value: 'reservation',
                 child: ListTile(
                   leading: Icon(Icons.book, color: SColors.grey),
-                  title: const Text("Bookings"),
+                  title: const Text("Reservation"),
                 ),
               ),
               PopupMenuItem<String>(

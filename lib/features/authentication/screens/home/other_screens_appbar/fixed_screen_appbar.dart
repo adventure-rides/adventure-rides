@@ -39,9 +39,9 @@ class FixedScreenAppbar extends StatelessWidget implements PreferredSizeWidget {
           ),
           TextButton.icon(
             onPressed: () => Get.off(() => const BookingScreen()),
-            icon: const Icon(Icons.book, color: SColors.white),
-            label:
-                const Text("Bookings", style: TextStyle(color: SColors.white)),
+            icon: const Icon(Icons.rsvp, color: SColors.white),
+            label: const Text("Reservation",
+                style: TextStyle(color: SColors.white)),
           ),
           TextButton.icon(
             onPressed: () => Get.to(() => AllCars(
@@ -85,7 +85,7 @@ class FixedScreenAppbar extends StatelessWidget implements PreferredSizeWidget {
                 case 'home':
                   Get.to(() => const NavigationMenu());
                   break;
-                case 'bookings':
+                case 'reservation':
                   Get.to(() => const BookingScreen());
                   break;
                 case 'cars':
@@ -122,10 +122,10 @@ class FixedScreenAppbar extends StatelessWidget implements PreferredSizeWidget {
                 ),
               ),
               PopupMenuItem<String>(
-                value: 'bookings',
+                value: 'reservation',
                 child: ListTile(
                   leading: Icon(Icons.book, color: SColors.grey),
-                  title: const Text("Bookings"),
+                  title: const Text("Reservations"),
                 ),
               ),
               PopupMenuItem<String>(
@@ -157,10 +157,10 @@ class FixedScreenAppbar extends StatelessWidget implements PreferredSizeWidget {
                 ),
               ),
               PopupMenuItem<String>(
-                value: 'bookings',
+                value: 'cart',
                 child: ListTile(
                   leading: Icon(Icons.book_online, color: SColors.grey),
-                  title: const Text("Bookings"),
+                  title: const Text("cart"),
                 ),
               ),
             ],

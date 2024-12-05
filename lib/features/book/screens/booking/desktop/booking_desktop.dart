@@ -1,6 +1,9 @@
 import 'package:adventure_rides/features/authentication/screens/home/other_screens_appbar/fixed_screen_appbar.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import '../../cart/cart.dart';
+import 'package:mailer/mailer.dart';
+import 'package:mailer/smtp_server.dart';
 
 class BookingScreenDesktop extends StatefulWidget {
   final String? userId;
@@ -75,6 +78,7 @@ class _BookingScreenState extends State<BookingScreenDesktop> {
                         Expanded(
                           child: TextFormField(
                             decoration: const InputDecoration(
+                              border: UnderlineInputBorder(),
                               labelText: 'Pickup Location',
                             ),
                             onSaved: (value) => pickupLocation = value ?? '',
@@ -87,6 +91,7 @@ class _BookingScreenState extends State<BookingScreenDesktop> {
                         Expanded(
                           child: TextFormField(
                             decoration: const InputDecoration(
+                              border: UnderlineInputBorder(),
                               labelText: 'Destination',
                             ),
                             onSaved: (value) => destination = value ?? '',
@@ -106,6 +111,7 @@ class _BookingScreenState extends State<BookingScreenDesktop> {
                           child: TextFormField(
                             controller: startDateController,
                             decoration: const InputDecoration(
+                              border: UnderlineInputBorder(),
                               labelText: 'Start Date',
                               suffixIcon: Icon(Icons.calendar_today),
                             ),
@@ -135,6 +141,7 @@ class _BookingScreenState extends State<BookingScreenDesktop> {
                           child: TextFormField(
                             controller: endDateController,
                             decoration: const InputDecoration(
+                              border: UnderlineInputBorder(),
                               labelText: 'End Date',
                               suffixIcon: Icon(Icons.calendar_today),
                             ),
@@ -174,21 +181,25 @@ class _BookingScreenState extends State<BookingScreenDesktop> {
                       children: [
                         Expanded(
                           child: TextFormField(
-                            decoration:
-                                const InputDecoration(labelText: 'Full Name'),
+                            decoration: const InputDecoration(
+                                border: UnderlineInputBorder(),
+                                labelText: 'Full Name'),
                             onChanged: (value) => tempFullName = value,
                           ),
                         ),
                         const SizedBox(width: 16),
                         Expanded(
                           child: TextFormField(
-                            decoration:
-                                const InputDecoration(labelText: 'Email'),
+                            decoration: const InputDecoration(
+                                border: UnderlineInputBorder(),
+                                labelText: 'Email'),
                             onChanged: (value) => tempEmail = value,
                           ),
                         ),
                         IconButton(
-                          icon: Icon(Icons.add),
+                          icon: Icon(
+                            Icons.add,
+                          ),
                           onPressed: () {
                             if (tempFullName.isNotEmpty &&
                                 tempEmail.isNotEmpty) {
@@ -211,25 +222,13 @@ class _BookingScreenState extends State<BookingScreenDesktop> {
                     Text(
                       'List of Guests',
                       style: TextStyle(
-                        fontSize: 18,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.blueAccent,
+                        fontSize: 11,
+                        fontWeight: FontWeight.normal,
                       ),
                     ),
                     const SizedBox(height: 8),
                     Container(
-                      decoration: BoxDecoration(
-                        color: Colors.blueAccent.withOpacity(0.1),
-                        borderRadius: BorderRadius.circular(8),
-                        boxShadow: [
-                          BoxShadow(
-                            color: Colors.black.withOpacity(0.1),
-                            blurRadius: 4,
-                            offset: Offset(0, 2),
-                          ),
-                        ],
-                        border: Border.all(color: Colors.blueAccent),
-                      ),
+                      decoration: BoxDecoration(),
                       child: ListView.builder(
                         shrinkWrap: true,
                         physics: NeverScrollableScrollPhysics(),
@@ -272,7 +271,7 @@ class _BookingScreenState extends State<BookingScreenDesktop> {
 
                           // Notify user
                           ScaffoldMessenger.of(context).showSnackBar(
-                            SnackBar(content: Text('Booking Submitted!')),
+                            SnackBar(content: Text('Reservation Submitted!')),
                           );
 
                           // Reset the form
@@ -285,9 +284,15 @@ class _BookingScreenState extends State<BookingScreenDesktop> {
                             numberOfGuests = 1;
                             additionalGuests.clear();
                           });
+                          // Navigate to the cart screen
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => CartScreen()),
+                          );
                         }
                       },
-                      child: Text('Confirm Booking'),
+                      child: Text('Confirm Reservation'),
                     ),
                   ],
                 ),

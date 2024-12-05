@@ -36,8 +36,8 @@ class SGuideCardVertical extends StatelessWidget {
           children: [
             /// Thumbnail and Favourite Icon
             SRoundedContainer(
-              height: 160,
-              width: 160,
+              height: 165,
+              width: 165,
               padding: const EdgeInsets.all(SSizes.sm),
               backgroundColor: dark ? SColors.dark : SColors.light,
               child: Stack(
@@ -50,8 +50,8 @@ class SGuideCardVertical extends StatelessWidget {
                         applyImageRadius: true,
                         isNetworkImage: true,
                         fit: BoxFit.cover, // Ensures the image fills the circle
-                        width: 160, // Set the same size as height for a circle
-                        height: 160,
+                        width: 165, // Set the same size as height for a circle
+                        height: 165,
                       ),
                     ),
                   ),

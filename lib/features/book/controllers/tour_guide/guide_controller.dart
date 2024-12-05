@@ -32,7 +32,21 @@ class GuideController extends GetxController {
       isLoading.value = false;
     }
   }
+  /// Fetch available guides excluding the current guide
+  Future<void> fetchAvailableGuidesExcludingCurrent(String currentGuideId) async {
+    try {
+      isLoading.value = true;
 
+      final guides = await guideRepository.getAvailableGuidesExcludingCurrent(currentGuideId);
+
+      availableGuides.assignAll(guides); // Update the observable list with the fetched guides
+    } catch (e) {
+      SLoaders.errorSnackBar(title: 'Oh Snap!', message: e.toString());
+    } finally {
+      isLoading.value = false;
+    }
+  }
+  //To get all available guides
   Future<List<TourGuideModel>> getAllAvailableGuides() async {
     try {
       // Fetch all available guides

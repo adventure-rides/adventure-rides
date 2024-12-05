@@ -11,6 +11,7 @@ import '../../../../../data/repositories/car/car_repository.dart';
 import '../../../../../data/repositories/tour_guide/guide_repository.dart';
 import '../../../../../utils/constraints/colors.dart';
 import '../../../../../utils/constraints/text_strings.dart';
+import '../../../../book/screens/cart/cart.dart';
 import '../../../../personalization/controllers/user_controller.dart';
 
 class SHomeAppBar extends StatelessWidget {
@@ -25,7 +26,7 @@ class SHomeAppBar extends StatelessWidget {
     // Check screen size to decide layout for actions
     final isLargeScreen = SDevicesUtils.isDesktopScreen(context) ||
         SDevicesUtils.isTabletScreen(context);
-    final isMobile = SDevicesUtils.isCustomScreen(context);
+    final isMobile = SDevicesUtils.isMobileScreen(context);
 
     return SAppBar(
       title: !isMobile
@@ -62,7 +63,7 @@ class SHomeAppBar extends StatelessWidget {
       actions: [
         if (isLargeScreen) ...[
           TextButton.icon(
-            onPressed: () => Get.to(() => const NavigationMenu()),
+            onPressed: () => Get.off(() => const NavigationMenu()),
             icon: const Icon(Icons.home, color: SColors.white),
             label: const Text("Home", style: TextStyle(color: SColors.white)),
           ),
@@ -91,6 +92,7 @@ class SHomeAppBar extends StatelessWidget {
             label: const Text("Contact Us",
                 style: TextStyle(color: SColors.white)),
           ),
+          SCartCounterIcon(iconColor: SColors.white),
         ] else
           PopupMenuButton<String>(
             icon: Icon(Icons.more_vert, color: SColors.white),
@@ -113,6 +115,10 @@ class SHomeAppBar extends StatelessWidget {
                   break;
                 case 'contact':
                   // Define what happens on 'Contact Us' click
+                  break;
+                case 'bookings':
+                // Navigate to the bookings/cart screen
+                  Get.to(() => const CartScreen());
                   break;
               }
             },
@@ -145,10 +151,15 @@ class SHomeAppBar extends StatelessWidget {
                   title: const Text("Contact Us"),
                 ),
               ),
+              PopupMenuItem<String>(
+                value: 'bookings',
+                child: ListTile(
+                  leading: Icon(Icons.book_online, color: SColors.grey),
+                  title: const Text("Bookings"),
+                ),
+              ),
             ],
           ),
-        // Add the cart icon as the last action
-        SCartCounterIcon(iconColor: SColors.white),
       ],
     );
   }

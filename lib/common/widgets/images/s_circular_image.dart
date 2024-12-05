@@ -1,6 +1,5 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-
 import '../../../features/Effects/shimmer.dart';
 import '../../../utils/constraints/colors.dart';
 import '../../../utils/constraints/sizes.dart';
@@ -38,23 +37,21 @@ class SCircularImage extends StatelessWidget {
             (SHelperFunctions().isDarkMode(context)
                 ? SColors.black
                 : SColors.white),
-        borderRadius: BorderRadius.circular(100),
+        //borderRadius: BorderRadius.circular(100),
+        shape: BoxShape.circle, // Ensures the container is circular
       ),
-      child: ClipRRect(
-        borderRadius: BorderRadius.circular(100),
-        child: Center(
-          child: isNetworkImage ? CachedNetworkImage( //Cached image for reusing default image whenever the image is not updated
-            fit: fit,
-              color: overlayColor,
-              imageUrl: image,
-            progressIndicatorBuilder: (context, url, downloadProgress) => const SShimmerEffect(width: 55, height: 55),
-            errorWidget: (context, url, error) => const Icon(Icons.error),
-          )
-          : Image(
-            fit: fit,
-            image: isNetworkImage ? NetworkImage(image) : AssetImage(image) as ImageProvider,
+      child: ClipOval(
+        child: isNetworkImage ? CachedNetworkImage( //Cached image for reusing default image whenever the image is not updated
+          fit: fit,
             color: overlayColor,
-          ),
+            imageUrl: image,
+          progressIndicatorBuilder: (context, url, downloadProgress) => const SShimmerEffect(width: 55, height: 55),
+          errorWidget: (context, url, error) => const Icon(Icons.error),
+        )
+        : Image(
+          fit: fit,
+          image: isNetworkImage ? NetworkImage(image) : AssetImage(image) as ImageProvider,
+          color: overlayColor,
         ),
       ),
     );

@@ -1,10 +1,12 @@
+import 'package:adventure_rides/common/cars/cars_cards/tablet/tablet_car_card_vertical.dart';
+import 'package:adventure_rides/features/book/controllers/car/mobile_car_controller.dart';
 import 'package:adventure_rides/features/book/screens/all_guides/all_tour_guides.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import '../../../../../../common/cars/cars_cards/car_card_vertical.dart';
 import '../../../../../../common/custom_shapes/containers/primary_header_container.dart';
+import '../../../../../../common/custom_shapes/containers/responsive_containers/search_container_tablet.dart';
 import '../../../../../../common/custom_shapes/containers/search_container.dart';
 import '../../../../../../common/tour_guide/guide_cards/guide_card_vertical.dart';
 import '../../../../../../common/widgets/Text/section_heading.dart';
@@ -15,19 +17,18 @@ import '../../../../../../utils/constraints/colors.dart';
 import '../../../../../../utils/constraints/sizes.dart';
 import '../../../../../Effects/vertical_car_shimmer.dart';
 import '../../../../../Effects/vertical_guide_shimmer.dart';
-import '../../../../../book/controllers/car/car_controller.dart';
 import '../../../../../book/controllers/tour_guide/guide_controller.dart';
 import '../../../../../book/screens/all_cars/all_cars.dart';
 import '../home_appbar.dart';
 import '../home_categories.dart';
 import '../image_text_widgets/promo_slider.dart';
 
-class HomeScreenDesktop extends StatelessWidget {
-  const HomeScreenDesktop({super.key});
+class HomeScreenTablet extends StatelessWidget {
+  const HomeScreenTablet({super.key});
 
   @override
   Widget build(BuildContext context) {
-    final controller = Get.put(CarController());
+    final controller = Get.put(MobileTCarController());
     final carRepository = Get.put(CarRepository());
     final guideController = Get.put(GuideController());
     final guideRepository = Get.put(GuideRepository());
@@ -45,7 +46,7 @@ class HomeScreenDesktop extends StatelessWidget {
                   SizedBox(height: SSizes.spaceBtwSections),
 
                   /// Searchbar
-                  SSearchContainer(text: 'Search in TripHub'),
+                  SearchContainerTablet(text: 'Search ...'),
                   const SizedBox(height: SSizes.spaceBtwSections),
 
 
@@ -100,7 +101,7 @@ class HomeScreenDesktop extends StatelessWidget {
                     }
                     return SGridLayout(
                       itemCount: controller.featuredCars.length,
-                      itemBuilder: (_, index) => SCarCardVertical(car: controller.featuredCars[index]),
+                      itemBuilder: (_, index) => TabletCarCardVertical(car: controller.featuredCars[index]),
                     );
                   }),
 

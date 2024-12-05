@@ -18,6 +18,7 @@ class PromoSliderDesktop extends StatelessWidget {
   Widget build(BuildContext context) {
     final controller = Get.put(BannerController());
     return Obx(
+<<<<<<< HEAD
       () {
         //Loader
         if (controller.isLoading.value)
@@ -83,3 +84,64 @@ class PromoSliderDesktop extends StatelessWidget {
     );
   }
 }
+=======
+        (){
+          //Loader
+          if (controller.isLoading.value) return const SShimmerEffect(width: double.infinity, height: 190);
+
+          // No data found
+          if(controller.banners.isEmpty){
+            return const Center(child: Text('No Data Found!'));
+          } else {
+            return Column(
+              children: [
+                SizedBox(
+                  height: 420, // Fixed height for the slider
+                  //width: double.infinity, // Ensures full width
+                  child: CarouselSlider(
+                    options: CarouselOptions(
+                      viewportFraction: 1,
+                      autoPlay: true,
+                      autoPlayInterval: const Duration(seconds: 5),
+                      autoPlayAnimationDuration: const Duration(seconds: 2),
+                      autoPlayCurve: Curves.linear,
+                      onPageChanged: (index, _) => controller.updatePageIndicator(index),
+                    ),
+                    items: controller.banners.map((banner) {
+                      return DesktopRoundedImage(
+                        imageUrl: banner.imageUrl,
+                        isNetworkImage: true,
+                        //fit: BoxFit.contain, // Ensure it covers the entire area
+                        onPressed: () => Get.toNamed(banner.targetScreen),
+                      );
+                    }).toList(),
+                  ),
+                ),
+                const SizedBox(height: SSizes.spaceBtwItems),
+                //CarouselSlider dots begins here
+                Center(
+                  child: Obx(
+                        () => Row(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        for (int i = 0; i < controller.banners.length; i++)
+                          SCircularContainer(
+                            width: 20,
+                            height: 4,
+                            margin: const EdgeInsets.only(right: 10),
+                            backgroundColor: controller.carousalCurrentIndex.value == i
+                                ? SColors.primary
+                                : SColors.grey,
+                          ),
+                      ],
+                    ),
+                  ),
+                )
+              ],
+            );
+          }
+        },
+    );
+  }
+}
+>>>>>>> 4b76d60b99720174ae25fd9ddff4e7b6f0f5fffe

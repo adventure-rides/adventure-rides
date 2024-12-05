@@ -88,8 +88,12 @@ class TabletCarDetail extends StatelessWidget {
                     ],
                   ),
                   const SizedBox(height: SSizes.spaceBtwSections),
+<<<<<<< HEAD
 
           ],
+=======
+                ],
+>>>>>>> 4b76d60b99720174ae25fd9ddff4e7b6f0f5fffe
               ),
             ),
           ],
@@ -97,4 +101,8 @@ class TabletCarDetail extends StatelessWidget {
       ),
     );
   }
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> 4b76d60b99720174ae25fd9ddff4e7b6f0f5fffe

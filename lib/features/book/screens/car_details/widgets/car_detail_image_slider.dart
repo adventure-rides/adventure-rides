@@ -80,9 +80,12 @@ class SCarImageSlider extends StatelessWidget {
                 ),
               ),
             ),
+<<<<<<< HEAD
             ///Appbar
             //SAppBar(showBackArrow: true, actions: [SFavouriteIcon(carId: car.id)]),
             FixedScreenAppbar(),
+=======
+>>>>>>> 4b76d60b99720174ae25fd9ddff4e7b6f0f5fffe
           ],
         ),
       ),

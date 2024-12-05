@@ -1,13 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:iconsax/iconsax.dart';
+import '../../../../utils/constraints/colors.dart';
+import '../../../../utils/constraints/sizes.dart';
+import '../../../../utils/device/device_utility.dart';
+import '../../../../utils/helpers/helper_functions.dart';
 
-import '../../../utils/constraints/colors.dart';
-import '../../../utils/constraints/sizes.dart';
-import '../../../utils/device/device_utility.dart';
-import '../../../utils/helpers/helper_functions.dart';
-
-class SSearchContainer extends StatelessWidget {
-  const SSearchContainer({
+class SearchContainerTablet extends StatelessWidget {
+  const SearchContainerTablet({
     super.key,
     required this.text,
     this.icon = Iconsax.search_normal,

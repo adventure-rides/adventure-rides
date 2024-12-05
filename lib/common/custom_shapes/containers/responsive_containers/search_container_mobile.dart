@@ -1,13 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:iconsax/iconsax.dart';
+import '../../../../utils/constraints/colors.dart';
+import '../../../../utils/constraints/sizes.dart';
+import '../../../../utils/device/device_utility.dart';
+import '../../../../utils/helpers/helper_functions.dart';
 
-import '../../../utils/constraints/colors.dart';
-import '../../../utils/constraints/sizes.dart';
-import '../../../utils/device/device_utility.dart';
-import '../../../utils/helpers/helper_functions.dart';
-
-class SSearchContainer extends StatelessWidget {
-  const SSearchContainer({
+class SearchContainerMobile extends StatelessWidget {
+  const SearchContainerMobile({
     super.key,
     required this.text,
     this.icon = Iconsax.search_normal,
@@ -29,7 +28,7 @@ class SSearchContainer extends StatelessWidget {
     return GestureDetector(
       onTap: onTap,
       child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: SSizes.searchSpace), //used padding of 300
+        padding: const EdgeInsets.symmetric(horizontal: SSizes.defaultSpace), //used padding of 300
         child: Container(
           width: SDevicesUtils.getScreenWidth(context),
           padding: const EdgeInsets.all(SSizes.md),
@@ -44,7 +43,7 @@ class SSearchContainer extends StatelessWidget {
           child: Row(
             children: [
               Icon(icon, color: SColors.darkerGrey),
-              const SizedBox(width: SSizes.spaceBtwItems),
+              SizedBox(width: SSizes.spaceBtwItems),
               Text(text, style: Theme.of(context).textTheme.bodySmall),
             ],
           ),

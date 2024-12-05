@@ -8,7 +8,10 @@ import '../../../../../common/styles/shadows.dart';
 import '../../../../../utils/constraints/colors.dart';
 import '../../../../../utils/constraints/sizes.dart';
 import '../../../../../utils/helpers/helper_functions.dart';
+<<<<<<< HEAD
 import '../../../../authentication/screens/home/other_screens_appbar/fixed_screen_appbar.dart';
+=======
+>>>>>>> 4b76d60b99720174ae25fd9ddff4e7b6f0f5fffe
 
 class GuideDetailDesktopImageSlider extends StatelessWidget {
   const GuideDetailDesktopImageSlider({
@@ -43,9 +46,15 @@ class GuideDetailDesktopImageSlider extends StatelessWidget {
                         imageUrl: image,
                         progressIndicatorBuilder: (_, __, downloadProgress) =>
                             CircularProgressIndicator(
+<<<<<<< HEAD
                           value: downloadProgress.progress,
                           color: SColors.primary,
                         ),
+=======
+                              value: downloadProgress.progress,
+                              color: SColors.primary,
+                            ),
+>>>>>>> 4b76d60b99720174ae25fd9ddff4e7b6f0f5fffe
                       ),
                     );
                   }),
@@ -62,26 +71,44 @@ class GuideDetailDesktopImageSlider extends StatelessWidget {
                 height: 100,
                 child: ListView.separated(
                   separatorBuilder: (_, __) =>
+<<<<<<< HEAD
                       const SizedBox(width: SSizes.spaceBtwItems),
+=======
+                  const SizedBox(width: SSizes.spaceBtwItems),
+>>>>>>> 4b76d60b99720174ae25fd9ddff4e7b6f0f5fffe
                   itemCount: images.length,
                   shrinkWrap: true, // to utilize the available screen
                   scrollDirection: Axis.horizontal,
                   physics: const AlwaysScrollableScrollPhysics(),
                   itemBuilder: (_, index) => Obx(
+<<<<<<< HEAD
                     () {
                       final imageSelected =
                           controller.selectedGuideImage.value == images[index];
                       return GestureDetector(
                         onTap: () =>
                             controller.selectedGuideImage.value = images[index],
+=======
+                        () {
+                      final imageSelected =
+                          controller.selectedGuideImage.value ==
+                              images[index];
+                      return GestureDetector(
+                        onTap: () => controller.selectedGuideImage.value =
+                        images[index],
+>>>>>>> 4b76d60b99720174ae25fd9ddff4e7b6f0f5fffe
                         child: ClipOval(
                           child: Container(
                             width: 100,
                             height: 100,
                             decoration: BoxDecoration(
                               boxShadow: [SShadowStyle.verticalCarShadow],
+<<<<<<< HEAD
                               borderRadius: BorderRadius.circular(
                                   SSizes.guideImageRadius),
+=======
+                              borderRadius: BorderRadius.circular(SSizes.guideImageRadius),
+>>>>>>> 4b76d60b99720174ae25fd9ddff4e7b6f0f5fffe
                               color: dark ? SColors.darkerGrey : SColors.white,
                             ),
                             child: CachedNetworkImage(
@@ -107,7 +134,11 @@ class GuideDetailDesktopImageSlider extends StatelessWidget {
             ),
 
             /// Appbar
+<<<<<<< HEAD
             FixedScreenAppbar(),
+=======
+            //FixedScreenAppbar(),
+>>>>>>> 4b76d60b99720174ae25fd9ddff4e7b6f0f5fffe
           ],
         ),
       ),

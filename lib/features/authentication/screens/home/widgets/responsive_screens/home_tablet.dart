@@ -6,6 +6,7 @@ import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import '../../../../../../common/custom_shapes/containers/primary_header_container.dart';
+import '../../../../../../common/custom_shapes/containers/responsive_containers/search_container_tablet.dart';
 import '../../../../../../common/custom_shapes/containers/search_container.dart';
 import '../../../../../../common/tour_guide/guide_cards/guide_card_vertical.dart';
 import '../../../../../../common/widgets/Text/section_heading.dart';
@@ -45,7 +46,7 @@ class HomeScreenTablet extends StatelessWidget {
                   SizedBox(height: SSizes.spaceBtwSections),
 
                   /// Searchbar
-                  SSearchContainer(text: 'Search in TripHub'),
+                  SearchContainerTablet(text: 'Search ...'),
                   const SizedBox(height: SSizes.spaceBtwSections),
 
 

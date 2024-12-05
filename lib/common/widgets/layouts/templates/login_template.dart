@@ -16,7 +16,7 @@ class SLoginTemplate extends StatelessWidget {
     final dark = SHelperFunctions().isDarkMode(context);
     return Center(
       child: SizedBox(
-        width: 550,
+        width: 500, // initial 550
         child: SingleChildScrollView(
           child: Container(
             padding: SSPacingStyle.paddingWithAppBarHeight,

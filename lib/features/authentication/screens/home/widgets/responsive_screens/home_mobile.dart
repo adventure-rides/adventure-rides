@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
 import '../../../../../../common/custom_shapes/containers/primary_header_container.dart';
-import '../../../../../../common/custom_shapes/containers/search_container.dart';
+import '../../../../../../common/custom_shapes/containers/responsive_containers/search_container_mobile.dart';
 import '../../../../../../common/tour_guide/guide_cards/guide_card_vertical.dart';
 import '../../../../../../common/widgets/Text/section_heading.dart';
 import '../../../../../../common/widgets/layouts/grid_layout.dart';
@@ -45,7 +45,7 @@ class HomeScreenMobile extends StatelessWidget {
                   SizedBox(height: SSizes.spaceBtwSections),
 
                   /// Searchbar
-                  SSearchContainer(text: 'Search in TripHub'),
+                  SearchContainerMobile(text: 'Search ...'),
                   SizedBox(height: SSizes.spaceBtwSections),
 
                   /// Categories
@@ -131,6 +131,7 @@ class HomeScreenMobile extends StatelessWidget {
                   SizedBox(height: SSizes.spaceBtwSections),
 
                   /// Terms & Conditions, Privacy Policy, Cookie Preferences
+                  /*
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
@@ -175,6 +176,7 @@ class HomeScreenMobile extends StatelessWidget {
                       ),
                     ],
                   ),
+                  */
                 ],
               ),
             ),

@@ -15,6 +15,10 @@ import '../../../../controllers/car/cart_controller.dart';
 import '../../../../models/car_model.dart';
 import '../../../car_reviews/car_reviews_screen.dart';
 import '../../../cart/cart.dart';
+<<<<<<< HEAD
+=======
+import '../../detail_buttons/mobile_book_detail_button.dart';
+>>>>>>> 4b76d60b99720174ae25fd9ddff4e7b6f0f5fffe
 import '../../widgets/car_detail_image_slider.dart';
 
 class MobileCarDetail extends StatelessWidget {
@@ -49,6 +53,7 @@ class MobileCarDetail extends StatelessWidget {
                   if (car.carType == CarType.variables.toString()) SCarAttributes(car: car),
                   if (car.carType == CarType.variables.toString()) const SizedBox(height: SSizes.spaceBtwSections),
                   ///Checkout button
+<<<<<<< HEAD
                   SizedBox(width: double.infinity, child: ElevatedButton(onPressed: () {
                     if (cartController.itemQuantityInCart.value > 0) {
                       cartController.addToCart(car); // Add the car to the bookings
@@ -59,6 +64,9 @@ class MobileCarDetail extends StatelessWidget {
                       SLoaders.customToast(message: 'Select a quantity to proceed to bookings');
                     }
                   }, child: const Text('Book Now'))),
+=======
+                  MobileBookDetailButton(cartController: cartController, car: car),
+>>>>>>> 4b76d60b99720174ae25fd9ddff4e7b6f0f5fffe
 
                   const SizedBox(height: SSizes.spaceBtwSections),
 
@@ -87,8 +95,12 @@ class MobileCarDetail extends StatelessWidget {
                     ],
                   ),
                   SizedBox(height: SSizes.spaceBtwSections),
+<<<<<<< HEAD
 
           ],
+=======
+                ],
+>>>>>>> 4b76d60b99720174ae25fd9ddff4e7b6f0f5fffe
               ),
             ),
           ],
@@ -96,4 +108,8 @@ class MobileCarDetail extends StatelessWidget {
       ),
     );
   }
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> 4b76d60b99720174ae25fd9ddff4e7b6f0f5fffe

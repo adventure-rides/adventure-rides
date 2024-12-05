@@ -84,10 +84,13 @@ class SGuideImageSlider extends StatelessWidget {
                 ),
               ),
             ),
+<<<<<<< HEAD
 
             ///Appbar
             FixedScreenAppbar(),
             //SAppBar(showBackArrow: true, actions: [GuideFavouriteIcon(guideId: guide.id)],),
+=======
+>>>>>>> 4b76d60b99720174ae25fd9ddff4e7b6f0f5fffe
           ],
         ),
       ),

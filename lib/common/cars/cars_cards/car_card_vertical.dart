@@ -120,7 +120,7 @@ class SCarCardVertical extends StatelessWidget {
                 ),
 
                 ///Add to cart Button
-                CarCardAddToCartButton(car: car),
+                //CarCardAddToCartButton(car: car),
               ],
             ),
           ],

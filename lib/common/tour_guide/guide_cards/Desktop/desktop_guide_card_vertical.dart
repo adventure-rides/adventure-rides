@@ -11,7 +11,10 @@ import '../../../container/rounded_container.dart';
 import '../../../styles/shadows.dart';
 import '../../../widgets/Text/guide_title_text.dart';
 import '../../../widgets/images/s_rounded_image.dart';
+<<<<<<< HEAD
 
+=======
+>>>>>>> 4b76d60b99720174ae25fd9ddff4e7b6f0f5fffe
 class DesktopGuideCardVertical extends StatelessWidget {
   const DesktopGuideCardVertical({super.key, required this.guide});
 
@@ -23,12 +26,20 @@ class DesktopGuideCardVertical extends StatelessWidget {
     final dark = SHelperFunctions().isDarkMode(context);
 
     return GestureDetector(
+<<<<<<< HEAD
       onTap: () => Get.to(() => GuideDetailScreen(guide: guide),
           preventDuplicates: false),
       child: Container(
         width: 300,
         constraints: const BoxConstraints(
           maxHeight: 330,
+=======
+      onTap: () => Get.to(() => GuideDetailScreen(guide: guide), preventDuplicates: false),
+      child: Container(
+        width: 300,
+        constraints: const BoxConstraints(
+        maxHeight: 330,
+>>>>>>> 4b76d60b99720174ae25fd9ddff4e7b6f0f5fffe
         ),
         padding: const EdgeInsets.all(1),
         decoration: BoxDecoration(
@@ -59,7 +70,10 @@ class DesktopGuideCardVertical extends StatelessWidget {
                       ),
                     ),
                   ),
+<<<<<<< HEAD
 
+=======
+>>>>>>> 4b76d60b99720174ae25fd9ddff4e7b6f0f5fffe
                   /// Wishlist Icon
                   Positioned(
                     top: 3,
@@ -70,7 +84,10 @@ class DesktopGuideCardVertical extends StatelessWidget {
               ),
             ),
             const SizedBox(height: SSizes.spaceBtwSections / 2),
+<<<<<<< HEAD
 
+=======
+>>>>>>> 4b76d60b99720174ae25fd9ddff4e7b6f0f5fffe
             /// Guide Details
             Expanded(
               child: Padding(
@@ -85,10 +102,15 @@ class DesktopGuideCardVertical extends StatelessWidget {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           mainAxisSize: MainAxisSize.min,
                           children: [
+<<<<<<< HEAD
                             SGuideTitleText(
                                 title: guide.tName, smallSize: true),
                             const SizedBox(height: SSizes.spaceBtwItems / 4),
 
+=======
+                            SGuideTitleText(title: guide.tName, smallSize: true),
+                            const SizedBox(height: SSizes.spaceBtwItems / 4),
+>>>>>>> 4b76d60b99720174ae25fd9ddff4e7b6f0f5fffe
                             /// Experience
                             Text(
                               '${guide.experience} years of experience',
@@ -97,7 +119,10 @@ class DesktopGuideCardVertical extends StatelessWidget {
                               overflow: TextOverflow.ellipsis,
                             ),
                             const SizedBox(height: SSizes.spaceBtwItems / 4),
+<<<<<<< HEAD
 
+=======
+>>>>>>> 4b76d60b99720174ae25fd9ddff4e7b6f0f5fffe
                             /// Languages
                             Text(
                               'Languages: ${guide.languages.keys.join(", ")}',
@@ -106,7 +131,10 @@ class DesktopGuideCardVertical extends StatelessWidget {
                               overflow: TextOverflow.ellipsis,
                             ),
                             const SizedBox(height: SSizes.spaceBtwItems / 4),
+<<<<<<< HEAD
 
+=======
+>>>>>>> 4b76d60b99720174ae25fd9ddff4e7b6f0f5fffe
                             /// Rating
                             Text(
                               'Rating: ${guide.averageRating.toStringAsFixed(1)} ⭐',
@@ -118,11 +146,17 @@ class DesktopGuideCardVertical extends StatelessWidget {
                         ),
                       ),
                     ),
+<<<<<<< HEAD
 
                     /// Guide Fee and Availability
                     Padding(
                       padding: const EdgeInsets.symmetric(
                           vertical: SSizes.spaceBtwItems / 4),
+=======
+                    /// Guide Fee and Availability
+                    Padding(
+                      padding: const EdgeInsets.symmetric(vertical: SSizes.spaceBtwItems / 4),
+>>>>>>> 4b76d60b99720174ae25fd9ddff4e7b6f0f5fffe
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
@@ -134,6 +168,7 @@ class DesktopGuideCardVertical extends StatelessWidget {
                               overflow: TextOverflow.ellipsis,
                             ),
                           ),
+<<<<<<< HEAD
 
                           /// Availability Icon
                           Icon(
@@ -143,6 +178,12 @@ class DesktopGuideCardVertical extends StatelessWidget {
                             color: guide.guideAvailability
                                 ? SColors.success
                                 : SColors.error,
+=======
+                          /// Availability Icon
+                          Icon(
+                            guide.guideAvailability ? Icons.check_circle : Icons.cancel,
+                            color: guide.guideAvailability ? SColors.success : SColors.error,
+>>>>>>> 4b76d60b99720174ae25fd9ddff4e7b6f0f5fffe
                             size: 18,
                           ),
                         ],
@@ -157,4 +198,8 @@ class DesktopGuideCardVertical extends StatelessWidget {
       ),
     );
   }
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> 4b76d60b99720174ae25fd9ddff4e7b6f0f5fffe

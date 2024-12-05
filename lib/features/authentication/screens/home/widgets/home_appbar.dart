@@ -101,6 +101,7 @@ class SHomeAppBar extends StatelessWidget {
             label: const Text("Contact Us",
                 style: TextStyle(color: SColors.white)),
           ),
+<<<<<<< HEAD
           TextButton.icon(
             onPressed: () {
               // Define what happens on 'Contact Us' click
@@ -108,6 +109,8 @@ class SHomeAppBar extends StatelessWidget {
             icon: const Icon(Icons.login, color: SColors.white),
             label: const Text("Login", style: TextStyle(color: SColors.white)),
           ),
+=======
+>>>>>>> 4b76d60b99720174ae25fd9ddff4e7b6f0f5fffe
           SCartCounterIcon(iconColor: SColors.white),
         ] else
           PopupMenuButton<String>(
@@ -135,11 +138,16 @@ class SHomeAppBar extends StatelessWidget {
                 case 'contact':
                   // Define what happens on 'Contact Us' click
                   break;
+<<<<<<< HEAD
                 case 'login':
                   Get.to(() => LoginScreen());
                   break;
                 case 'cart':
                   // Navigate to the bookings/cart screen
+=======
+                case 'bookings':
+                // Navigate to the bookings/cart screen
+>>>>>>> 4b76d60b99720174ae25fd9ddff4e7b6f0f5fffe
                   Get.to(() => const CartScreen());
                   break;
               }
@@ -181,6 +189,7 @@ class SHomeAppBar extends StatelessWidget {
                 ),
               ),
               PopupMenuItem<String>(
+<<<<<<< HEAD
                 value: 'login',
                 child: ListTile(
                   leading: Icon(Icons.login, color: SColors.grey),
@@ -192,6 +201,12 @@ class SHomeAppBar extends StatelessWidget {
                 child: ListTile(
                   leading: Icon(Icons.book_online, color: SColors.grey),
                   title: const Text("Cart"),
+=======
+                value: 'bookings',
+                child: ListTile(
+                  leading: Icon(Icons.book_online, color: SColors.grey),
+                  title: const Text("Bookings"),
+>>>>>>> 4b76d60b99720174ae25fd9ddff4e7b6f0f5fffe
                 ),
               ),
             ],

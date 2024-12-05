@@ -47,6 +47,7 @@ class CartScreen extends StatelessWidget {
         children: [
           // Title text below the navbar
           Padding(
+<<<<<<< HEAD
             padding: const EdgeInsets.symmetric(
                 vertical: 16.0), // Add space around the title
             child: Text(
@@ -57,6 +58,15 @@ class CartScreen extends StatelessWidget {
                         ? Colors.white
                         : Colors.black, // Adjust the color as needed
                   ),
+=======
+            padding: const EdgeInsets.symmetric(vertical: 16.0), // Add space around the title
+            child: Text(
+              'My Bookings', // Title passed from the constructor
+              style: Theme.of(context).textTheme.headlineMedium?.copyWith(
+                fontWeight: FontWeight.bold,
+                color: dark ? Colors.white : Colors.black, // Adjust the color as needed
+              ),
+>>>>>>> 4b76d60b99720174ae25fd9ddff4e7b6f0f5fffe
               textAlign: TextAlign.center,
             ),
           ),
@@ -87,8 +97,12 @@ class CartScreen extends StatelessWidget {
                         children: [
                           Expanded(
                             flex: 3,
+<<<<<<< HEAD
                             child:
                                 CartItemsDesktop(), // Bookings items displayed on the left
+=======
+                            child: CartItemsDesktop(), // Bookings items displayed on the left
+>>>>>>> 4b76d60b99720174ae25fd9ddff4e7b6f0f5fffe
                           ),
                           const SizedBox(width: SSizes.defaultSpace),
                           Expanded(
@@ -97,12 +111,20 @@ class CartScreen extends StatelessWidget {
                               children: [
                                 // Add additional content for desktop layout, such as a summary or recommendations
                                 Container(
+<<<<<<< HEAD
                                   padding:
                                       const EdgeInsets.all(SSizes.defaultSpace),
+=======
+                                  padding: const EdgeInsets.all(SSizes.defaultSpace),
+>>>>>>> 4b76d60b99720174ae25fd9ddff4e7b6f0f5fffe
                                   decoration: BoxDecoration(
                                     color: Theme.of(context).cardColor,
                                     borderRadius: BorderRadius.circular(8),
                                   ),
+<<<<<<< HEAD
+=======
+
+>>>>>>> 4b76d60b99720174ae25fd9ddff4e7b6f0f5fffe
                                 ),
                               ],
                             ),

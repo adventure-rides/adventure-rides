@@ -13,6 +13,10 @@ import '../../../../../../utils/constraints/sizes.dart';
 import '../../../../../../utils/helpers/helper_functions.dart';
 import '../../../../../../utils/popups/loaders.dart';
 import '../../../../controllers/car/cart_controller.dart';
+<<<<<<< HEAD
+=======
+import '../../../car_details/detail_buttons/mobile_book_guide_detail.dart';
+>>>>>>> 4b76d60b99720174ae25fd9ddff4e7b6f0f5fffe
 import '../../../car_reviews/car_reviews_screen.dart';
 import '../../../cart/cart.dart';
 
@@ -55,6 +59,7 @@ class MobileGuideDetail extends StatelessWidget {
 
                   /// Checkout button
                   const SizedBox(height: SSizes.spaceBtwSections),
+<<<<<<< HEAD
                   SizedBox(
                     width: double.infinity,
                     child: ElevatedButton(
@@ -71,6 +76,10 @@ class MobileGuideDetail extends StatelessWidget {
                       child: const Text('Book Now'),
                     ),
                   ),
+=======
+                  MobileBookNowGuideDetail(cartController: cartController, guide: guide),
+
+>>>>>>> 4b76d60b99720174ae25fd9ddff4e7b6f0f5fffe
                   const SizedBox(height: SSizes.spaceBtwSections),
                   /// Description
                   const SSectionHeading(title: 'Description', showActionButton: false),
@@ -108,4 +117,8 @@ class MobileGuideDetail extends StatelessWidget {
       ),
     );
   }
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> 4b76d60b99720174ae25fd9ddff4e7b6f0f5fffe

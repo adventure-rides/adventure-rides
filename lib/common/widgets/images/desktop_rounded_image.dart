@@ -33,10 +33,15 @@ class DesktopRoundedImage extends StatelessWidget {
     return GestureDetector(
       onTap: onPressed,
       child: Container(
+<<<<<<< HEAD
         width:
             width ?? double.infinity, // Default to full width if not specified
         height: height ??
             double.infinity, // Default to full height if not specified
+=======
+        width: width ?? double.infinity, // Default to full width if not specified
+        height: height ?? double.infinity, // Default to full height if not specified
+>>>>>>> 4b76d60b99720174ae25fd9ddff4e7b6f0f5fffe
         padding: padding,
         decoration: BoxDecoration(
           border: border,
@@ -44,9 +49,13 @@ class DesktopRoundedImage extends StatelessWidget {
           borderRadius: BorderRadius.circular(borderRadius),
         ),
         child: ClipRRect(
+<<<<<<< HEAD
           borderRadius: applyImageRadius
               ? BorderRadius.circular(borderRadius)
               : BorderRadius.zero,
+=======
+          borderRadius: applyImageRadius ? BorderRadius.circular(borderRadius) : BorderRadius.zero,
+>>>>>>> 4b76d60b99720174ae25fd9ddff4e7b6f0f5fffe
           child: Image(
             fit: fit, // Ensure the image fills the container
             image: isNetworkImage
@@ -57,4 +66,8 @@ class DesktopRoundedImage extends StatelessWidget {
       ),
     );
   }
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> 4b76d60b99720174ae25fd9ddff4e7b6f0f5fffe

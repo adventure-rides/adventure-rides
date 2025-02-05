@@ -34,6 +34,10 @@ class SSizes {
   static const double spaceBtwItems = 16.0;
   static const double spaceBtwSections = 32.0;
 
+  //Default Spacing for search bar
+  static const double searchSpace = 300.0;
+  static const double searchHeight = 50.0;
+
   //Border Radius
   static const double borderRadiusSm = 4.0;
   static const double borderRadiusMd = 8.0;

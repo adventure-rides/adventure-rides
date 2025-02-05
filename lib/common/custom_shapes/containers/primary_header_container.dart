@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
-
 import '../../../utils/constraints/colors.dart';
 import '../curved_edges/curved_edges_widgets.dart';
 import 'circular_container.dart';
-
 
 class SPrimaryHeaderContainer extends StatelessWidget {
   const SPrimaryHeaderContainer({
@@ -16,8 +14,7 @@ class SPrimaryHeaderContainer extends StatelessWidget {
   Widget build(BuildContext context) {
     return SCurvedEdgeWidget(
       child: Container(
-        color: SColors.primary,
-
+        color: SColors.bootColor, //accent
         child: Stack(
           children: [
             /// Background Custom shapes

@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import '../../../features/book/models/car_model.dart';
@@ -17,6 +18,21 @@ class CarRepository extends GetxController {
     try {
       //final snapshot = await _db.collection('Cars').where('IsFeatured', isEqualTo: true).limit(4).get();
       final snapshot = await _db.collection('Cars').limit(4).get();
+      return snapshot.docs.map((e) => CarModel.fromSnapshot(e)).toList();
+
+    } on FirebaseException catch (e) {
+      throw SFirebaseException(e.code).message;
+    } on PlatformException catch (e) {
+      throw SPlatformException(e.code).message;
+    } catch (e) {
+      throw 'Something went wrong. Please try again';
+    }
+  }
+  ///Get limited featured cars
+  Future<List<CarModel>> getFeaturedCarsDesktop() async {
+    try {
+      //final snapshot = await _db.collection('Cars').where('IsFeatured', isEqualTo: true).limit(4).get();
+      final snapshot = await _db.collection('Cars').limit(6).get();
       return snapshot.docs.map((e) => CarModel.fromSnapshot(e)).toList();
 
     } on FirebaseException catch (e) {
@@ -156,8 +172,49 @@ class CarRepository extends GetxController {
       throw 'Something went wrong. Please try again';
     }
   }
+  //Used in car detail section
+  /// Get available cars excluding the current car
+  Future<List<CarModel>> getAvailableCarsExcludingCurrent(String currentCarId) async {
+    try {
+      final snapshot = await _db
+          .collection('Cars')
+          .where(FieldPath.documentId, isNotEqualTo: currentCarId)
+          .get();
+
+      return snapshot.docs.map((doc) => CarModel.fromSnapshot(doc)).toList();
+    } on FirebaseException catch (e) {
+      throw SFirebaseException(e.code).message;
+    } on PlatformException catch (e) {
+      throw SPlatformException(e.code).message;
+    } catch (e) {
+      if (kDebugMode) {
+        print('Error fetching available cars: $e');
+      } // Log the error
+      throw 'Something went wrong. Please try again';
+    }
+  }
+
+  ///To track car availability
+  Future<List<DateTime>> getAvailableDates(String carId) async {
+    // Mocking a response; replace with actual API call
+    try{
+      return [
+        DateTime(2023, 2, 5),
+        DateTime(2023, 2, 10),
+        DateTime(2023, 2, 15),
+      ];
+    }  on FirebaseException catch (e) {
+      throw SFirebaseException(e.code).message;
+    } on PlatformException catch (e) {
+      throw SPlatformException(e.code).message;
+    } catch (e) {
+      if (kDebugMode) {
+        print('Error fetching available car dates: $e');
+      } // Log the error
+      throw 'Something went wrong. Please try again';
+    }
+  }
 
 ///Upload dummy data to the cloud firebase
-
 
 }

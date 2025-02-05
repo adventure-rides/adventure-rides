@@ -32,8 +32,9 @@ class SVerticalImageText extends StatelessWidget {
             /// Circular icon
             SCircularImage(
               image: image,
-              fit: BoxFit.fitWidth,
-              padding: SSizes.sm * 1.4,
+              fit: BoxFit.fill, //use also BoxFit.cover
+              padding: 2,
+              //padding: SSizes.sm * 1.4,
               isNetworkImage: isNetworkImage,
               backgroundColor: backgroundColor,
               //overlayColor: dark ? SColors.light : SColors.dark,

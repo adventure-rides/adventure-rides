@@ -1,6 +1,5 @@
 import 'package:adventure_rides/features/Effects/shimmer.dart';
 import 'package:flutter/material.dart';
-
 import '../../common/widgets/layouts/grid_layout.dart';
 import '../../utils/constraints/sizes.dart';
 

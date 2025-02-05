@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:iconsax/iconsax.dart';
-
 import '../../../utils/constraints/colors.dart';
 import '../../../utils/constraints/sizes.dart';
 import '../../../utils/device/device_utility.dart';
@@ -29,7 +28,7 @@ class SSearchContainer extends StatelessWidget {
     return GestureDetector(
       onTap: onTap,
       child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: SSizes.defaultSpace),
+        padding: const EdgeInsets.symmetric(horizontal: SSizes.searchSpace), //used padding of 300
         child: Container(
           width: SDevicesUtils.getScreenWidth(context),
           padding: const EdgeInsets.all(SSizes.md),

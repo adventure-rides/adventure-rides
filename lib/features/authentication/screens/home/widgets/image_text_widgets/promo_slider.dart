@@ -46,6 +46,7 @@ class SPromoSlider extends StatelessWidget {
                       .toList(),
                 ),
                 const SizedBox(height: SSizes.spaceBtwItems),
+                //CarouselSlider dots begins here
                 Center(
                   child: Obx(
                         () => Row(

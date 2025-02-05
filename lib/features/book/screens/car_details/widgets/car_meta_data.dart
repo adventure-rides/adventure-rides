@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
 import '../../../../../common/container/rounded_container.dart';
 import '../../../../../common/widgets/Text/car_price_text.dart';
 import '../../../../../common/widgets/Text/car_title_text.dart';

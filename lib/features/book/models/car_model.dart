@@ -8,7 +8,6 @@ class CarModel {
   int noAvailable;
   double price;
   String title;
-  DateTime? date;
   double bookingPrice;
   String thumbnail;
   BrandModel? brand;
@@ -18,6 +17,7 @@ class CarModel {
   List<String>? images;
   List<CarAttributeModel>? carAttributes;
   List<CarVariationModel>? carVariations;
+  List<DateTime> bookedDates; // Store booked dates
 
   CarModel({
     required this.id,
@@ -27,20 +27,28 @@ class CarModel {
     required this.thumbnail,
     required this.carType,
     this.brand,
-    this.date,
-    this.images,
     this.bookingPrice = 0.0,
     this.categoryId,
     this.description,
+    this.images,
     this.carAttributes,
     this.carVariations,
+    this.bookedDates = const [],
   });
 
-  /// Create Empty func for clean code
-  static CarModel empty() => CarModel(id: '', title: '', noAvailable: 0, price: 0, thumbnail: '', carType: '');
+  /// Create Empty function
+  static CarModel empty() => CarModel(
+    id: '',
+    title: '',
+    noAvailable: 0,
+    price: 0,
+    thumbnail: '',
+    carType: '',
+    bookedDates: [],
+  );
 
-  /// Json Format
-  toJson() {
+  /// Convert to JSON for Firebase
+  Map<String, dynamic> toJson() {
     return {
       'Title': title,
       'NoAvailable': noAvailable,
@@ -49,15 +57,16 @@ class CarModel {
       'Thumbnail': thumbnail,
       'BookingPrice': bookingPrice,
       'CategoryId': categoryId,
-      'Brand': brand!.toJson(),
+      'Brand': brand?.toJson(),
       'Description': description,
       'CarType': carType,
-      'CarAttributes': carAttributes != null ? carAttributes!.map((e) => e.toJson()).toList() : [],
-      'CarVariations': carVariations != null ? carVariations!.map((e) => e.toJson()).toList() : [],
+      'CarAttributes': carAttributes?.map((e) => e.toJson()).toList() ?? [],
+      'CarVariations': carVariations?.map((e) => e.toJson()).toList() ?? [],
+      'BookedDates': bookedDates.map((date) => date.toIso8601String()).toList(),
     };
   }
 
-  /// Map Json oriented document snapshot from Firebase to Model
+  /// Convert from Firebase snapshot
   factory CarModel.fromSnapshot(DocumentSnapshot<Map<String, dynamic>> document) {
     final data = document.data()!;
     return CarModel(
@@ -70,14 +79,21 @@ class CarModel {
       categoryId: data['CategoryId'] ?? '',
       description: data['Description'] ?? '',
       carType: data['CarType'] ?? '',
-      brand: BrandModel.fromJson(data['Brand']),
+      brand: data['Brand'] != null ? BrandModel.fromJson(data['Brand']) : null,
       images: data['Images'] != null ? List<String>.from(data['Images']) : [],
-      carAttributes: (data['CarAttributes'] as List<dynamic>).map((e) => CarAttributeModel.fromJson(e)).toList(),
-      carVariations: (data['CarVariations'] as List<dynamic>).map((e) => CarVariationModel.fromJson(e)).toList(),
+      carAttributes: data['CarAttributes'] != null
+          ? (data['CarAttributes'] as List).map((e) => CarAttributeModel.fromJson(e)).toList()
+          : [],
+      carVariations: data['CarVariations'] != null
+          ? (data['CarVariations'] as List).map((e) => CarVariationModel.fromJson(e)).toList()
+          : [],
+      bookedDates: data['BookedDates'] != null
+          ? (data['BookedDates'] as List).map((date) => DateTime.parse(date)).toList()
+          : [],
     );
   }
 
-  // Map Json-oriented document snapshot from Firebase to Model
+  /// Convert from Firebase Query Snapshot
   factory CarModel.fromQuerySnapshot(QueryDocumentSnapshot<Object?> document) {
     final data = document.data() as Map<String, dynamic>;
     return CarModel(
@@ -90,10 +106,51 @@ class CarModel {
       categoryId: data['CategoryId'] ?? '',
       description: data['Description'] ?? '',
       carType: data['CarType'] ?? '',
-      brand: BrandModel.fromJson(data['Brand']),
+      brand: data['Brand'] != null ? BrandModel.fromJson(data['Brand']) : null,
       images: data['Images'] != null ? List<String>.from(data['Images']) : [],
-      carAttributes: (data['CarAttributes'] as List<dynamic>).map((e) => CarAttributeModel.fromJson(e)).toList(),
-      carVariations: (data['CarVariations'] as List<dynamic>).map((e) => CarVariationModel.fromJson(e)).toList(),
+      carAttributes: data['CarAttributes'] != null
+          ? (data['CarAttributes'] as List).map((e) => CarAttributeModel.fromJson(e)).toList()
+          : [],
+      carVariations: data['CarVariations'] != null
+          ? (data['CarVariations'] as List).map((e) => CarVariationModel.fromJson(e)).toList()
+          : [],
+      bookedDates: data['BookedDates'] != null
+          ? (data['BookedDates'] as List).map((date) => DateTime.parse(date)).toList()
+          : [],
     );
+  }
+
+  /// Add booked dates to the car
+  Future<void> bookCar(String carId, DateTime startDate, DateTime endDate) async {
+    var docRef = FirebaseFirestore.instance.collection('cars').doc(carId);
+    var doc = await docRef.get();
+
+    if (doc.exists) {
+      List<dynamic> existingDates = doc.data()?['BookedDates'] ?? [];
+      List<String> newDates = existingDates.map((d) => d.toString()).toList();
+
+      for (DateTime d = startDate; d.isBefore(endDate) || d.isAtSameMomentAs(endDate); d = d.add(Duration(days: 1))) {
+        newDates.add(d.toIso8601String());
+      }
+
+      await docRef.update({'BookedDates': newDates});
+    }
+  }
+
+  /// Remove a booking (if a cancellation happens)
+  Future<void> cancelBooking(String carId, DateTime startDate, DateTime endDate) async {
+    var docRef = FirebaseFirestore.instance.collection('cars').doc(carId);
+    var doc = await docRef.get();
+
+    if (doc.exists) {
+      List<dynamic> existingDates = doc.data()?['BookedDates'] ?? [];
+      List<String> updatedDates = existingDates
+          .map((d) => DateTime.parse(d))
+          .where((date) => date.isBefore(startDate) || date.isAfter(endDate))
+          .map((date) => date.toIso8601String())
+          .toList();
+
+      await docRef.update({'BookedDates': updatedDates});
+    }
   }
 }

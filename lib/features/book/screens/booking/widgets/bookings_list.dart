@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
-
 import '../../../../../common/container/rounded_container.dart';
 import '../../../../../common/loaders/animation_loader.dart';
 import '../../../../../navigation_menu.dart';
@@ -24,7 +23,7 @@ class SBookingListItems extends StatelessWidget {
       builder: (_, snapshot) {
         ///Nothing found widget
         final emptyWidget = SAnimationLoaderWidget(
-            text: 'Whoops! No Orders Yet!',
+            text: 'Whoops! No Bookings Yet!',
             animation: SImages.pencilAnimation,
           showAction: true,
           actionText: 'Lets fill it',
@@ -50,11 +49,9 @@ class SBookingListItems extends StatelessWidget {
               child: Column(
                 mainAxisSize: MainAxisSize.min,
                 children: [
-
                   ///Row 1
                   Row(
                     children: [
-
                       /// 1 Icon
                       const Icon(Iconsax.ship),
                       const SizedBox(width: SSizes.spaceBtwItems / 2),
@@ -119,7 +116,6 @@ class SBookingListItems extends StatelessWidget {
                                 ],
                               ),
                             ),
-
                           ],
                         ),
                       ),
@@ -152,7 +148,6 @@ class SBookingListItems extends StatelessWidget {
                                 ],
                               ),
                             ),
-
                           ],
                         ),
                       ),

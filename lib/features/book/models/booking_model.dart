@@ -1,8 +1,7 @@
+import 'package:adventure_rides/features/personalization/models/schedule_model.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-
 import '../../../utils/constraints/enums.dart';
 import '../../../utils/helpers/helper_functions.dart';
-import '../../personalization/models/address_model.dart';
 import 'cart_item_model.dart';
 
 
@@ -13,8 +12,8 @@ class BookingModel {
   final double totalAmount; // Total amount to be paid
   final DateTime bookingDate; // Date when the booking was made
   final String paymentMethod; //Method of payment
-  final AddressModel? pickupLocation; //Where the tourist will pick up the car
-  final AddressModel? dropoffLocation; //Where the tourist will drop off the car
+  final ScheduleModel? pickupLocation; //Where the tourist will pick up the car
+  final ScheduleModel? dropoffLocation; //Where the tourist will drop off the car
   final DateTime? confirmDate; //Date when the booking was confirmed
   final List<CartItemModel> items; //In case of booking multiple cars (optional)
   final bool isRoundTrip; //True if it's a round trip booking
@@ -67,8 +66,8 @@ class BookingModel {
       totalAmount: data['totalAmount'] as double,
       bookingDate: (data['bookingDate'] as Timestamp).toDate(),
       paymentMethod: data['paymentMethod'] as String,
-      pickupLocation: AddressModel.fromMap(data['pickupLocation'] as dynamic),
-      dropoffLocation: AddressModel.fromMap(data['dropoffLocation'] as dynamic),
+      pickupLocation: ScheduleModel.fromMap(data['pickupLocation'] as dynamic),
+      dropoffLocation: ScheduleModel.fromMap(data['dropoffLocation'] as dynamic),
       confirmDate: (data['confirmDate'] as Timestamp).toDate(),
       isRoundTrip: data.containsKey('isRoundTrip') && data['isRoundTrip'] != null ? data['isRoundTrip'] as bool : false,
       items: (data['items'] as List<dynamic>).map((itemData) => CartItemModel.fromJson(itemData as Map<String, dynamic>)).toList(),

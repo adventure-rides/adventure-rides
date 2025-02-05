@@ -5,13 +5,17 @@ import 'package:adventure_rides/features/book/screens/all_guides/all_tour_guides
 import 'package:adventure_rides/navigation_menu.dart';
 import 'package:adventure_rides/utils/constraints/image_strings.dart';
 import 'package:adventure_rides/utils/device/device_utility.dart';
+import 'package:iconsax/iconsax.dart';
 import '../../../../../common/appbar/appbar.dart';
 import '../../../../../common/cars/cart/cart_menu_icon.dart';
 import '../../../../../data/repositories/car/car_repository.dart';
 import '../../../../../data/repositories/tour_guide/guide_repository.dart';
 import '../../../../../utils/constraints/colors.dart';
 import '../../../../../utils/constraints/text_strings.dart';
+import '../../../../book/reservation/reservations.dart';
+import '../../../../book/screens/cart/cart.dart';
 import '../../../../personalization/controllers/user_controller.dart';
+import '../../emergency_details/emergency_screen.dart';
 
 class SHomeAppBar extends StatelessWidget {
   const SHomeAppBar({super.key});
@@ -25,7 +29,7 @@ class SHomeAppBar extends StatelessWidget {
     // Check screen size to decide layout for actions
     final isLargeScreen = SDevicesUtils.isDesktopScreen(context) ||
         SDevicesUtils.isTabletScreen(context);
-    final isMobile = SDevicesUtils.isCustomScreen(context);
+    final isMobile = SDevicesUtils.isMobileScreen(context);
 
     return SAppBar(
       title: !isMobile
@@ -44,14 +48,14 @@ class SHomeAppBar extends StatelessWidget {
                       SText.homeAppbarTitle,
                       style: Theme.of(context)
                           .textTheme
-                          .labelMedium!
+                          .headlineSmall!
                           .apply(color: SColors.grey),
                     ),
                     Text(
                       SText.homeAppbarSubTitle,
                       style: Theme.of(context)
                           .textTheme
-                          .headlineSmall!
+                          .titleSmall!
                           .apply(color: SColors.white),
                     ),
                   ],
@@ -62,7 +66,7 @@ class SHomeAppBar extends StatelessWidget {
       actions: [
         if (isLargeScreen) ...[
           TextButton.icon(
-            onPressed: () => Get.to(() => const NavigationMenu()),
+            onPressed: () => Get.off(() => const NavigationMenu()),
             icon: const Icon(Icons.home, color: SColors.white),
             label: const Text("Home", style: TextStyle(color: SColors.white)),
           ),
@@ -83,14 +87,29 @@ class SHomeAppBar extends StatelessWidget {
             label: const Text("Tour Guides",
                 style: TextStyle(color: SColors.white)),
           ),
+          ///Reservations menu
           TextButton.icon(
-            onPressed: () {
-              // Define what happens on 'Contact Us' click
-            },
-            icon: const Icon(Icons.contact_mail, color: SColors.white),
-            label: const Text("Contact Us",
+            onPressed: () => Get.to(() => const ReservationsScreen()),
+            icon: Icon(Iconsax.reserve, color: SColors.white),
+            label: const Text("Reservations",
                 style: TextStyle(color: SColors.white)),
           ),
+          ///Login menu
+          TextButton.icon(
+            onPressed: () => Get.to(() => const ReservationsScreen()),
+            icon: Icon(Iconsax.login, color: SColors.white),
+            label: const Text("Sign in",
+                style: TextStyle(color: SColors.white)),
+          ),
+
+          TextButton.icon(
+            onPressed: () => Get.to(() =>  EmergencyScreen()),
+            icon: const Icon(Icons.emergency, color: SColors.white),
+            label: const Text("Emergency",
+                style: TextStyle(color: SColors.white)),
+          ),
+
+          SCartCounterIcon(iconColor: SColors.white),
         ] else
           PopupMenuButton<String>(
             icon: Icon(Icons.more_vert, color: SColors.white),
@@ -111,8 +130,20 @@ class SHomeAppBar extends StatelessWidget {
                         futureMethod: guideRepository.getAllAvailableGuides(),
                       ));
                   break;
-                case 'contact':
-                  // Define what happens on 'Contact Us' click
+                case 'reservations':
+                  Get.to(() => const ReservationsScreen());
+                  break;
+                case 'login':
+                  Get.to(() => const ReservationsScreen());
+                  break;
+
+                case 'emergency':
+                  Get.to(() => EmergencyScreen());
+                  break;
+
+                case 'bookings':
+                // Navigate to the bookings/cart screen
+                  Get.to(() => const CartScreen());
                   break;
               }
             },
@@ -139,16 +170,35 @@ class SHomeAppBar extends StatelessWidget {
                 ),
               ),
               PopupMenuItem<String>(
-                value: 'contact',
+                value: 'reservations',
                 child: ListTile(
-                  leading: Icon(Icons.contact_mail, color: SColors.grey),
-                  title: const Text("Contact Us"),
+                  leading: Icon(Iconsax.reserve, color: SColors.grey),
+                  title: const Text("Reservations"),
+                ),
+              ),
+              PopupMenuItem<String>(
+                value: 'sign-in',
+                child: ListTile(
+                  leading: Icon(Iconsax.login, color: SColors.grey),
+                  title: const Text("Sign in"),
+                ),
+              ),
+              PopupMenuItem<String>(
+                value: 'emergency',
+                child: ListTile(
+                  leading: Icon(Icons.emergency, color: SColors.grey),
+                  title: const Text("Emergency"),
+                ),
+              ),
+              PopupMenuItem<String>(
+                value: 'bookings',
+                child: ListTile(
+                  leading: Icon(Icons.book_online, color: SColors.grey),
+                  title: const Text("Bookings"),
                 ),
               ),
             ],
           ),
-        // Add the cart icon as the last action
-        SCartCounterIcon(iconColor: SColors.white),
       ],
     );
   }

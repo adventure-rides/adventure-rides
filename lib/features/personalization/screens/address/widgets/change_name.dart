@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
-
 import '../../../../../common/appbar/appbar.dart';
 import '../../../../../utils/constraints/sizes.dart';
 import '../../../../../utils/constraints/text_strings.dart';

@@ -33,7 +33,8 @@ import '../../styles/spacing_styles.dart';
 
                     ///Buttons
                     SizedBox(
-                        width: double.infinity,
+                        //width: double.infinity,
+                        width: 800,
                         child: ElevatedButton(onPressed: onPressed, child: const Text(SText.sContinue))),
 
         ],

@@ -13,7 +13,7 @@ class CartController extends GetxController {
   // Variables
   RxInt noOfCartItems = 0.obs;
   RxDouble totalCartPrice = 0.0.obs;
-  RxInt itemQuantityInCart = 0.obs; // Generalized quantity for car or guide
+  RxInt itemQuantityInCart = 1.obs; // Generalized quantity for car or guide
   RxList<CartItemModel> cartItems = <CartItemModel>[].obs;
   final variationController = VariationController.instance;
 
@@ -166,15 +166,15 @@ class CartController extends GetxController {
     final existingGuide = cartItems.firstWhereOrNull((item) => item.guideId == guide.id);
 
     // Update the item quantity in cart for the specific guide
-    itemQuantityInCart.value = existingGuide?.quantity ?? 0;
+    itemQuantityInCart.value = existingGuide?.quantity ?? 1;
   }
   /// Method to update the quantity of a car already added to the cart
   void updateAlreadyAddedCarCount(CarModel car) {
     // Check if the car already exists in the cart
     final existingCar = cartItems.firstWhereOrNull((item) => item.carId == car.id);
 
-    // Update the item quantity in cart for the specific guide
-    itemQuantityInCart.value = existingCar?.quantity ?? 0;
+    // Update the item quantity in cart for the specific car
+    itemQuantityInCart.value = existingCar?.quantity ?? 1;
   }
 /// Additional methods for handling cart item quantities
 
@@ -208,7 +208,7 @@ class CartController extends GetxController {
 
 /// To clear the bookings
   void clearCart() {
-    itemQuantityInCart.value = 0; // Reset item quantity to zero
+    itemQuantityInCart.value = 1; // Reset item quantity to zero
     cartItems.clear(); // Clear all items from the cart
     updateCart(); // Update cart totals and save state
   }

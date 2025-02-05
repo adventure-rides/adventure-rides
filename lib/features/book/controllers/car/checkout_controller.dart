@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
 import '../../../../common/payment/payment_tile.dart';
 import '../../../../common/widgets/Text/section_heading.dart';
 import '../../../../utils/constraints/enums.dart';
@@ -15,7 +14,10 @@ class CheckOutController extends GetxController {
 
   @override
   void onInit() {
-    selectedPaymentMethod.value = PaymentMethodModel(name: PaymentMethods.paypal.name, image: SImages.paypal);
+    selectedPaymentMethod.value = PaymentMethodModel(
+        name: PaymentMethods.paypal.name,
+        image: SImages.paypal,
+        );
     super.onInit();
   }
   Future<dynamic> selectPaymentMethod(BuildContext context) {

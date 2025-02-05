@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 import '../../utils/constraints/colors.dart';
 import '../../utils/device/device_utility.dart';
 import '../../utils/helpers/helper_functions.dart';
@@ -17,7 +16,7 @@ class STabBar extends StatelessWidget implements PreferredSizeWidget {
       child: TabBar(
           tabs: tabs,
         isScrollable: true,
-        indicatorColor: SColors.primary,
+        indicatorColor: SColors.primary.withOpacity(0.7),
         labelColor: dark ? SColors.white : SColors.primary,
         unselectedLabelColor : SColors.darkGrey,
       ),

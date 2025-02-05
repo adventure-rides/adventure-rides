@@ -41,7 +41,7 @@ class SAnimationLoaderWidget extends StatelessWidget {
               style: OutlinedButton.styleFrom(backgroundColor: SColors.dark),
               child: Text(
                 actionText!,
-                style: Theme.of(context).textTheme.bodyMedium!.apply(color: SColors.light),
+                style: Theme.of(context).textTheme.bodyMedium!.apply(color: SColors.white),
               ),
             ),
           )

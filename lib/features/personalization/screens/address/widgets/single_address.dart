@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
-
 import '../../../../../common/container/rounded_container.dart';
 import '../../../../../utils/constraints/colors.dart';
 import '../../../../../utils/constraints/sizes.dart';
@@ -77,9 +76,7 @@ class SSingleAddress extends StatelessWidget {
           ),
         ),
       );
-
       }
-
     );
   }
 }

@@ -8,10 +8,11 @@ import '../../../../common/widgets/list_tiles/settings_menu_tile.dart';
 import '../../../../common/widgets/list_tiles/user_profile.dart';
 import '../../../../utils/constraints/colors.dart';
 import '../../../../utils/constraints/sizes.dart';
+import '../../../../utils/device/device_utility.dart';
 import '../../../authentication/screens/profile/profile.dart';
+import '../../../book/schedule/screens/schedule_address/schedule.dart';
 import '../../../book/screens/booking/bookings.dart';
 import '../../../book/screens/cart/cart.dart';
-import '../address/address.dart';
 
 class SettingsScreen extends StatelessWidget {
   const SettingsScreen({super.key});
@@ -19,6 +20,16 @@ class SettingsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: PreferredSize(
+        preferredSize: Size.fromHeight(SDevicesUtils.getAppBarBarHeight()),
+        // the height of the AppBar
+        child: SAppBar(
+            title: Text('Account',
+                style: Theme.of(context)
+                    .textTheme
+                    .headlineMedium!
+                    .apply(color: SColors.white))), // The fixed AppBar
+      ),
       body: SingleChildScrollView(
         child: Column(
           children: [
@@ -26,15 +37,9 @@ class SettingsScreen extends StatelessWidget {
             SPrimaryHeaderContainer(
               child: Column(
                 children: [
-                  SAppBar(
-                      title: Text('Account',
-                          style: Theme.of(context)
-                              .textTheme
-                              .headlineMedium!
-                              .apply(color: SColors.white))),
-
                   //User profile card
-                  SUserProfileTile(onPressed: () => Get.to(() => const ProfileScreen())),
+                  SUserProfileTile(
+                      onPressed: () => Get.to(() => const ProfileScreen())),
                   const SizedBox(height: SSizes.spaceBtwSections),
                 ],
               ),
@@ -52,9 +57,9 @@ class SettingsScreen extends StatelessWidget {
 
                   SSettingsMenuTile(
                       icon: Iconsax.safe_home,
-                      title: 'My Addresses',
-                      subTitle: 'Set the pickup location address',
-                      onTap: () => Get.to(() => const UserAddressScreen())),
+                      title: 'My Schedules',
+                      subTitle: 'Set the schedule of your travel',
+                      onTap: () => Get.to(() => const UserScheduleScreen())),
                   SSettingsMenuTile(
                       icon: Iconsax.shopping_cart,
                       title: 'My Bookings Cart',
@@ -123,11 +128,13 @@ class SettingsScreen extends StatelessWidget {
 
 
                    */
+
                   ///Logout button
                   const SizedBox(height: SSizes.spaceBtwSections),
                   SizedBox(
                     width: double.infinity,
-                    child: OutlinedButton(onPressed: (){}, child: const Text('Logout')),
+                    child: OutlinedButton(
+                        onPressed: () {}, child: const Text('Logout')),
                   ),
                   const SizedBox(height: SSizes.spaceBtwSections * 2.5),
                 ],

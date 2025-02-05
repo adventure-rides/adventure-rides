@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-
 import '../../../../../utils/constraints/sizes.dart';
-import '../../../../../utils/helpers/pricing_calculator.dart';
 import '../../../controllers/car/cart_controller.dart';
 
 class SBillingAmountSection extends StatelessWidget {
@@ -17,12 +15,13 @@ class SBillingAmountSection extends StatelessWidget {
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Text('Car-Booking', style: Theme.of(context).textTheme.bodyMedium),
+            Text('Total Booking Price', style: Theme.of(context).textTheme.bodyMedium),
             Text('\$$subTotal', style: Theme.of(context).textTheme.bodyMedium),
           ],
         ),
         const SizedBox(height: SSizes.spaceBtwItems / 2),
         ///Tour guide fee
+    /*
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
@@ -40,6 +39,7 @@ class SBillingAmountSection extends StatelessWidget {
             Text('\$${SPricingCalculator.calculateTax(subTotal, 'US')}', style: Theme.of(context).textTheme.labelLarge),
           ],
         ),
+
         const SizedBox(height: SSizes.spaceBtwItems / 2),
 
         ///Total booking price
@@ -50,6 +50,7 @@ class SBillingAmountSection extends StatelessWidget {
             Text('\$${SPricingCalculator.calculateTotalPrice(subTotal, 'US')}', style: Theme.of(context).textTheme.titleMedium),
           ],
         ),
+        */
       ],
     );
   }

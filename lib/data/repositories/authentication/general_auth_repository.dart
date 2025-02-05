@@ -16,7 +16,7 @@ class GeneralAuthRepository extends GetxController {
   static GeneralAuthRepository get instance => Get.find<GeneralAuthRepository>();
 
   /// Firebase Auth instance
-  final FirebaseAuth _auth = FirebaseAuth.instance;
+  final  _auth = FirebaseAuth.instance;
 
   ///Get authentication user data
   User get authUser => _auth.currentUser!;
@@ -66,7 +66,6 @@ class GeneralAuthRepository extends GetxController {
     }
   }
 
-
   /// Method to check authentication and redirect accordingly
   Future<void> checkAuthenticationAndRedirect() async {
     if (currentUser == null) {
@@ -79,7 +78,6 @@ class GeneralAuthRepository extends GetxController {
   }
 
   /* ------------------------------Email & Password Sign-in------------------------------ */
-
   /// Email Login
   Future<UserCredential> loginWithEmailAndPassword(String email, String password) async {
     try {
@@ -114,7 +112,6 @@ class GeneralAuthRepository extends GetxController {
   }
 
   /* ------------------------------Google Sign-in------------------------------ */
-
   /// Google Sign-In
   Future<UserCredential> signInWithGoogle() async {
     try {
@@ -144,7 +141,6 @@ class GeneralAuthRepository extends GetxController {
   }
 
   /* ------------------------------Logout------------------------------ */
-
   /// Logout
   Future<void> logout() async {
     try {
@@ -163,7 +159,6 @@ class GeneralAuthRepository extends GetxController {
   }
 
   /* ------------------------------Email Verification------------------------------ */
-
   /// Send Email Verification
   Future<void> sendEmailVerification() async {
     try {
@@ -216,7 +211,6 @@ class GeneralAuthRepository extends GetxController {
     }
   }
   /* ------------------------------Password Reset------------------------------ */
-
   /// Reset Password
   Future<void> resetPassword(String email) async {
     try {
@@ -233,7 +227,6 @@ class GeneralAuthRepository extends GetxController {
   }
   ///Facebook authentication - Facebook user
 /* ------------------------------end Federated identity & Social Sign-in------------------------------*/
-
   ///Delete user - Remove user auth and firebase account
   Future<void> deleteAccount() async{
     try {

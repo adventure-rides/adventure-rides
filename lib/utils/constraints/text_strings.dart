@@ -12,7 +12,7 @@ class SText {
   static const String onBoardingSubTitle3 = "From Our Doorstep to Yours - Swift, Secure, and Contactless Delivery!";
 
   //Home
-  static const String homeAppbarTitle = "Adventure Waits";
+  static const String homeAppbarTitle = "Safari Chat"; //Adventure Waits
   static const String homeAppbarSubTitle = "Your Personalized Tour Experience";
 
   //Authentication Form Texts

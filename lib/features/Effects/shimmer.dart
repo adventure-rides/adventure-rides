@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:shimmer/shimmer.dart';
-
 import '../../utils/constraints/colors.dart';
 import '../../utils/helpers/helper_functions.dart';
 

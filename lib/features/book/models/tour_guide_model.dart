@@ -91,7 +91,7 @@ class TourGuideModel {
     return TourGuideModel(
       id: document.id,
       tName: data['Name'] ?? '',
-      guideRegNo: data['GuideRegNo'] ?? 0,
+      guideRegNo: data['GuideRegNo'] ?? '',
       languages: Map<String, String>.from(data['Languages'] ?? {}),
       age: data['Age'] ?? 0,
       guideFee: (data['GuideFee'] ?? 0.0).toDouble(),

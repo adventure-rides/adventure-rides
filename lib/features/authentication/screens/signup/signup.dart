@@ -1,3 +1,4 @@
+import 'package:adventure_rides/features/authentication/screens/home/other_screens_appbar/fixed_screen_appbar.dart';
 import 'package:adventure_rides/features/authentication/screens/signup/responsive_screens/signup_desktop_tablet.dart';
 import 'package:adventure_rides/features/authentication/screens/signup/responsive_screens/signup_mobile.dart';
 import 'package:flutter/material.dart';
@@ -8,6 +9,7 @@ class SignupScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const SSiteTemplate(useLayout: false, desktop: SignupScreenDesktopTablet(), mobile: SignupScreenMobile());
+    return Scaffold(appBar: FixedScreenAppbar(title: 'Sign up'),
+      body: SSiteTemplate(useLayout: false, desktop: SignupScreenDesktopTablet(), mobile: SignupScreenMobile()));
     }
 }

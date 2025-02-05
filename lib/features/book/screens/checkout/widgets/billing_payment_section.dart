@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
 import '../../../../../common/container/rounded_container.dart';
 import '../../../../../common/widgets/Text/section_heading.dart';
 import '../../../../../utils/constraints/colors.dart';
@@ -28,14 +27,12 @@ class SBillingPaymentSection extends StatelessWidget {
                 backgroundColor: dark ? SColors.light : SColors.white,
                 padding: const EdgeInsets.all(SSizes.md),
                 child: Image(image: AssetImage(controller.selectedPaymentMethod.value.image), fit: BoxFit.contain),
-
               ),
               const SizedBox(width: SSizes.spaceBtwItems / 2),
               Text(controller.selectedPaymentMethod.value.name.capitalize.toString(), style: Theme.of(context).textTheme.bodyLarge),
             ],
           ),
         )
-
       ],
     );
   }

@@ -7,7 +7,7 @@ import '../../utils/constraints/sizes.dart';
 class SVerticalCarShimmer extends StatelessWidget {
   const SVerticalCarShimmer({
     super.key,
-    this.itemCount = 4,
+    this.itemCount = 6,
   });
 
   final int itemCount;

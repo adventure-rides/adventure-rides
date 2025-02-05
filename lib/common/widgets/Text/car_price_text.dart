@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 
-
-
 class SCarPriceText extends StatelessWidget {
   const SCarPriceText({
     super.key,

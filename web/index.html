@@ -12,7 +12,7 @@
     * https://developer.mozilla.org/en-US/docs/Web/HTML/Element/base
 
     This is a placeholder for base href that will be replaced by the value of
-    the `--base-href` argument provided to `flutter build`.
+    the `--base-href` argument provided to `flutter build` or `flutter run`.
   -->
   <base href="$FLUTTER_BASE_HREF">
 
@@ -31,8 +31,36 @@
 
   <title>adventure_rides</title>
   <link rel="manifest" href="manifest.json">
+
+  <!--
+   Tawk.to Script
+  <script type="text/javascript">
+    var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
+    (function(){
+      var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
+      s1.async=true;
+      s1.src='https://embed.tawk.to/674ed1112480f5b4f5a70989/1ie5u1bd1';  // Replace with your Tawk.to ID
+      s1.charset='UTF-8';
+      s1.setAttribute('crossorigin','*');
+      s0.parentNode.insertBefore(s1,s0);
+    })();
+  </script>
+  -->
+  <script src="https://js.stripe.com/v3/"></script>
+  <script>
+  window.addEventListener('load', function() {
+    if (window.location.href.includes('success')) {
+      window.parent.postMessage({ type: 'payment-success' }, '*');
+    }
+    if (window.location.href.includes('cancel')) {
+      window.parent.postMessage({ type: 'payment-cancel' }, '*');
+    }
+  });
+</script>
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAwPBfJ3eWaqiUXeAx4GuG-GUeE0dHC6TA&libraries=places"></script>
+
 </head>
 <body>
-  <script src="flutter_bootstrap.js" async></script>
+<script src="flutter_bootstrap.js" async></script>
 </body>
 </html>

@@ -39,6 +39,11 @@ class SGuideMetaData extends StatelessWidget {
         SGuideTitleText(title: guide.tName),
         const SizedBox(height: SSizes.spaceBtwItems / 1.5),
 
+        /// Guide Reg no
+        //SGuideTitleText(title: guide.guideRegNo),
+        SGuideTitleText(title: 'RegNo: ${guide.guideRegNo}'),
+        const SizedBox(height: SSizes.spaceBtwItems / 1.5),
+
         /// Availability Status
         Row(
           children: [

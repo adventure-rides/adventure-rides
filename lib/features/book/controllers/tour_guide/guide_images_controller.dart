@@ -17,7 +17,8 @@ class GuideImagesController extends GetxController {
 
     // Load the guide's profile image as the thumbnail
     images.add(guide.image);
-    selectedGuideImage.value = guide.image; // Assign profile image as selected image
+    selectedGuideImage.value =
+        guide.image; // Assign profile image as selected image
 
     // Get all images associated with the guide (if any)
     // Assuming you might want to include additional images in the model
@@ -36,30 +37,32 @@ class GuideImagesController extends GetxController {
   void showEnlargedImage(String image) {
     Get.to(
       fullscreenDialog: true,
-          () => Dialog.fullscreen(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            Padding(
-              padding: const EdgeInsets.symmetric(
-                  vertical: SSizes.defaultSpace * 2,
-                  horizontal: SSizes.defaultSpace),
-              child: CachedNetworkImage(imageUrl: image),
-            ),
-            const SizedBox(height: SSizes.spaceBtwSections),
-            Align(
-              alignment: Alignment.bottomCenter,
-              child: SizedBox(
-                width: 150,
-                child: OutlinedButton(
-                  onPressed: () => Get.back(),
-                  child: const Text('Close'),
+      () => Dialog.fullscreen(
+        child: SingleChildScrollView(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Padding(
+                padding: const EdgeInsets.symmetric(
+                    vertical: SSizes.defaultSpace * 2,
+                    horizontal: SSizes.defaultSpace),
+                child: CachedNetworkImage(imageUrl: image),
+              ),
+              const SizedBox(height: SSizes.spaceBtwSections),
+              Align(
+                alignment: Alignment.bottomCenter,
+                child: SizedBox(
+                  width: 150,
+                  child: OutlinedButton(
+                    onPressed: () => Get.back(),
+                    child: const Text('Close'),
+                  ),
                 ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );

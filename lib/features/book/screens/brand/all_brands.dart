@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
 import '../../../../brands/brand_card.dart';
 import '../../../../common/appbar/appbar.dart';
 import '../../../../common/widgets/Text/section_heading.dart';

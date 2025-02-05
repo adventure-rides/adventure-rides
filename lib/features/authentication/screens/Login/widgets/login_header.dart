@@ -4,7 +4,6 @@ import '../../../../../utils/constraints/sizes.dart';
 import '../../../../../utils/constraints/text_strings.dart';
 import '../../../../../utils/helpers/helper_functions.dart';
 
-
 class SLoginHeader extends StatelessWidget {
   const SLoginHeader({
     super.key,
@@ -28,4 +27,3 @@ class SLoginHeader extends StatelessWidget {
     );
   }
 }
-

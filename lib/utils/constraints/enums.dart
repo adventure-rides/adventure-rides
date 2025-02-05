@@ -15,4 +15,4 @@ library;
 
   enum BookingStatus { pending, confirmed, inProgress, completed, cancelled }
 
-  enum PaymentMethods { paypal, googlePay, applePay, visa, masterCard, creditCard, paystack, razorPay, paytm }
+  enum PaymentMethods { stripe, paypal, googlePay, applePay, visa, masterCard, creditCard, paystack, razorPay, paytm }

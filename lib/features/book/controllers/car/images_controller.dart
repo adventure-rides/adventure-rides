@@ -49,7 +49,7 @@ class ImageController extends GetxController {
                     padding: const EdgeInsets.symmetric(vertical: SSizes.defaultSpace * 2, horizontal: SSizes.defaultSpace),
                   child: CachedNetworkImage(imageUrl: image),
                 ),
-                const SizedBox(height: SSizes.spaceBtwSections),
+                const SizedBox(height: SSizes.spaceBtwSections /2),
                 Align(
                   alignment: Alignment.bottomCenter,
                   child: SizedBox(

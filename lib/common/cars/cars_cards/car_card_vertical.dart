@@ -1,13 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import '../../../features/book/controllers/car/car_controller.dart';
-import '../../../features/book/models/car_model.dart';
-import '../../../features/book/screens/car_details/car_detail.dart';
-import '../../../features/book/screens/cart/widgets/add_to_cart_button.dart';
-import '../../../utils/constraints/colors.dart';
-import '../../../utils/constraints/enums.dart';
-import '../../../utils/constraints/sizes.dart';
-import '../../../utils/helpers/helper_functions.dart';
+import '../../../../features/book/controllers/car/car_controller.dart';
+import '../../../../features/book/models/car_model.dart';
+import '../../../../features/book/screens/car_details/car_detail.dart';
+import '../../../../utils/constraints/colors.dart';
+import '../../../../utils/constraints/enums.dart';
+import '../../../../utils/constraints/sizes.dart';
+import '../../../../utils/helpers/helper_functions.dart';
 import '../../container/rounded_container.dart';
 import '../../styles/shadows.dart';
 import '../../widgets/Text/car_price_text.dart';
@@ -15,6 +14,7 @@ import '../../widgets/Text/car_title_text.dart';
 import '../../widgets/Text/s_brand_title_text_with_verified_icon.dart';
 import '../../widgets/images/s_rounded_image.dart';
 import '../favourite_icon/favourite_icon.dart';
+
 
 class SCarCardVertical extends StatelessWidget {
   const SCarCardVertical({super.key, required this.car});
@@ -45,7 +45,7 @@ class SCarCardVertical extends StatelessWidget {
             SRoundedContainer(
               height: 180,
               width: 180,
-              padding: const EdgeInsets.all(SSizes.sm),
+              padding: EdgeInsets.all(SSizes.sm),
               backgroundColor: dark ? SColors.dark : SColors.light,
               child: Stack(
                 children: [
@@ -56,23 +56,6 @@ class SCarCardVertical extends StatelessWidget {
                         applyImageRadius: true,
                         isNetworkImage: true),
                   ),
-
-                  /// Sale tag
-                  if (salePercentage != null)
-                    Positioned(
-                      top: 12,
-                      child: SRoundedContainer(
-                        radius: SSizes.sm,
-                        backgroundColor: SColors.secondary.withOpacity(0.8),
-                        padding: const EdgeInsets.symmetric(
-                            horizontal: SSizes.sm, vertical: SSizes.xs),
-                        child: Text('$salePercentage%',
-                            style: Theme.of(context)
-                                .textTheme
-                                .labelLarge!
-                                .apply(color: SColors.black)),
-                      ),
-                    ),
 
                   ///Favourite icon button
                   Positioned(
@@ -136,7 +119,7 @@ class SCarCardVertical extends StatelessWidget {
                 ),
 
                 ///Add to cart Button
-                CarCardAddToCartButton(car: car),
+                //CarCardAddToCartButton(car: car),
               ],
             ),
           ],

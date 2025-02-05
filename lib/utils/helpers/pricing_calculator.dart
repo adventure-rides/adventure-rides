@@ -5,7 +5,7 @@ class SPricingCalculator {
     double taxAmount = productPrice * taxRate;
 
     double shippingCost = getShippingCost(location);
-    double totalPrice = productPrice+ taxAmount + shippingCost;
+    double totalPrice = productPrice + taxAmount + shippingCost;
     return totalPrice;
   }
   //Calculate shipping cost
@@ -27,7 +27,7 @@ class SPricingCalculator {
   }
 
   static double getShippingCost(String location) {
-    //Looking the shipping cost for a given location fro  a tax rate database or API
+    //Looking the shipping cost for a given location from  a tax rate database or API
     //Calculate the shipping costs based on various factors like distance, weight e.t.c
     return 5.00; //example of $5 shipping costs
   }

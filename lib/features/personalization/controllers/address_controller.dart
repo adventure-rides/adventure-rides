@@ -61,7 +61,7 @@ class AddressController extends GetxController {
       //Set the 'selected' field to true for the newly selected address
       await addressRepository.updateSelectedField(selectedAddress.value.id, true);
 
-      Get.back();
+      //Get.back();
     }catch (e){
       SLoaders.errorSnackBar(title: 'Address not found', message: e.toString());
     }
@@ -138,6 +138,9 @@ class AddressController extends GetxController {
                     ///Helper functions: handle loader, no record, or error message
                     final response = SCloudHelperFunctions.checkMultiRecordState(snapshot: snapshot);
                     if(response != null) return response;
+
+                    // Ensure snapshot.data is not null
+                    //final addresses = snapshot.data ?? [];
 
                     return ListView.builder(
                       shrinkWrap: true,

@@ -1,3 +1,5 @@
+import 'package:adventure_rides/features/book/screens/all_cars/all_cars.dart';
+import 'package:adventure_rides/features/book/screens/all_guides/all_tour_guides.dart';
 import 'package:adventure_rides/route/routes.dart';
 import 'package:get/get.dart';
 import '../features/authentication/screens/Login/login.dart';
@@ -7,6 +9,7 @@ import '../features/authentication/screens/password_configuration/forget_passwor
 import '../features/authentication/screens/profile/profile.dart';
 import '../features/authentication/screens/signup/signup.dart';
 import '../features/authentication/screens/signup/verify_email.dart';
+import '../features/book/reservation/reservations.dart';
 import '../features/book/screens/booking/bookings.dart';
 import '../features/book/screens/car_reviews/car_reviews_screen.dart';
 import '../features/book/screens/cart/cart.dart';
@@ -32,6 +35,13 @@ class AppRoutes {
     GetPage(name: SRoutes.signIn, page: () => const LoginScreen()),
     GetPage(name: SRoutes.forgetPassword, page: () => const ForgetPassword()),
     GetPage(name: SRoutes.onBoarding, page: () => const OnBoardingScreen()),
+
+    GetPage(name: SRoutes.vehicles, page: () => AllCars(title: '')),
+    GetPage(name: SRoutes.bookVehicle, page: () => AllCars(title: '')),
+    GetPage(name: SRoutes.bookRide, page: () => BookingScreen()),
+    GetPage(name: SRoutes.viewCars, page: () => AllCars(title: '')),
+    GetPage(name: SRoutes.exploreGuides, page: () => AllTourGuides(title: '')),
+    GetPage(name: SRoutes.reserve, page: () => ReservationsScreen()),
 
   ];
 }

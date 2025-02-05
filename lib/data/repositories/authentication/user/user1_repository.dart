@@ -10,7 +10,6 @@ import '../../../../utils/exceptions/format_exception.dart';
 import '../../../../utils/exceptions/platform_exception.dart';
 import 'package:adventure_rides/data/repositories/authentication/general_auth_repository.dart';
 
-
 /// Repository class for user-related operations
 class User1Repository extends GetxController {
   static User1Repository get instance => Get.find();

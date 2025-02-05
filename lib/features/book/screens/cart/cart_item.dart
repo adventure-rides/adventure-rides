@@ -21,15 +21,29 @@ class SCartItem extends StatelessWidget {
     return Row(
       children: [
         ///image
-        SRoundedImage(
-          imageUrl: cartItem.image ?? '',
-          width: 60,
-          height: 60,
-          isNetworkImage: true,
-          padding: const EdgeInsets.all(SSizes.sm),
-          backgroundColor: SHelperFunctions().isDarkMode(context)
-              ? SColors.darkerGrey
-              : SColors.light,
+        Container(
+          decoration: BoxDecoration(
+            boxShadow: [
+              BoxShadow(
+                color: Colors.black.withOpacity(0.1), // Shadow color
+                blurRadius: 8, // Softness of the shadow
+                spreadRadius: 2, // How far the shadow spreads
+                offset: Offset(0, 4), // Position of the shadow (x, y)
+              ),
+            ],
+            borderRadius: BorderRadius.circular(SSizes.sm), // Match SRoundedImage rounding
+          ),
+          child: SRoundedImage(
+            imageUrl: cartItem.image ?? '',
+            width: 100,
+            height: 100,
+            fit: BoxFit.cover, //contain, cover, fill, or remove the fit property
+            isNetworkImage: true,
+            padding: const EdgeInsets.all(SSizes.sm),
+            backgroundColor: SHelperFunctions().isDarkMode(context)
+                ? SColors.darkerGrey
+                : SColors.bootColor,
+          ),
         ),
         const SizedBox(width: SSizes.spaceBtwItems),
 

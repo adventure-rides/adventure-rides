@@ -23,4 +23,12 @@ class SRoutes {
   static const resetPassword = '/reset-password';
   static const forgetPassword = '/forget-password';
   static const onBoarding = '/on-boarding';
+
+  static const vehicles = '/vehicles';
+  static const bookVehicle = '/book-vehicle';
+  static const bookRide = '/book-ride';
+  static const viewCars = '/view-cars';
+  static const exploreGuides = '/explore-guides';
+  static const reserve = '/reserve';
+
 }

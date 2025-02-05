@@ -7,6 +7,7 @@ import '../../../../common/widgets/Text/section_heading.dart';
 import '../../../../common/widgets/images/s_circular_image.dart';
 import '../../../../utils/constraints/image_strings.dart';
 import '../../../../utils/constraints/sizes.dart';
+import '../../../../utils/device/device_utility.dart';
 import '../../../personalization/controllers/user_controller.dart';
 import '../../../personalization/screens/address/widgets/change_name.dart';
 
@@ -17,7 +18,10 @@ class ProfileScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final controller = UserController.instance;
     return Scaffold(
-      appBar: const SAppBar(showBackArrow: true, title: Text('Profile'),
+      appBar: PreferredSize(
+        preferredSize: Size.fromHeight(SDevicesUtils.getAppBarBarHeight()), // the height of the AppBar
+        child: const SAppBar(showBackArrow: true, title: Text('Profile'), // The fixed AppBar
+      ),
       ),
       ///Body
       body: SingleChildScrollView(

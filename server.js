@@ -1,34 +1,33 @@
 const express = require("express");
 const cors = require("cors");
-const stripe = require("stripe")("sk_test_51QcroNERybcrOMLTzWelRRiZCeKWPQ2byABmWINzipwporCNG33x31EPsttcQswZ3jWtio0c8bus8vYX4I7FbLfT00u39zl2Da"); // Replace with your actual Stripe Secret Key
+const stripe = require("stripe")("sk_test_51QcroNERybcrOMLTzWelRRiZCeKWPQ2byABmWINzipwporCNG33x31EPsttcQswZ3jWtio0c8bus8vYX4I7FbLfT00u39zl2Da"); // Replace with your Stripe Secret Key
 
 const app = express();
 app.use(cors({ origin: "*" })); // ✅ Allow all origins
 app.use(express.json());
 
-// ✅ Default route to prevent "Cannot GET /" error
-app.get("/", (req, res) => {
-    res.send("🚀 Stripe Payment Server is running!");
-});
-
-// ✅ Payment Intent Route
-app.post("/create-payment-intent", async (req, res) => {
+// ✅ New Route: Create Checkout Session for Web
+app.post("/create-checkout-session", async (req, res) => {
     try {
-        const { amount } = req.body;
-        if (!amount || amount <= 0) {
-            return res.status(400).json({ error: "Invalid payment amount." });
-        }
+        const { amount, returnUrl } = req.body; // Get return URL from Flutter request
 
-        console.log(`🔹 Creating payment intent for $${amount / 100}`);
-
-        const paymentIntent = await stripe.paymentIntents.create({
-            amount, // Amount in cents (e.g., $50 = 5000)
-            currency: "usd",
+        const session = await stripe.checkout.sessions.create({
+            payment_method_types: ["card"],
+            line_items: [{
+                price_data: {
+                    currency: "usd",
+                    product_data: { name: "Safari Chat" },
+                    unit_amount: amount,
+                },
+                quantity: 1,
+            }],
+            mode: "payment",
+            success_url: `${returnUrl}?status=success`,  // ✅ Redirect to Flutter with success status
+            cancel_url: `${returnUrl}?status=cancel`,    // ✅ Redirect to Flutter with cancel status
         });
 
-        res.json({ clientSecret: paymentIntent.client_secret });
+        res.json({ url: session.url });
     } catch (error) {
-        console.error("❌ Error creating payment intent:", error);
         res.status(500).json({ error: error.message });
     }
 });

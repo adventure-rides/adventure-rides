@@ -6,6 +6,7 @@ import 'package:flutter_stripe/flutter_stripe.dart';
 import 'package:get/get.dart';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
+import 'package:url_launcher/url_launcher.dart';
 import '../../../../../../common/cars/cart/coupon_widget.dart';
 import '../../../../../../common/container/rounded_container.dart';
 import '../../../../../../utils/constraints/colors.dart';
@@ -22,38 +23,33 @@ class DesktopCheckout extends StatelessWidget {
 
   Future<void> processStripePayment(double amount) async {
     try {
-      // 1️⃣ Call backend to create a PaymentIntent
+      final returnUrl = "https://your-flutter-app.com/payment-status?status=success"; // ✅ Change to your Flutter page
+
       final response = await http.post(
-        Uri.parse("https://your-backend-url.com/create-payment-intent"), // Replace with your backend URL
+        Uri.parse("https://your-backend-url.com/create-checkout-session"), // Backend URL
         headers: {"Content-Type": "application/json"},
-        body: jsonEncode({"amount": (amount * 100).toInt()}), // Convert to cents
+        body: jsonEncode({"amount": (amount * 100).toInt(), "returnUrl": returnUrl}),
       );
 
       final jsonResponse = jsonDecode(response.body);
-      if (!jsonResponse.containsKey("clientSecret")) {
-        throw Exception("Failed to get client secret");
+      if (!jsonResponse.containsKey("url")) {
+        throw Exception("Failed to get checkout URL");
       }
 
-      // 2️⃣ Initialize Payment Sheet
-      await Stripe.instance.initPaymentSheet(
-        paymentSheetParameters: SetupPaymentSheetParameters(
-          paymentIntentClientSecret: jsonResponse["clientSecret"],
-          merchantDisplayName: "Adventure Rides",
-        ),
-      );
+      final checkoutUrl = jsonResponse["url"];
 
-      // 3️⃣ Show Payment Sheet
-      await Stripe.instance.presentPaymentSheet();
-
-      // 4️⃣ Success message
-      Get.snackbar("Success", "Payment Successful!", backgroundColor: Colors.green);
+      // ✅ Open Stripe Checkout in the browser
+      if (await canLaunch(checkoutUrl)) {
+        await launch(checkoutUrl);
+      } else {
+        throw "Could not open Stripe Checkout";
+      }
 
     } catch (e) {
-      // Handle any errors
-      print("Payment Error: $e");
+      print("❌ Payment Error: $e");
       SLoaders.warningSnackBar(
         title: "Payment Failed",
-        message: "Something went wrong. Please try again.$e",
+        message: "Something went wrong. Please try again.",
       );
     }
   }

@@ -3,7 +3,7 @@ const cors = require("cors");
 const stripe = require("stripe")("sk_test_51QcroNERybcrOMLTzWelRRiZCeKWPQ2byABmWINzipwporCNG33x31EPsttcQswZ3jWtio0c8bus8vYX4I7FbLfT00u39zl2Da"); // Replace with your actual Stripe Secret Key
 
 const app = express();
-app.use(cors());
+app.use(cors({ origin: "*" })); // ✅ Allow all origins
 app.use(express.json());
 
 // ✅ Default route to prevent "Cannot GET /" error

@@ -7,7 +7,7 @@ class AvailabilityCalendarDesktop extends StatefulWidget {
   final List<DateTime> bookedDates;
   final Function(DateTime) onDateSelected;
 
-  AvailabilityCalendarDesktop({required this.bookedDates, required this.onDateSelected});
+  const AvailabilityCalendarDesktop({super.key, required this.bookedDates, required this.onDateSelected});
 
   @override
   _AvailabilityCalendarDesktopState createState() => _AvailabilityCalendarDesktopState();

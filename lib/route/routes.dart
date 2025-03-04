@@ -30,5 +30,9 @@ class SRoutes {
   static const viewCars = '/view-cars';
   static const exploreGuides = '/explore-guides';
   static const reserve = '/reserve';
+  static const statusPayment = '/payment-status';
+  static const paySuccess = '/success-screen';
+
+  static const privacyPolicy = '/privacy-policy';
 
 }

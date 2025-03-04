@@ -1,15 +1,11 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-
+import 'package:intl/intl.dart';
 import '../../../models/car_model.dart';
 import 'availability_calendar_desktop.dart';
+import '../../../../../../utils/popups/loaders.dart';
 
 class AvailabilityCalendarDialog extends StatelessWidget {
-  const AvailabilityCalendarDialog({
-    super.key,
-    required this.car,
-  });
-
+  const AvailabilityCalendarDialog({super.key, required this.car});
   final CarModel car;
 
   @override
@@ -24,34 +20,56 @@ class AvailabilityCalendarDialog extends StatelessWidget {
           ),
         ),
         onPressed: () {
-          // Show the availability calendar in a dialog
-          showDialog(
-            context: context,
-            builder: (BuildContext context) {
-              return AlertDialog(
-                title: const Text("Check Availability Status"),
-                content: SizedBox(
-                  width: double.maxFinite, // Make dialog width flexible
-                  height: double.maxFinite, // Make dialog width flexible
-                  child: AvailabilityCalendarDesktop(bookedDates: car.bookedDates, onDateSelected: (DateTime ) {  },),
-                ),
-                actions: [
-                  TextButton(
-                    onPressed: () {
-                      Navigator.of(context).pop(); // Close the dialog
-                    },
-                    child: const Text("Close"),
-                  ),
-                ],
-              );
-            },
-          );
+          _showAvailabilityDialog(context);
         },
         child: const Text(
           "Show Availability Calendar",
           style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
         ),
       ),
+    );
+  }
+
+  void _showAvailabilityDialog(BuildContext context) {
+    DateTime? selectedDate; // Local variable for storing selection
+
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: const Text("Check Availability Status"),
+          content: SizedBox(
+            width: double.maxFinite,
+            height: double.maxFinite,
+            child: AvailabilityCalendarDesktop(
+              bookedDates: car.bookedDates,
+              onDateSelected: (DateTime date) {
+                selectedDate = date;
+              },
+            ),
+          ),
+          actions: [
+            TextButton(
+              onPressed: () {
+                Navigator.of(context).pop(); // Close the dialog
+              },
+              child: const Text("Close"),
+            ),
+            TextButton(
+              onPressed: () {
+                if (selectedDate == null) {
+                  SLoaders.customToast(message: "❌ Please select a date first.");
+                } else {
+                  SLoaders.customToast(
+                      message: "✅ Selected Date: ${DateFormat('yyyy-MM-dd').format(selectedDate!)}");
+                  Navigator.of(context).pop(); // Close the dialog after confirmation
+                }
+              },
+              child: const Text("OK"),
+            ),
+          ],
+        );
+      },
     );
   }
 }

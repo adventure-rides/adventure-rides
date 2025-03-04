@@ -5,7 +5,9 @@ class SPricingCalculator {
     double taxAmount = productPrice * taxRate;
 
     double shippingCost = getShippingCost(location);
-    double totalPrice = productPrice + taxAmount + shippingCost;
+    ///Uncomment this to add the tax amount and the shipping cost
+    //double totalPrice = productPrice + taxAmount + shippingCost;
+    double totalPrice = productPrice;
     return totalPrice;
   }
   //Calculate shipping cost

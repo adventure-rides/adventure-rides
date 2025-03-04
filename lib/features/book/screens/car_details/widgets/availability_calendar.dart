@@ -6,7 +6,7 @@ import '../../../../../utils/constraints/sizes.dart';
 class AvailabilityCalendar extends StatefulWidget {
   final List<DateTime> bookedDates;
 
-  AvailabilityCalendar({required this.bookedDates});
+  const AvailabilityCalendar({super.key, required this.bookedDates});
 
   @override
   _AvailabilityCalendarState createState() => _AvailabilityCalendarState();

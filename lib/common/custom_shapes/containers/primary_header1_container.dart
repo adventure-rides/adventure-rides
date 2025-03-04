@@ -70,8 +70,10 @@ class SPrimaryHeader1Container extends StatelessWidget {
                   Text(
                     controller.banners[controller.carousalCurrentIndex.value].title,
                     style: const TextStyle(
-                      color: Colors.white,
-                      fontSize: 24,
+                      color: SColors.bootColor,
+                      fontFamily: 'Schyler',
+                      fontSize: 30,
+
                       fontWeight: FontWeight.bold,
                     ),
                   ),

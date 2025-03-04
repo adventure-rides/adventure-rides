@@ -1,10 +1,11 @@
-import 'package:adventure_rides/common/appbar/fixed_appbar.dart';
+import 'package:adventure_rides/features/authentication/screens/home/other_screens_appbar/fixed_screen_appbar.dart';
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:geocoding/geocoding.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'dart:async';
 
 class EmergencyScreen extends StatefulWidget {
   const EmergencyScreen({super.key});
@@ -19,6 +20,8 @@ class _EmergencyScreenState extends State<EmergencyScreen> {
   TextEditingController searchController = TextEditingController();
   TextEditingController emergencyReasonController = TextEditingController();
   GoogleMapController? mapController;
+  StreamSubscription<DocumentSnapshot>? vehicleSubscription;
+  Marker? vehicleMarker;
 
   void sendEmergencyAlert() {
     if (emergencyReasonController.text.isEmpty) {
@@ -64,6 +67,24 @@ class _EmergencyScreenState extends State<EmergencyScreen> {
     mapController?.animateCamera(CameraUpdate.newLatLngZoom(userLocation!, 14));
   }
 
+  void trackVehicleLocation() {
+    vehicleSubscription = FirebaseFirestore.instance.collection('vehicles').doc('vehicle_1')
+        .snapshots()
+        .listen((snapshot) {
+      if (snapshot.exists) {
+        setState(() {
+          vehicleLocation = LatLng(snapshot.get('latitude'), snapshot.get('longitude'));
+          vehicleMarker = Marker(
+            markerId: MarkerId('vehicle'),
+            position: vehicleLocation!,
+            icon: BitmapDescriptor.defaultMarkerWithHue(BitmapDescriptor.hueRed),
+          );
+        });
+        mapController?.animateCamera(CameraUpdate.newLatLng(vehicleLocation!));
+      }
+    });
+  }
+
   void launchCaller(String phoneNumber) async {
     final Uri url = Uri.parse("tel:$phoneNumber");
     if (await canLaunchUrl(url)) {
@@ -86,13 +107,20 @@ class _EmergencyScreenState extends State<EmergencyScreen> {
   void initState() {
     super.initState();
     getCurrentLocation();
+    trackVehicleLocation();
+  }
+
+  @override
+  void dispose() {
+    vehicleSubscription?.cancel();
+    super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: FixedAppbar(
-        title: Text('Emergency Rescue Details'),
+      appBar: FixedScreenAppbar(
+        title: 'Emergency Rescue Details',
       ),
       body: SingleChildScrollView(
         child: Column(
@@ -112,7 +140,6 @@ class _EmergencyScreenState extends State<EmergencyScreen> {
                     ),
                   ),
                   SizedBox(height: 8),
-
                 ],
               ),
             ),
@@ -133,12 +160,7 @@ class _EmergencyScreenState extends State<EmergencyScreen> {
                       position: userLocation!,
                       icon: BitmapDescriptor.defaultMarkerWithHue(BitmapDescriptor.hueBlue),
                     ),
-                  if (vehicleLocation != null)
-                    Marker(
-                      markerId: MarkerId('vehicle'),
-                      position: vehicleLocation!,
-                      icon: BitmapDescriptor.defaultMarkerWithHue(BitmapDescriptor.hueRed),
-                    ),
+                  if (vehicleMarker != null) vehicleMarker!,
                 },
               ),
             ),
@@ -173,13 +195,13 @@ class _EmergencyScreenState extends State<EmergencyScreen> {
                         leading: Icon(Icons.phone, color: Colors.blue),
                         title: Text('Emergency Helpline'),
                         trailing: Icon(Icons.call, color: Colors.green),
-                        onTap: () => launchCaller("+254746036853"), //Enter whatsapp phone number
+                        onTap: () => launchCaller("+254746036853"),
                       ),
                       ListTile(
                         leading: Icon(Icons.message, color: Colors.blue),
                         title: Text('Tour Guide'),
                         trailing: Icon(Icons.message, color: Colors.orange),
-                        onTap: () => launchSMS("+255750823146"), //enter sms phone number
+                        onTap: () => launchSMS("+255750823146"),
                       ),
                     ],
                   ),

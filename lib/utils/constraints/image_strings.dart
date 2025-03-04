@@ -23,7 +23,7 @@ class SImages {
   //Animations
   static const String productsIllustration = "assets/images/animations/shop1.jpg";
   static const String productsSaleIllustration = "assets/images/animations/shop2.jpg";
-  static const String staticSuccessIllustration = "assets/images/animations/shop3.jpg";
+  static const String staticSuccessIllustration = "assets/images/animations/success_1.json";
   static const String deliveredInPlaneIllustration = "assets/images/animations/shop4.jpg";
   static const String deliveredEmailIllustration = "assets/images/animations/shop3.jpg";
   static const String verifyIllustration = "assets/images/animations/shop4.jpg";
@@ -86,8 +86,8 @@ class SImages {
   static const String successfulPaymentIcon = "assets/images/payment_methods/successfulpayment.png";
 
   //Animations
-  static String processAnimation = "assets/animations/process4.json";
-  static String successAnimation = "assets/animations/success_anim.json";
+  static String processAnimation = "assets/animations/loading.json";
+  static String successAnimation = "assets/animations/success_1.json";
   static String shopAnimation = "assets/animations/shop_anim.json";
   static String pencilAnimation = "assets/animations/pencil_animation.json";
   static String deliveryAnimation = "assets/animations/delivery_anim.json";
@@ -100,7 +100,7 @@ class SImages {
   static String thumnailImage = "assets/images/products/thumb.png";
 
   //Success
-  static String successImage = "assets/images/animations/success.png";
+  static String successImage = "assets/images/animations/success_1.json";
 
 
 

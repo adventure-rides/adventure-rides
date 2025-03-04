@@ -18,6 +18,7 @@ import 'package:adventure_rides/features/Effects/vertical_guide_shimmer.dart';
 import 'package:adventure_rides/features/book/controllers/car/car_controller.dart';
 import 'package:adventure_rides/features/book/controllers/tour_guide/guide_controller.dart';
 import 'package:adventure_rides/features/book/screens/all_cars/all_cars.dart';
+import '../../../../../Files/privacy_policy.dart';
 import '../home_appbar.dart';
 import '../image_text_widgets/test_home.dart';
 
@@ -44,7 +45,7 @@ class HomeScreenDesktop extends StatelessWidget {
         padding: const EdgeInsets.only(top: 0),
         child: Stack(
           children: [
-            // Background Layer
+            /// Background Layer/ image
             Positioned.fill(
               child: Container(
                 decoration: BoxDecoration(
@@ -62,7 +63,7 @@ class HomeScreenDesktop extends StatelessWidget {
                     fit: BoxFit.cover,
                     alignment: Alignment.bottomCenter,
                     colorFilter: ColorFilter.mode(
-                      Colors.white.withOpacity(0.3),
+                      Colors.white.withOpacity(0.1),
                       BlendMode.dstATop,
                     ),
                   ),
@@ -74,6 +75,7 @@ class HomeScreenDesktop extends StatelessWidget {
               controller: _scrollController,
               child: Column(
                 children: [
+                  ///The image slide show, the SPrimaryHeader1Container
                   SPrimaryHeader1Container(
                     child: Column(
                       children: [
@@ -201,6 +203,7 @@ class HomeScreenDesktop extends StatelessWidget {
                               ),
                             ),
                             GestureDetector(
+                              //onTap: () => Get.to(() => const PDFViewerPage(pdfAssetPath: "assets/files/Safari_policy.pdf")),
                               onTap: () => Get.toNamed('/privacy-policy'),
                               child: Column(
                                 children: [

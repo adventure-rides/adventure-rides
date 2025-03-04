@@ -117,7 +117,7 @@ class SGuideCardVertical extends StatelessWidget {
                   /// Fee
                   Flexible(
                     child: Text(
-                      '\$${guide.guideFee.toStringAsFixed(2)} / hour',
+                      '\$${guide.guideFee.toStringAsFixed(2)} / day',
                       style: Theme.of(context).textTheme.labelMedium,
                       overflow: TextOverflow.ellipsis,
                     ),

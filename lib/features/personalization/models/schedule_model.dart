@@ -42,7 +42,7 @@ class ScheduleModel {
       'pickupDate': pickupDate,
       'pickupTime': pickupTime,
       'dropoffLocation': dropoffLocation,
-      'dropoffDate': dropoffDate,
+      'dropoffDate': dropoffDate, // Convert DateTime to String
       'dropoffTime': dropoffTime,
       'isRoundTrip': isRoundTrip,
       'SelectedSchedule': selectedSchedule,
@@ -52,22 +52,22 @@ class ScheduleModel {
   /// Creates an instance from a `Map<String, dynamic>` (Firestore data or others).
   factory ScheduleModel.fromMap(Map<String, dynamic> data) {
     return ScheduleModel(
-      id: data['id'] as String,
-      pickupLocation: data['pickupLocation'] as String,
-      pickupDate: data['pickupDate'] as String,
-      pickupTime: data['pickupTime'] as String,
-      dropoffLocation: data['dropoffLocation'] as String,
-      dropoffDate: data['dropoffDate'] as String,
-      dropoffTime: data['dropoffTime'] as String,
-      isRoundTrip: data['isRoundTrip'] as bool,
-      selectedSchedule: data['SelectedSchedule'] as bool,
+      id: data['id'] ?? '',
+      pickupLocation: data['pickupLocation'] ?? '',
+      pickupDate: data['pickupDate'] ?? '',
+      pickupTime: data['pickupTime'] ?? '',
+      dropoffLocation: data['dropoffLocation'] ?? '',
+      dropoffDate: data['dropoffDate'] ?? '',
+      dropoffTime: data['dropoffTime'] ?? '',
+      isRoundTrip: data['isRoundTrip'] is bool ? data['isRoundTrip'] : true,
+      selectedSchedule: data['SelectedSchedule'] is bool ? data['SelectedSchedule'] : true,
     );
   }
 
   /// Creates an instance from a Firestore `DocumentSnapshot`.
   /// Factory constructor to create a ScheduleModel from a DocumentSnapshot
   factory ScheduleModel.fromDocumentSnapshot(DocumentSnapshot snapshot) {
-    final data = snapshot.data() as Map<String, dynamic>; //? ?? {} add immediately after dynamic closing tag
+    final data = snapshot.data() as Map<String, dynamic>? ?? {}; //? ?? {} add immediately after dynamic closing tag
     return ScheduleModel(
       id: snapshot.id, // Get the document ID directly from the snapshot
       //id: data['id'] ?? '',
@@ -77,11 +77,10 @@ class ScheduleModel {
       dropoffLocation: data['dropoffLocation'] ?? '',
       dropoffDate: data['dropoffDate'] ?? '',
       dropoffTime: data['dropoffTime'] ?? '',
-      isRoundTrip: data['isRoundTrip'] as bool,
-      selectedSchedule: data['SelectedSchedule'] as bool,
+      isRoundTrip: data['isRoundTrip'] is bool ? data['isRoundTrip'] : true,
+      selectedSchedule: data['SelectedSchedule'] is bool ? data['SelectedSchedule'] : true,
     );
   }
-
 
   @override
   String toString() {

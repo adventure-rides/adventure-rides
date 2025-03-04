@@ -1,7 +1,6 @@
 import 'package:adventure_rides/features/Effects/vertical_car_shimmer.dart';
 import 'package:adventure_rides/features/book/controllers/car/car_detail_controller.dart';
 import 'package:adventure_rides/features/book/screens/car_details/responsive_screens/desktop/car_desktop_detail_image_slider.dart';
-import 'package:adventure_rides/features/book/screens/car_details/widgets/availability_calendar.dart';
 import 'package:adventure_rides/features/book/screens/car_details/widgets/bottom_add_to_cart_widget.dart';
 import 'package:adventure_rides/features/book/screens/car_details/widgets/car_meta_data.dart';
 import 'package:adventure_rides/features/book/screens/car_details/widgets/cars_attributes.dart';
@@ -11,7 +10,6 @@ import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:intl/intl.dart';
 import 'package:readmore/readmore.dart';
-import 'package:table_calendar/table_calendar.dart';
 import '../../../../../../common/cars/cars_cards/desktop/desktop_car_card_vertical.dart';
 import '../../../../../../common/widgets/Text/section_heading.dart';
 import '../../../../../../common/widgets/layouts/grids/desktop_grid_layout.dart';
@@ -242,4 +240,3 @@ class DesktopCarDetail extends StatelessWidget {
     );
   }
 }
-

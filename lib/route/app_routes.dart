@@ -1,7 +1,9 @@
+import 'package:adventure_rides/common/widgets/success_screen/success_main_screen.dart';
 import 'package:adventure_rides/features/book/screens/all_cars/all_cars.dart';
 import 'package:adventure_rides/features/book/screens/all_guides/all_tour_guides.dart';
 import 'package:adventure_rides/route/routes.dart';
 import 'package:get/get.dart';
+import '../features/Files/privacy_policy.dart';
 import '../features/authentication/screens/Login/login.dart';
 import '../features/authentication/screens/home/widgets/home.dart';
 import '../features/authentication/screens/onboarding/onboarding.dart';
@@ -17,6 +19,7 @@ import '../features/book/screens/checkout/checkout.dart';
 import '../features/book/screens/trip_hub/trip_hub.dart';
 import '../features/book/screens/wishlist/wishlist.dart';
 import '../features/personalization/screens/address/address.dart';
+import '../utils/stripe_gateway/payment_status.dart';
 
 class AppRoutes {
   static final pages = [
@@ -42,6 +45,13 @@ class AppRoutes {
     GetPage(name: SRoutes.viewCars, page: () => AllCars(title: '')),
     GetPage(name: SRoutes.exploreGuides, page: () => AllTourGuides(title: '')),
     GetPage(name: SRoutes.reserve, page: () => ReservationsScreen()),
+    
+    
+    GetPage(name: SRoutes.paySuccess, page: () => SuccessMainScreen(image: '', title: '', subTitle: '', onPressed: () {  },)),
 
+    GetPage(name: SRoutes.statusPayment, page: () => PaymentStatusScreen()),
+
+    GetPage(name: SRoutes.privacyPolicy, page: () => PDFViewerPage(pdfAssetPath: "assets/files/Safari_policy.pdf"),
+    ),
   ];
 }

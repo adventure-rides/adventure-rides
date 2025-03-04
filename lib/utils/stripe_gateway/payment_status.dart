@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class PaymentStatusScreen extends StatelessWidget {
+  const PaymentStatusScreen({super.key});
+
   @override
   Widget build(BuildContext context) {
     final status = Get.parameters['status']; // Get status from URL
@@ -20,7 +22,7 @@ class PaymentStatusScreen extends StatelessWidget {
             SizedBox(height: 20),
             ElevatedButton(
               onPressed: () {
-                Get.offAllNamed("/home"); // Navigate back to home screen
+                Get.offAllNamed("/success-screen"); // Navigate back to home screen
               },
               child: Text("Go to Home"),
             ),

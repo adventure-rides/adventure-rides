@@ -208,7 +208,7 @@ class CartController extends GetxController {
 
 /// To clear the bookings
   void clearCart() {
-    itemQuantityInCart.value = 1; // Reset item quantity to zero
+    itemQuantityInCart.value = 0; // Reset item quantity to zero
     cartItems.clear(); // Clear all items from the cart
     updateCart(); // Update cart totals and save state
   }

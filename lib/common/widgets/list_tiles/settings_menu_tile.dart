@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 import '../../../utils/constraints/colors.dart';
 
 class SSettingsMenuTile extends StatelessWidget {

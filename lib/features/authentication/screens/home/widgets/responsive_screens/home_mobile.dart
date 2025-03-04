@@ -45,7 +45,7 @@ class HomeScreenMobile extends StatelessWidget {
         controller: _scrollController, // Assign the controller
         child: Column(
           children: [
-            /// Header
+            /// Header - The image slide show, the SPrimaryHeader2Container for mobile
             SPrimaryHeader2Container(
               child: Column(
                 children: [

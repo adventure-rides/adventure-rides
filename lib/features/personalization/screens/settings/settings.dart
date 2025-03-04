@@ -1,12 +1,11 @@
+import 'package:adventure_rides/features/authentication/screens/home/other_screens_appbar/fixed_screen_appbar.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
-import '../../../../common/appbar/appbar.dart';
 import '../../../../common/custom_shapes/containers/primary_header_container.dart';
 import '../../../../common/widgets/Text/section_heading.dart';
 import '../../../../common/widgets/list_tiles/settings_menu_tile.dart';
 import '../../../../common/widgets/list_tiles/user_profile.dart';
-import '../../../../utils/constraints/colors.dart';
 import '../../../../utils/constraints/sizes.dart';
 import '../../../../utils/device/device_utility.dart';
 import '../../../authentication/screens/profile/profile.dart';
@@ -23,12 +22,8 @@ class SettingsScreen extends StatelessWidget {
       appBar: PreferredSize(
         preferredSize: Size.fromHeight(SDevicesUtils.getAppBarBarHeight()),
         // the height of the AppBar
-        child: SAppBar(
-            title: Text('Account',
-                style: Theme.of(context)
-                    .textTheme
-                    .headlineMedium!
-                    .apply(color: SColors.white))), // The fixed AppBar
+        child: FixedScreenAppbar(
+            title: 'Account'), // The fixed AppBar
       ),
       body: SingleChildScrollView(
         child: Column(

@@ -1,8 +1,8 @@
+import 'package:adventure_rides/features/authentication/screens/home/other_screens_appbar/fixed_screen_appbar.dart';
 import 'package:adventure_rides/features/authentication/screens/profile/widgets/profile_menu.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
-import '../../../../common/appbar/appbar.dart';
 import '../../../../common/widgets/Text/section_heading.dart';
 import '../../../../common/widgets/images/s_circular_image.dart';
 import '../../../../utils/constraints/image_strings.dart';
@@ -20,7 +20,7 @@ class ProfileScreen extends StatelessWidget {
     return Scaffold(
       appBar: PreferredSize(
         preferredSize: Size.fromHeight(SDevicesUtils.getAppBarBarHeight()), // the height of the AppBar
-        child: const SAppBar(showBackArrow: true, title: Text('Profile'), // The fixed AppBar
+        child: FixedScreenAppbar(title: 'Profile', // The fixed AppBar
       ),
       ),
       ///Body

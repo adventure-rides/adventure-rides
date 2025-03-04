@@ -40,7 +40,7 @@ class SHomeAppBar extends StatelessWidget {
                   height: 30,
                   width: 30,
                 ),
-                const SizedBox(width: 10),
+                const SizedBox(width: 5),
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
@@ -55,7 +55,7 @@ class SHomeAppBar extends StatelessWidget {
                       SText.homeAppbarSubTitle,
                       style: Theme.of(context)
                           .textTheme
-                          .titleSmall!
+                          .bodyLarge!
                           .apply(color: SColors.white),
                     ),
                   ],
